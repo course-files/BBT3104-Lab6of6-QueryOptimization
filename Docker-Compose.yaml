@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+
+  postgres:
+    image: postgres:16.2
+    hostname: postgres-bbt3104
+    container_name: postgres-bbt3104
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 5trathm0re
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./container-volumes/postgres/var-lib-postgresql-data:/var/lib/postgresql/data
+
+# Be patient and wait for the server to display "ready for connections" in the
+# logs. There are a total of 4 "ready for connections" messages in the logs.
+
+  mysql:
+    image: mysql:8.0.35
+    hostname: mysql-bbt3104
+    container_name: mysql-bbt3104
+    ports:
+      - 33006:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 5trathm0re
+    volumes:
+      - ./container-volumes/mysql/sample-data:/docker-entrypoint-initdb.d/
+      - ./container-volumes/mysql/var-lib-mysql:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    hostname: adminer-bbt3104
+    container_name: adminer-bbt3104
+    restart: always
+    ports:
+      - 8080:8080
