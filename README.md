@@ -28,7 +28,7 @@ downloaded from here: [http://www.imdb.com/interfaces](http://www.imdb.com/inter
 
 ## Join Order Benchmark (JOB) queries
 
-Proceed to execute the Join Order Benchmark (JOB) queries available [here](/Join-Order-Benchmark-Queries) on the IMDb database in PostgreSQL.
+Proceed to execute the Join Order Benchmark (JOB) queries available [here](/Join-Order-Benchmark-queries) on the IMDb database in PostgreSQL.
 
 ## Acknowledgment
 
