@@ -1,4 +1,6 @@
-SELECT MIN(mi.info) AS release_date,
+-- JOB Query 13a
+-- "The German Query" (13d is "The US Query")
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(mi.info) AS release_date,
        MIN(miidx.info) AS rating,
        MIN(t.title) AS german_movie
 FROM company_name AS cn,

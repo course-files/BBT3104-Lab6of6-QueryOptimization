@@ -24,13 +24,13 @@ services:
     container_name: pgadmin-bbt3104
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@email.com
+      PGADMIN_DEFAULT_EMAIL: admin@strathmore.edu
       PGADMIN_DEFAULT_PASSWORD: 5trathm0re
       PGADMIN_LISTEN_PORT: 8080
     ports:
     - 8080:8080
-    volumes:
-    - ./container-volumes/postgres/pgadmin/servers.json:/pgadmin4/servers.json
+    # volumes:
+    # - ./container-volumes/postgres/pgadmin/servers.json:/pgadmin4/servers.json
 
 # Be patient and wait for the server to display "ready for connections" in the
 # logs. There are a total of 4 "ready for connections" messages in the logs.

@@ -1,4 +1,6 @@
-SELECT MIN(cn.name) AS producing_company,
+-- JOB Query 13d
+-- "The US Query" (13d is "The German Query")
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(cn.name) AS producing_company,
        MIN(miidx.info) AS rating,
        MIN(t.title) AS movie
 FROM company_name AS cn,
