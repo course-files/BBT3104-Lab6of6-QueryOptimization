@@ -1,2 +1,2 @@
-/Containers/mysql/var-lib-mysql
-/Containers/postgres/var-lib-postgresql-data
+/container-volumes/mysql/var-lib-mysql
+/container-volumes/postgres/var-lib-postgresql-data
