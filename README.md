@@ -24,7 +24,7 @@ downloaded from here: [http://www.imdb.com/interfaces](http://www.imdb.com/inter
 
 2. Create the IMDb database in Postgres using [schema.sql](IMBDb-dataset/schema.sql)
 
-3. Download the `.tgz` dataset, unzip it, and import each `.csv` file into its respective table. You can use [DBeaver](https://dbeaver.io/) (recommended) or any other similar database tool when importing. Alternatively, you can use [cinemagoer](https://pypi.org/project/cinemagoer/), formerly [IMDbPy](https://pypi.org/project/IMDbPY/), to automate this step.
+3. Download the `.tgz` dataset, unzip it, and import each `.csv` file into its respective table. You can use [DBeaver](https://dbeaver.io/) (recommended) or any other similar database tool when importing. A slightly similar video tutorial is available [here on YouTube](https://youtu.be/PKpzDL-yRPw?si=Y32Hqp3k0ZO9Kwm7). <br> Alternatively, you can use [cinemagoer](https://pypi.org/project/cinemagoer/), formerly [IMDbPy](https://pypi.org/project/IMDbPY/), to automate this step.
 
 ## Join Order Benchmark (JOB) queries
 
