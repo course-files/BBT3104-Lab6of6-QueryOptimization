@@ -1,10 +1,11 @@
-SELECT MIN(t.title) AS movie_title
+-- JOB Query 2d
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(t.title) AS movie_title
 FROM company_name AS cn,
      keyword AS k,
      movie_companies AS mc,
      movie_keyword AS mk,
      title AS t
-WHERE cn.country_code ='[sm]'
+WHERE cn.country_code ='[us]'
   AND k.keyword ='character-name-in-title'
   AND cn.id = mc.company_id
   AND mc.movie_id = t.id
