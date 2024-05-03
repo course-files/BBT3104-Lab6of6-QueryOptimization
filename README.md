@@ -13,6 +13,8 @@ These are course files (instructional materials) for both the **BBT3104: Advance
 
 ## IMDb Dataset
 
+![imdb_ERD](https://github.com/course-files/BBT3104-Lab6of6-QueryOptimization/assets/137632706/a7202d6e-c345-498e-9fa2-dd9d5a834a08)
+
 * The version of the IMDb dataset used in Leis et al. (2018) can be downloaded from here: [http://homepages.cwi.nl/~boncz/job/imdb.tgz](http://homepages.cwi.nl/~boncz/job/imdb.tgz) **(Recommended)**
 
 * The current version of the IMDb dataset can be
