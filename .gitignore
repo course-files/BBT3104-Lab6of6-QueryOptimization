@@ -1,2 +1,4 @@
 /container-volumes/mysql/var-lib-mysql
-/container-volumes/postgres/var-lib-postgresql-data
+/container-volumes/postgresql/var-lib-postgresql-data
+/IMBDb-dataset/Export from DBeaver
+/IMBDb-dataset/As Used in Leis et al. (2018)

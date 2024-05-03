@@ -1,4 +1,5 @@
-SELECT MIN(chn.name) AS uncredited_voiced_character,
+-- JOB Query 10a
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(chn.name) AS uncredited_voiced_character,
        MIN(t.title) AS russian_movie
 FROM char_name AS chn,
      cast_info AS ci,

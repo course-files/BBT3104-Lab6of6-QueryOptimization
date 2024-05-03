@@ -16,7 +16,7 @@ services:
       POSTGRES_INITDB_ARGS: "shared_buffers=256MB"
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - ./container-volumes/postgres/var-lib-postgresql-data:/var/lib/postgresql/data
+      - ./container-volumes/postgresql/var-lib-postgresql-data:/var/lib/postgresql/data
 
   pgadmin4:
     image: elestio/pgadmin:REL-8_5
@@ -30,7 +30,7 @@ services:
     ports:
     - 8080:8080
     # volumes:
-    # - ./container-volumes/postgres/pgadmin/servers.json:/pgadmin4/servers.json
+    # - ./container-volumes/postgresql/pgadmin/servers.json:/pgadmin4/servers.json
 
 # Be patient and wait for the server to display "ready for connections" in the
 # logs. There are a total of 4 "ready for connections" messages in the logs.
