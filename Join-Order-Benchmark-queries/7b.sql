@@ -1,4 +1,5 @@
-SELECT MIN(n.name) AS of_person,
+-- JOB Query 7b
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(n.name) AS of_person,
        MIN(t.title) AS biography_movie
 FROM aka_name AS an,
      cast_info AS ci,

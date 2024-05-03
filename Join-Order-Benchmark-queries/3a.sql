@@ -1,4 +1,5 @@
-SELECT MIN(t.title) AS movie_title
+-- JOB Query 3a
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(t.title) AS movie_title
 FROM keyword AS k,
      movie_info AS mi,
      movie_keyword AS mk,

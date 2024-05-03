@@ -1,4 +1,5 @@
-SELECT MIN(an.name) AS acress_pseudonym,
+-- JOB Query 8b
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(an.name) AS acress_pseudonym,
        MIN(t.title) AS japanese_anime_movie
 FROM aka_name AS an,
      cast_info AS ci,

@@ -1,4 +1,5 @@
-SELECT MIN(t.title) AS american_vhs_movie
+-- JOB Query 5b
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(t.title) AS american_vhs_movie
 FROM company_type AS ct,
      info_type AS it,
      movie_companies AS mc,

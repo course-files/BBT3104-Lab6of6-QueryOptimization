@@ -1,4 +1,5 @@
-SELECT MIN(mi_idx.info) AS rating,
+-- JOB Query 4b
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(mi_idx.info) AS rating,
        MIN(t.title) AS movie_title
 FROM info_type AS it,
      keyword AS k,
