@@ -1,4 +1,5 @@
-SELECT MIN(mi.info) AS movie_budget,
+-- JOB Query 18a
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(mi.info) AS movie_budget,
        MIN(mi_idx.info) AS movie_votes,
        MIN(t.title) AS movie_title
 FROM cast_info AS ci,

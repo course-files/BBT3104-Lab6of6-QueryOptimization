@@ -1,4 +1,5 @@
-SELECT MIN(n.name) AS voicing_actress,
+-- JOB Query 19a
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(n.name) AS voicing_actress,
        MIN(t.title) AS voiced_movie
 FROM aka_name AS an,
      char_name AS chn,

@@ -1,4 +1,5 @@
-SELECT MIN(n.name) AS member_in_charnamed_movie
+-- JOB Query 17e
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(n.name) AS member_in_charnamed_movie
 FROM cast_info AS ci,
      company_name AS cn,
      keyword AS k,
