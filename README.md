@@ -11,22 +11,22 @@ These are course files (instructional materials) for both the **BBT3104: Advance
 | **Lecturer**                                                          | Allan Omondi                                                                                                                                                                       |
 | **Contact**                                                           | aomondi_at_strathmore_dot_edu                                                                                                                                                      |
 
-## IMDb Dataset
+## Internet Movie Database (IMDb)
 
 ![imdb_ERD](https://github.com/course-files/BBT3104-Lab6of6-QueryOptimization/assets/137632706/a7202d6e-c345-498e-9fa2-dd9d5a834a08)
 
-* The version of the IMDb dataset used in Leis et al. (2018) can be downloaded from here: [http://homepages.cwi.nl/~boncz/job/imdb.tgz](http://homepages.cwi.nl/~boncz/job/imdb.tgz) **(Recommended)**
+* The version of IMDb used in Leis et al. (2018) can be downloaded from here: [http://homepages.cwi.nl/~boncz/job/imdb.tgz](http://homepages.cwi.nl/~boncz/job/imdb.tgz) **(Recommended)**
 
-* The current version of the IMDb dataset can be
+* The current version of IMDb can be
 downloaded from here: [http://www.imdb.com/interfaces](http://www.imdb.com/interfaces)
 
 ## Data Import
 
 1. Create the PostgreSQL Docker container using [Docker-Compose.yaml](/Docker-Compose.yaml)
 
-2. Create the IMDb database in Postgres using [schema.sql](IMBDb-dataset/schema.sql)
+2. Create the IMDb database in Postgres using [schema.sql](Internet-Movie-Database--IMBDb/schema.sql)
 
-3. Download the `.tgz` dataset, unzip it, and import each `.csv` file into its respective table. You can use [DBeaver](https://dbeaver.io/) (recommended) or any other similar database tool when importing. A slightly similar video tutorial is available [here on YouTube](https://youtu.be/PKpzDL-yRPw?si=Y32Hqp3k0ZO9Kwm7).<br> Alternatively, you can use [cinemagoer](https://pypi.org/project/cinemagoer/), formerly [IMDbPy](https://pypi.org/project/IMDbPY/), to automate this step.
+3. Download the `.tgz` file, decompress it, and import each `.csv` file into its respective table. You can use [DBeaver](https://dbeaver.io/) (recommended) or any other similar database tool when importing. A slightly similar video tutorial is available [here on YouTube](https://youtu.be/PKpzDL-yRPw?si=Y32Hqp3k0ZO9Kwm7).<br> Alternatively, you can use [cinemagoer](https://pypi.org/project/cinemagoer/), formerly [IMDbPy](https://pypi.org/project/IMDbPY/), to automate this step.
 
 ## Join Order Benchmark (JOB) queries
 
