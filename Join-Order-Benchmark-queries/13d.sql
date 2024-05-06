@@ -1,5 +1,5 @@
 -- JOB Query 13d
--- "The US Query" (13d is "The German Query")
+-- This is "The US Query" (13d is "The German Query") according to Leis et al. (2018)
 EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(cn.name) AS producing_company,
        MIN(miidx.info) AS rating,
        MIN(t.title) AS movie

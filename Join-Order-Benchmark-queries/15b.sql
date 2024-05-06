@@ -1,4 +1,5 @@
-SELECT MIN(mi.info) AS release_date,
+-- JOB Query 15b
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(mi.info) AS release_date,
        MIN(t.title) AS youtube_movie
 FROM aka_title AS at,
      company_name AS cn,

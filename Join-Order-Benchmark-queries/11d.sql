@@ -1,4 +1,5 @@
-SELECT MIN(cn.name) AS from_company,
+-- JOB Query 11d
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(cn.name) AS from_company,
        MIN(mc.note) AS production_note,
        MIN(t.title) AS movie_based_on_book
 FROM company_name AS cn,

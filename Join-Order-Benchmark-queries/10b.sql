@@ -1,4 +1,5 @@
-SELECT MIN(chn.name) AS character,
+-- JOB Query 10b
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(chn.name) AS character,
        MIN(t.title) AS russian_mov_with_actor_producer
 FROM char_name AS chn,
      cast_info AS ci,
