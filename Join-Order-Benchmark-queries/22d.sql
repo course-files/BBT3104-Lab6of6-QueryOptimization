@@ -1,4 +1,5 @@
-SELECT MIN(cn.name) AS movie_company,
+-- JOB Query 22d
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(cn.name) AS movie_company,
        MIN(mi_idx.info) AS rating,
        MIN(t.title) AS western_violent_movie
 FROM company_name AS cn,
