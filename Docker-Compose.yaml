@@ -53,4 +53,4 @@ services:
     container_name: adminer-bbt3104
     restart: always
     ports:
-      - 8080:8080
+      - 8081:8080
