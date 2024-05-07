@@ -34,10 +34,15 @@ downloaded from here: [http://www.imdb.com/interfaces](http://www.imdb.com/inter
 
 4. Proceed to execute the Join Order Benchmark (JOB) queries available [here](/Join-Order-Benchmark-queries) on the IMDb database in PostgreSQL.
 
-## Acknowledgment
+## Acknowledgments
 
 This code repository has been forked from **[join-order-benchmark](https://github.com/gregrahn/join-order-benchmark)** by [Greg Rahn](https://github.com/gregrahn), [Moritz Eyssen](https://github.com/mrzzzrm), [maahl](https://github.com/maahl), and [Max Halford](https://github.com/MaxHalford).
 
-## Reference
+Additional code has been sourced from **[learnedcardinalities](https://github.com/andreaskipf/learnedcardinalities)** by [Andreas Kipf](https://github.com/andreaskipf)
+
+## References
+
+Kipf, A., Kipf, T., Radke, B., Leis, V., Boncz, P., & Kemper, A. (2019). Learned cardinalities: Estimating correlated joins with deep learning. 9th Biennial Conference on Innovative Data Systems Research (CIDR ‘19), CA, USA. https://arxiv.org/abs/1809.00677
+
 
 Leis, V., Radke, B., Gubichev, A., Mirchev, A., Boncz, P., Kemper, A., & Neumann, T. (2018). Query optimization through the looking glass, and what we found running the Join Order Benchmark. _The VLDB Journal, 27_(5), 643–668. <https://doi.org/10.1007/s00778-017-0480-7>
