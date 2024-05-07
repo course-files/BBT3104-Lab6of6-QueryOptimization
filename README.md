@@ -13,6 +13,8 @@ These are course files (instructional materials) for both the **BBT3104: Advance
 
 ## Internet Movie Database (IMDb)
 
+IMDb captures more than 2.5 million movie titles produced over 133 years by 234,997 different companies with over 4 million actors. It subsequently contains many **join-crossing correlations** thus making it challenging for cardinality estimators. This is unlike TPC-H and TPC-DS which are considered trivial for cardinality estimators.
+
 ![imdb_ERD](https://github.com/course-files/BBT3104-Lab6of6-QueryOptimization/assets/137632706/a7202d6e-c345-498e-9fa2-dd9d5a834a08)
 
 * The version of IMDb used in Leis et al. (2018) can be downloaded from here: [http://homepages.cwi.nl/~boncz/job/imdb.tgz](http://homepages.cwi.nl/~boncz/job/imdb.tgz) **(Recommended)**
