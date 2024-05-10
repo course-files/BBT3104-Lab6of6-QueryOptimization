@@ -34,6 +34,10 @@ downloaded from here: [http://www.imdb.com/interfaces](http://www.imdb.com/inter
 
 4. Proceed to execute the Join Order Benchmark (JOB) queries available [here](/Join-Order-Benchmark-queries) on the IMDb database in PostgreSQL.
 
+## Q-Error Calculations
+
+5. Execute the q-error computation code to quantitatively determine the error between the actual cardinality and the estimated cardinality per node for each query [here](q-error/average-cardinality-based-q-error.py).
+
 ## Acknowledgments
 
 This code repository has been forked from **[join-order-benchmark](https://github.com/gregrahn/join-order-benchmark)** by [Greg Rahn](https://github.com/gregrahn), [Moritz Eyssen](https://github.com/mrzzzrm), [maahl](https://github.com/maahl), and [Max Halford](https://github.com/MaxHalford).
