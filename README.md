@@ -36,7 +36,7 @@ downloaded from here: [http://www.imdb.com/interfaces](http://www.imdb.com/inter
 
 ## Q-Error Calculations
 
-5. Execute the q-error computation code to quantitatively determine the error between the actual cardinality and the estimated cardinality per node for each query [here](q-error/average-cardinality-based-q-error.py).
+5. Execute the q-error computation code to quantitatively determine the error between the actual cardinality and the estimated cardinality per node for each query [here](q-error/cardinality-based-q-error-per-node-using-yaml.py).
 
 ## Acknowledgments
 
