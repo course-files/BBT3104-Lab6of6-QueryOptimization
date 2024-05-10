@@ -3,4 +3,12 @@
     "zenMode.centerLayout": true,
     "zenMode.hideStatusBar": false,
     "editor.wordWrap": "on",
+    "cSpell.customDictionaries": {
+        "custom-dictionary-workspace": {
+            "name": "custom-dictionary-workspace",
+            "path": "${workspaceFolder:BBT3104-Lab6of6-QueryOptimization}/.cspell/custom-dictionary-workspace.txt",
+            "addWords": true,
+            "scope": "workspace"
+        }
+    }
 }
