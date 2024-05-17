@@ -2,8 +2,8 @@
 Credit: 
 Kipf, A., Kipf, T., Radke, B., Leis, V., Boncz, P., & Kemper, A. (2019).
 Learned cardinalities: Estimating correlated joins with deep learning.
-9th Biennial Conference on Innovative Data Systems Research (CIDR ‘19), CA, USA.
-https://arxiv.org/abs/1809.00677
+9th Biennial Conference on Innovative Data Systems Research (CIDR ‘19), CA,
+USA. https://arxiv.org/abs/1809.00677
 
 "JOB-synthetic" contains 5000 uniuqe queries containing both (conjunctive)
 equality and range predicates on non-key columns with 0-2 joins.
