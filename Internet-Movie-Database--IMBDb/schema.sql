@@ -10,7 +10,7 @@ CONNECTION LIMIT = 10;
 
 -- SCHEMA: imdb_schema
 -- DROP SCHEMA IF EXISTS imdb_schema;
-CREATE SCHEMA IF NOT EXISTS imdb_schema
+CREATE SCHEMA imdb_schema
     AUTHORIZATION postgres;
 COMMENT ON SCHEMA imdb_schema
     IS 'IMDb schema as used in Leis et al. (2018).';
@@ -294,6 +294,11 @@ CREATE INDEX kind_id_title ON imdb_schema.title USING btree (kind_id);
 
 ALTER TABLE imdb_schema.title OWNER TO postgres;
 GRANT ALL ON TABLE imdb_schema.title TO postgres;
+
+-- NOTE: Additional insert into the "title" and "kind_type" relations.
+-- This is required to create foreign keys correctly in the IMDb dataset used in Leis et al. (2018).
+INSERT INTO imdb_schema.kind_type (id, kind) VALUES
+	(7, 'episode');
 
 INSERT INTO imdb_schema.title (id,title,imdb_index,kind_id,production_year,imdb_id,phonetic_code,episode_of_id,season_nr,episode_nr,series_years,md5sum) VALUES
 	 (0,'*NOTE: Added to create Foreign Key in aka_title*',NULL,7,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
