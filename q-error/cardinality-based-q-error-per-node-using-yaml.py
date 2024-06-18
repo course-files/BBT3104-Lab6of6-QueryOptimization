@@ -19,7 +19,7 @@ cur.execute("SET search_path TO imdb_schema;")
 
 def execute_query_and_calculate_qerror(query):
     # Get the EXPLAIN ANALYZE output in YAML format
-    cur.execute("EXPLAIN (ANALYZE, BUFFERS, VERBOSE, FORMAT YAML) " + query)
+    cur.execute("EXPLAIN (BUFFERS, VERBOSE, ANALYZE, FORMAT YAML) " + query)
     analyze_results = cur.fetchall()
     analyze_data = yaml.safe_load(analyze_results[0][0])
 
@@ -52,13 +52,15 @@ def execute_query_and_calculate_qerror(query):
 
     actual_key = 'Actual Rows'
     estimated_key = 'Plan Rows'
-    q_errors = extract_rows(analyze_data, actual_key, estimated_key)
+    q_error = extract_rows(analyze_data, actual_key, estimated_key)
 
-    return q_errors
+    return q_error
 
 # Example usage
-query = "SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=112 AND mc.company_type_id=2;"
-q_errors = execute_query_and_calculate_qerror(query)
+query = "SELECT title FROM imdb_schema.title WHERE kind_id = 7;"
+# query = "SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=112 AND mc.company_type_id=2;"
+
+q_error = execute_query_and_calculate_qerror(query)
 
 print("\nCalculation:")
 print("Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated Rows)\n")
@@ -68,5 +70,5 @@ print(
     "\n* Q-error > 1 indicates how many times the estimate was off",
     "compared to the actual execution.\n")
 print("\nResults:")
-for node, actual, estimated, error in q_errors:
+for node, actual, estimated, error in q_error:
     print(f"Node: {node}, Actual Rows: {actual}, Estimated Rows: {estimated}, Q-Error: {error}")
