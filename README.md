@@ -40,9 +40,9 @@ downloaded from here: [http://www.imdb.com/interfaces](http://www.imdb.com/inter
 
 ## Acknowledgments
 
-This code repository has been forked from **[join-order-benchmark](https://github.com/gregrahn/join-order-benchmark)** by [Greg Rahn](https://github.com/gregrahn), [Moritz Eyssen](https://github.com/mrzzzrm), [maahl](https://github.com/maahl), and [Max Halford](https://github.com/MaxHalford).
+Initial code has been sourced from **[join-order-benchmark](https://github.com/gregrahn/join-order-benchmark)** by [Greg Rahn](https://github.com/gregrahn), [Moritz Eyssen](https://github.com/mrzzzrm), [maahl](https://github.com/maahl), and [Max Halford](https://github.com/MaxHalford).
 
-Additional code has been sourced from **[learnedcardinalities](https://github.com/andreaskipf/learnedcardinalities)** by [Andreas Kipf](https://github.com/andreaskipf)
+Additional code has also been sourced from **[learnedcardinalities](https://github.com/andreaskipf/learnedcardinalities)** by [Andreas Kipf](https://github.com/andreaskipf)
 
 ## References
 
