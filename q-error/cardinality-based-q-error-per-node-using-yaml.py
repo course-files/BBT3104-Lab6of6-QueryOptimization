@@ -17,6 +17,9 @@ cur = conn.cursor()
 # Set the schema
 cur.execute("SET search_path TO imdb_schema;")
 
+# Disable query optimizer options (if necessary)
+# cur.execute("SET enable_hashjoin = OFF;")
+
 def execute_query_and_calculate_qerror(query):
     # Get the EXPLAIN ANALYZE output in YAML format
     cur.execute("EXPLAIN (BUFFERS, VERBOSE, ANALYZE, FORMAT YAML) " + query)
@@ -57,8 +60,17 @@ def execute_query_and_calculate_qerror(query):
     return q_error
 
 # Example usage
-query = "SELECT title FROM imdb_schema.title WHERE kind_id = 7;"
-# query = "SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=112 AND mc.company_type_id=2;"
+# query = "SELECT title FROM title WHERE kind_id = 7;"
+query = """
+SELECT
+	t.title
+FROM
+	title t
+JOIN kind_type kt ON
+	(t.kind_id = kt.id)
+WHERE
+	kind_id = 7;
+"""
 
 q_error = execute_query_and_calculate_qerror(query)
 
@@ -72,3 +84,6 @@ print(
 print("\nResults:")
 for node, actual, estimated, error in q_error:
     print(f"Node: {node}, Actual Rows: {actual}, Estimated Rows: {estimated}, Q-Error: {error}")
+
+# Enable query optimizer options (if necessary)
+# cur.execute("SET enable_hashjoin = ON;")
