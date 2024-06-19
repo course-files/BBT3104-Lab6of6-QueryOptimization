@@ -1,4 +1,5 @@
 # Custom Dictionary Words
+hashjoin
 imdb
 psycopg
 qerror
