@@ -1,7 +1,6 @@
 -- JOB Query 1a
-EXPLAIN (BUFFERS,
-VERBOSE /*, FORMAT YAML*/,
-ANALYZE)
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
 SELECT
 	MIN(mc.note) AS production_note,
 	MIN(t.title) AS movie_title,
