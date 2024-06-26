@@ -1,5 +1,7 @@
 -- JOB Query 6e
-EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(k.keyword) AS movie_keyword,
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(k.keyword) AS movie_keyword,
        MIN(n.name) AS actor_name,
        MIN(t.title) AS marvel_movie
 FROM cast_info AS ci,
