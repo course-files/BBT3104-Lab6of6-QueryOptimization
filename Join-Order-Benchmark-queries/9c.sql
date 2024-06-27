@@ -1,5 +1,7 @@
 -- JOB Query 9c
-EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(an.name) AS alternative_name,
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(an.name) AS alternative_name,
        MIN(chn.name) AS voiced_character_name,
        MIN(n.name) AS voicing_actress,
        MIN(t.title) AS american_movie

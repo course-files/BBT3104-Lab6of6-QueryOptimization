@@ -1,5 +1,7 @@
 -- JOB Query 9a
-EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(an.name) AS alternative_name,
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(an.name) AS alternative_name,
        MIN(chn.name) AS character_name,
        MIN(t.title) AS movie
 FROM aka_name AS an,
