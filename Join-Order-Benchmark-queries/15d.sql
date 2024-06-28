@@ -1,5 +1,7 @@
 -- JOB Query 15d
-EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(at.title) AS aka_title,
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(at.title) AS aka_title,
        MIN(t.title) AS internet_movie_title
 FROM aka_title AS at,
      company_name AS cn,

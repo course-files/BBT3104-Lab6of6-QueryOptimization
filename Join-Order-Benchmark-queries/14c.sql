@@ -1,5 +1,7 @@
 -- JOB Query 14c
-EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(mi_idx.info) AS rating,
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(mi_idx.info) AS rating,
        MIN(t.title) AS north_european_dark_production
 FROM info_type AS it1,
      info_type AS it2,
