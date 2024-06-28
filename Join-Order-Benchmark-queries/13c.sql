@@ -1,5 +1,7 @@
 -- JOB Query 13c
-EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(cn.name) AS producing_company,
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(cn.name) AS producing_company,
        MIN(miidx.info) AS rating,
        MIN(t.title) AS movie_about_winning
 FROM company_name AS cn,

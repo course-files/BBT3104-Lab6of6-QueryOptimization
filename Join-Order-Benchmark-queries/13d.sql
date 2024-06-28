@@ -1,6 +1,8 @@
 -- JOB Query 13d
 -- This is "The US Query" (13d is "The German Query") according to Leis et al. (2018)
-EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(cn.name) AS producing_company,
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(cn.name) AS producing_company,
        MIN(miidx.info) AS rating,
        MIN(t.title) AS movie
 FROM company_name AS cn,

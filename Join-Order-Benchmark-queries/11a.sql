@@ -1,5 +1,7 @@
 -- JOB Query 11a
-EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(cn.name) AS from_company,
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(cn.name) AS from_company,
        MIN(lt.link) AS movie_link_type,
        MIN(t.title) AS non_polish_sequel_movie
 FROM company_name AS cn,

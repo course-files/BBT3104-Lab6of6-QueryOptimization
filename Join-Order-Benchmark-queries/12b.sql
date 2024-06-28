@@ -1,5 +1,7 @@
 -- JOB Query 12b
-EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(mi.info) AS budget,
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(mi.info) AS budget,
        MIN(t.title) AS unsuccsessful_movie
 FROM company_name AS cn,
      company_type AS ct,
