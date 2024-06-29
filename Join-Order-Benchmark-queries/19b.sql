@@ -1,5 +1,7 @@
 -- JOB Query 19b
-EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(n.name) AS voicing_actress,
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(n.name) AS voicing_actress,
        MIN(t.title) AS kung_fu_panda
 FROM aka_name AS an,
      char_name AS chn,

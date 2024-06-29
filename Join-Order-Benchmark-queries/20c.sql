@@ -1,5 +1,7 @@
 -- JOB Query 20c
-EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(n.name) AS cast_member,
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(n.name) AS cast_member,
        MIN(t.title) AS complete_dynamic_hero_movie
 FROM complete_cast AS cc,
      comp_cast_type AS cct1,
