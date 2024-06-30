@@ -1,5 +1,7 @@
 -- JOB Query 21b
-EXPLAIN (ANALYZE, BUFFERS, VERBOSE/*, FORMAT YAML*/) SELECT MIN(cn.name) AS company_name,
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(cn.name) AS company_name,
        MIN(lt.link) AS link_type,
        MIN(t.title) AS german_follow_up
 FROM company_name AS cn,
