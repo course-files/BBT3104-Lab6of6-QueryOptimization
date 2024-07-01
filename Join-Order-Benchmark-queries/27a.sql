@@ -1,3 +1,6 @@
+-- JOB Query 27a
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
 SELECT MIN(cn.name) AS producing_company,
        MIN(lt.link) AS link_type,
        MIN(t.title) AS complete_western_sequel

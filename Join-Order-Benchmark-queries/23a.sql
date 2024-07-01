@@ -1,3 +1,6 @@
+-- JOB Query 23a
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
 SELECT MIN(kt.kind) AS movie_kind,
        MIN(t.title) AS complete_us_internet_movie
 FROM complete_cast AS cc,

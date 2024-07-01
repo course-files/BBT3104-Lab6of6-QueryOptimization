@@ -1,3 +1,6 @@
+-- JOB Query 26a
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
 SELECT MIN(chn.name) AS character_name,
        MIN(mi_idx.info) AS rating,
        MIN(n.name) AS playing_actor,
