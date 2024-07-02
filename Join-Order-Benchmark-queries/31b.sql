@@ -1,3 +1,6 @@
+-- JOB Query 31b
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
 SELECT MIN(mi.info) AS movie_budget,
        MIN(mi_idx.info) AS movie_votes,
        MIN(n.name) AS writer,
