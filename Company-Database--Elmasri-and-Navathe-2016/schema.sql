@@ -28,7 +28,6 @@ CREATE TABLE company_schema.department (
     mgr_start_date character varying(25)
 );
 
-
 ALTER TABLE company_schema.department OWNER TO postgres;
 
 
@@ -40,7 +39,6 @@ CREATE TABLE company_schema.dependent (
     relationship character varying(25)
 );
 
-
 ALTER TABLE company_schema.dependent OWNER TO postgres;
 
 
@@ -48,7 +46,6 @@ CREATE TABLE company_schema.dept_locations (
     dnumber integer,
     dlocation character varying(25)
 );
-
 
 ALTER TABLE company_schema.dept_locations OWNER TO postgres;
 
@@ -66,7 +63,6 @@ CREATE TABLE company_schema.employee (
     dnumber integer
 );
 
-
 ALTER TABLE company_schema.employee OWNER TO postgres;
 
 
@@ -77,7 +73,6 @@ CREATE TABLE company_schema.project (
     dnum integer
 );
 
-
 ALTER TABLE company_schema.project OWNER TO postgres;
 
 
@@ -86,7 +81,6 @@ CREATE TABLE company_schema.works_on (
     pnumber integer,
     hours integer
 );
-
 
 ALTER TABLE company_schema.works_on OWNER TO postgres;
 
@@ -125,12 +119,14 @@ INSERT INTO company_schema.employee VALUES ('Ahmed', 'V', 'Jabbar', 987987987, '
 INSERT INTO company_schema.employee VALUES ('James', 'E', 'Borg', 888665555, '1937-11-10', '450 Stone, Houston, TX', 'M', 55000, NULL, 1);
 
 
+
 INSERT INTO company_schema.project VALUES ('ProductX', 1, 'Bellaire', 5);
 INSERT INTO company_schema.project VALUES ('ProductY', 2, 'Sugarland', 5);
 INSERT INTO company_schema.project VALUES ('ProductZ', 3, 'Houston', 5);
 INSERT INTO company_schema.project VALUES ('Computerization', 10, 'Stafford', 4);
 INSERT INTO company_schema.project VALUES ('Reorganization', 20, 'Houston', 1);
 INSERT INTO company_schema.project VALUES ('Newbenefits', 30, 'Stafford', 4);
+
 
 
 INSERT INTO company_schema.works_on VALUES (123456789, 1, 33);
