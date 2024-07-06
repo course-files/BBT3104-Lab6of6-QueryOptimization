@@ -69,6 +69,7 @@ def read_queries_from_file(file_path):
 
 def main():
     file_path = 'Join-Order-Benchmark-queries\1a.sql'
+    # file_path = 'Join-Order-Benchmark-queries\33c.sql'
     queries = read_queries_from_file(file_path)
     
     for query in queries:
