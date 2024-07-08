@@ -6,17 +6,18 @@ services:
     hostname: postgres-bbt3104
     container_name: postgres-bbt3104
     restart: always
-    # set shared memory limit when using docker-compose
-    # shm_size: 128mb
+    shm_size: 128mb
     ports:
       - 5432:5432
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 5trathm0re
-      POSTGRES_INITDB_ARGS: "shared_buffers=256MB"
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - ./container-volumes/postgresql/var-lib-postgresql-data:/var/lib/postgresql/data
+      - ./container-volumes/postgresql/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./container-volumes/postgresql/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+    command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'
 
   pgadmin4:
     image: elestio/pgadmin:REL-8_5
