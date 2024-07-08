@@ -523,7 +523,7 @@ GRANT ALL ON SCHEMA imdb_schema TO postgres;
 -- Data import
 
 -- Recommended order of importing the CSV data, one-by-one,
--- (to avoid referential integrity constraint errors):
+-- to avoid referential integrity constraint errors:
 
 -- company_name (234,997 rows)
 -- company_type (4 rows)
@@ -532,17 +532,17 @@ GRANT ALL ON SCHEMA imdb_schema TO postgres;
 -- role_type (12 rows)
 -- name (4,167,491 rows)
 -- kind_type (7 rows)
--- person_info (2,963,663 rows)
+-- person_info (2,963,664 rows)
 -- link_type (18 rows)
 -- comp_cast_type (4 rows)
 -- char_name (3,140,339 rows)
--- movie_keyword (4,523,930 rows)
+-- movie_keyword (4,523,930 rows) *
 -- aka_name (901,343 rows)
--- title (2,528,312 rows)
+-- title (2,528,313 rows)
 -- movie_info_idx (1,380,035 rows)
 -- aka_title (361,472 rows)
 -- complete_cast (135,086 rows)
 -- movie_link (29,997 rows)
 -- movie_companies (2,609,129 rows)
--- movie_info (14,835,720 rows)
--- cast_info (1,048,576 rows)
+-- movie_info (> 14,835,720 rows) *
+-- cast_info (14,549,500 rows)
