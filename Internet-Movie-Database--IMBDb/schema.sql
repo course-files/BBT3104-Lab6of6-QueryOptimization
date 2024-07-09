@@ -536,7 +536,7 @@ GRANT ALL ON SCHEMA imdb_schema TO postgres;
 -- link_type (18 rows)
 -- comp_cast_type (4 rows)
 -- char_name (3,140,339 rows)
--- movie_keyword (4,523,930 rows) *
+-- movie_keyword (4,523,930 rows)
 -- aka_name (901,343 rows)
 -- title (2,528,313 rows)
 -- movie_info_idx (1,380,035 rows)
