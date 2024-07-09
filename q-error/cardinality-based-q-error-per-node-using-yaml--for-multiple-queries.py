@@ -61,15 +61,19 @@ def execute_query_and_calculate_qerror(query):
 
 def read_queries_from_file(file_path):
     with open(file_path, 'r') as file:
-        # Now assuming each query is separated by a semicolon
+        # Assumption: Each query is separated by a semicolon
         queries = file.read().strip().split(';')
-    # Remove any empty strings that may result from splitting
+    # Removes any empty strings that may result from splitting
     queries = [query.strip() for query in queries if query.strip()]
     return queries
 
 def main():
-    file_path = 'Join-Order-Benchmark-queries\1a.sql'
-    # file_path = 'Join-Order-Benchmark-queries\33c.sql'
+    # NOTE: Remember to specify the path as
+    # '../Join-Order-Benchmark-queries/JOB-light-70.sql'
+    # if you are running it from the 'q-error' directory.
+
+    # file_path = 'Join-Order-Benchmark-queries/1a.sql'
+    file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
     queries = read_queries_from_file(file_path)
     
     for query in queries:
@@ -84,6 +88,8 @@ def main():
         print("\nResults:")
         for node, actual, estimated, error in q_error:
             print(f"Node: {node}, Actual Rows: {actual}, Estimated Rows: {estimated}, Q-Error: {error}")
+    # Enable query optimizer options (if necessary)
+    # cur.execute("SET enable_hashjoin = ON;")
 
 if __name__ == "__main__":
     main()
