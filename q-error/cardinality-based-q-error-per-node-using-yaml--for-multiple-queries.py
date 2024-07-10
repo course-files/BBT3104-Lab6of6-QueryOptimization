@@ -1,5 +1,6 @@
 import psycopg2
 import yaml
+from ruamel.yaml import YAML, scalarstring
 
 # Database connection parameters
 conn_params = {
@@ -68,16 +69,24 @@ def read_queries_from_file(file_path):
     return queries
 
 def main():
+    yaml = YAML()
+    yaml.indent(mapping=2, sequence=4, offset=2)
+
     # NOTE: Remember to specify the path as
     # '../Join-Order-Benchmark-queries/JOB-light-70.sql'
     # if you are running it from the 'q-error' directory.
 
     # file_path = 'Join-Order-Benchmark-queries/1a.sql'
-    file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
+    file_path = 'Join-Order-Benchmark-queries/JOB-light-3.sql'
+    # file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
     queries = read_queries_from_file(file_path)
+    results = []  # Prepare a list to store results for each query
     
     for query in queries:
         q_error = execute_query_and_calculate_qerror(query)
+        print("\n\n--------------------------------------------------")
+        print("\nQuery:")
+        print(query)
         print("\nCalculation:")
         print("Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated Rows)\n")
         print("\nInterpretation:")
@@ -88,6 +97,23 @@ def main():
         print("\nResults:")
         for node, actual, estimated, error in q_error:
             print(f"Node: {node}, Actual Rows: {actual}, Estimated Rows: {estimated}, Q-Error: {error}")
+        
+        # Prepare output to be stored in a YAML file        
+        query_result = {
+            "query": scalarstring.PreservedScalarString(query),  # Use PreservedScalarString for the query
+            "calculation": "Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated Rows)",
+            "interpretation": [
+                "Q-error = 1 implies a perfect estimation.",
+                "Q-error > 1 indicates how many times the estimate was off compared to the actual execution."
+            ],
+            "results": [{"node": node, "actual_rows": actual, "estimated_rows": estimated, "q_error": error} for node, actual, estimated, error in q_error]
+        }
+        results.append(query_result)
+    
+    # Write results to a YAML file
+    with open('q-error/q_error_results.yaml', 'w') as yaml_file:
+        yaml.dump(results, yaml_file)
+    
     # Enable query optimizer options (if necessary)
     # cur.execute("SET enable_hashjoin = ON;")
 
