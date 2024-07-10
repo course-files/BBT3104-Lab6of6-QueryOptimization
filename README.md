@@ -9,7 +9,30 @@ These are course files (instructional materials) for both the **BBT3104: Advance
 | **URL**                                                               | <https://elearning.strathmore.edu/course/view.php?id=3932> and <https://elearning.strathmore.edu/course/view.php?id=3277> respectively                                                                                                                         |
 | **Semester Duration**                                                 | 14<sup>th</sup> August - 25<sup>th</sup> November 2024                                                                                                                       |
 | **Lecturer**                                                          | Allan Omondi                                                                                                                                                                       |
-| **Contact**                                                           | aomondi_at_strathmore_dot_edu                                                                                                                                                      |
+| **Contact**                                                           | aomondi@strathmore.edu                                                                                                                                                      |
+
+## Recommended Citation
+Omondi, A., & Kirui, J. (2024). _BBT3104-Lab6of6-QueryOptimization_ [Python]. https://github.com/course-files/BBT3104-Lab6of6-QueryOptimization
+```
+@misc{omondi_bbt3104-lab6of6-queryoptimization_2024,
+	address = {Nairobi, Kenya},
+	title = {{BBT3104}-{Lab6of6}-{QueryOptimization}},
+	copyright = {GPL-3.0},
+	shorttitle = {Query {Optimization}},
+	url = {https://github.com/course-files/BBT3104-Lab6of6-QueryOptimization},
+	abstract = {Instructional materials (course files) for the BBT3104 course (Advanced Database Systems) and the MIT8107 course (Advanced Database Systems). Topic: Query Optimization. Based on the IMDb dataset using PostgreSQL and the Join Order Benchmark (JOB).},
+	urldate = {2024-07-10},
+	author = {Omondi, Allan and Kirui, Julliet},
+	month = jul,
+	year = {2024},
+	note = {original-date: 2024-06-18T01:56:26Z},
+	keywords = {query-optimization, query-processing},
+}
+```
+## Lab Manual
+Please refer to the Lab Manual available here for the detailed instructions: [https://elearning.strathmore.edu/](https://elearning.strathmore.edu/)
+
+![image](https://github.com/course-files/BBT3104-Lab6of6-QueryOptimization/assets/137632706/a3cc26aa-2230-4df6-b0bd-ebf523fafe56)
 
 ## Internet Movie Database (IMDb)
 
