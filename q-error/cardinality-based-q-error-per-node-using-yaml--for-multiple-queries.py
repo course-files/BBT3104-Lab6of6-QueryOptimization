@@ -79,6 +79,7 @@ def main():
     # file_path = 'Join-Order-Benchmark-queries/1a.sql'
     file_path = 'Join-Order-Benchmark-queries/JOB-light-3.sql'
     # file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
+    
     queries = read_queries_from_file(file_path)
     results = []  # Prepare a list to store results for each query
     
