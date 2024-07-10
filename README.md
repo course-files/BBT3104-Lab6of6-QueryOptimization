@@ -12,7 +12,7 @@ These are course files (instructional materials) for both the **BBT3104: Advance
 | **Contact**                                                           | aomondi@strathmore.edu                                                                                                                                                      |
 
 ## Recommended Citation
-Omondi, A., & Kirui, J. (2024). _BBT3104-Lab6of6-QueryOptimization_ [Python]. https://github.com/course-files/BBT3104-Lab6of6-QueryOptimization
+Omondi, A. O. & Kirui, J. C. (2024). _BBT3104-Lab6of6-QueryOptimization_ (v1.3) [Source code]. https://github.com/course-files/BBT3104-Lab6of6-QueryOptimization
 ```
 @misc{omondi_bbt3104-lab6of6-queryoptimization_2024,
 	address = {Nairobi, Kenya},
@@ -22,10 +22,10 @@ Omondi, A., & Kirui, J. (2024). _BBT3104-Lab6of6-QueryOptimization_ [Python]. ht
 	url = {https://github.com/course-files/BBT3104-Lab6of6-QueryOptimization},
 	abstract = {Instructional materials (course files) for the BBT3104 course (Advanced Database Systems) and the MIT8107 course (Advanced Database Systems). Topic: Query Optimization. Based on the IMDb dataset using PostgreSQL and the Join Order Benchmark (JOB).},
 	urldate = {2024-07-10},
-	author = {Omondi, Allan and Kirui, Julliet},
+	author = {Omondi, Allan Odhiambo and Kirui, Julliet Chepngeno},
 	month = jul,
 	year = {2024},
-	note = {original-date: 2024-06-18T01:56:26Z},
+	note = {v1.3 [Source code]},
 	keywords = {query-optimization, query-processing},
 }
 ```
