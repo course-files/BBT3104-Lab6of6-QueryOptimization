@@ -1,0 +1,126 @@
+  - query: |-
+      /*
+      Credit: 
+      Kipf, A., Kipf, T., Radke, B., Leis, V., Boncz, P., & Kemper, A. (2019).
+      Learned cardinalities: Estimating correlated joins with deep learning.
+      9th Biennial Conference on Innovative Data Systems Research (CIDR ‘19), CA, USA.
+      https://arxiv.org/abs/1809.00677
+
+      "JOB-light" contains 3 of the original 113 JOB queries.
+      As outlined by Kipf et al. (2019), JOB-light:
+      1. Does not contain any predicates on strings or disjunctions
+      2. Contains only queries with 1-4 joins
+      3. Has mostly equality predicates on dimension table attributes
+      4. The only range predicate is on production_year
+      */
+
+      /* NOTE: These are simply the first 3 queries in 'JOB-light-70.sql'
+         The queries are being used to test the computation of multiple q-error
+         values.
+      */
+      SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=112 AND mc.company_type_id=2
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 250
+        estimated_rows: 460
+        q_error: 1.84
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 250
+        estimated_rows: 460
+        q_error: 1.84
+      - node: Aggregate/Nested Loop/Nested Loop/Index Only Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 250
+        estimated_rows: 460
+        q_error: 1.84
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 3
+        estimated_rows: 3
+        q_error: 1.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 715
+        estimated_rows: 299
+        q_error: 2.391304347826087
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+  - query: |-
+      SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=113 AND mc.company_type_id=2 AND t.production_year>2005 AND t.production_year<2010
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 10
+        estimated_rows: 1
+        q_error: 10.0
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 3
+        estimated_rows: 1
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 3
+        estimated_rows: 3
+        q_error: 1.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 9
+        estimated_rows: 1
+        q_error: 9.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+  - query: |-
+      SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=112 AND mc.company_type_id=2 AND t.production_year>2010
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 250
+        estimated_rows: 460
+        q_error: 1.84
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 250
+        estimated_rows: 460
+        q_error: 1.84
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 12
+        estimated_rows: 72
+        q_error: 6.0
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 4
+        estimated_rows: 3
+        q_error: 1.3333333333333333
+      - node: Aggregate/Nested Loop
+        actual_rows: 47
+        estimated_rows: 47
+        q_error: 1.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
