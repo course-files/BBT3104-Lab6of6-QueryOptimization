@@ -544,5 +544,5 @@ GRANT ALL ON SCHEMA imdb_schema TO postgres;
 -- complete_cast (135,086 rows)
 -- movie_link (29,997 rows)
 -- movie_companies (2,609,129 rows)
--- movie_info (> 14,835,720 rows) *
--- cast_info (14,549,500 rows)
+-- movie_info (14,835,720 rows)
+-- cast_info (36,244,344 rows)
