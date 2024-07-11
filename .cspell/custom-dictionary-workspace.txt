@@ -1,4 +1,5 @@
 # Custom Dictionary Words
+aomondi
 Boncz
 hashjoin
 imdb
