@@ -1,8 +1,11 @@
 # Custom Dictionary Words
+Boncz
 hashjoin
 imdb
+Kipf
 psycopg
 qerror
+Radke
 ruamel
 scalarstring
 trathm
