@@ -19,7 +19,8 @@ services:
       - ./container-volumes/postgresql/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./container-volumes/postgresql/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
     command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'
-    # Remember to open the ports in the firewall if you are using Linux, i.e.,
+    
+    # Reminder: Open the ports in the firewall if you are using Linux, i.e.,
     # execute the following in VS Code terminal:
     # sudo ufw allow 5432/tcp
 
