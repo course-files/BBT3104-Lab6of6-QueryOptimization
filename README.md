@@ -13,6 +13,8 @@ These are course files (instructional materials) for both the **BBT3104: Advance
 
 ## Recommended Citation
 Omondi, A. O. & Kirui, J. C. (2024). _BBT3104-Lab6of6-QueryOptimization_ (v1.3) [Source code]. https://github.com/course-files/BBT3104-Lab6of6-QueryOptimization
+
+Bibtex:
 ```
 @misc{omondi_bbt3104-lab6of6-queryoptimization_2024,
 	address = {Nairobi, Kenya},
