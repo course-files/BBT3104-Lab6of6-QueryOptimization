@@ -1,7 +1,8 @@
 version: "3.9"
 services:
 
-  # The only container needed for the lab is postgres:
+  # The only container needed for the lab is Postgres.
+  # The other containers are for your own practice.
   postgres:
     image: postgres:16.2
     hostname: postgres-bbt3104
