@@ -1,12 +1,16 @@
 # Custom Dictionary Words
 aomondi
 Boncz
+dbid
 hashjoin
 imdb
 Kipf
+mscn
 psycopg
+psycopg2
 qerror
 Radke
 ruamel
 scalarstring
+sklearn
 trathm
