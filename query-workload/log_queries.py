@@ -8,6 +8,7 @@ from datetime import datetime
 import yaml
 from ruamel.yaml import YAML
 
+
 # Create the following table in the IMDb database first:
 # CREATE TABLE query_log (
 #     id SERIAL PRIMARY KEY,
@@ -16,6 +17,7 @@ from ruamel.yaml import YAML
 #     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 # );
 
+
 def connect_to_database(conn_params):
     try:
         conn = psycopg2.connect(**conn_params)
@@ -23,6 +25,7 @@ def connect_to_database(conn_params):
     except Exception as e:
         print(f"Error connecting to the database: {e}")
         return None
+
 
 def set_schema(conn, schema):
     cursor = None
@@ -36,6 +39,7 @@ def set_schema(conn, schema):
         if cursor:
             cursor.close()
 
+
 def read_queries_from_file(file_path):
     with open(file_path, 'r') as file:
         # Assumption: Each query is separated by a semicolon
@@ -45,13 +49,14 @@ def read_queries_from_file(file_path):
     # TODO: Remove any comments from the queries
     return queries
 
+
 def execute_queries(conn, query):
     cursor = None
     try:
         cursor = conn.cursor()
     except Exception as e:
         print(f"Error executing queries from file: {e}")
-    
+
     # Get the EXPLAIN ANALYZE output in YAML format
     cursor.execute("EXPLAIN (BUFFERS, VERBOSE, ANALYZE, FORMAT YAML) " + query)
     analyze_results = cursor.fetchall()
@@ -90,6 +95,7 @@ def execute_queries(conn, query):
 
     return q_error
 
+
 def log_queries(conn, query, actual_rows):
     cursor = None
     try:
@@ -100,21 +106,22 @@ def log_queries(conn, query, actual_rows):
                     INSERT INTO query_log (query_text, actual_rows, timestamp) 
                     VALUES (%s, %s, %s);
                 """, (query, actual_rows, datetime.now()))
-                
+
                 print(f"\nLOGGED QUERY:\n"
-                        f"INSERT INTO query_log (query_text, actual_rows, timestamp) "
-                        f"VALUES ({query}, {actual_rows}, {datetime.now()})")
+                      f"INSERT INTO query_log (query_text, actual_rows, timestamp) "
+                      f"VALUES ({query}, {actual_rows}, {datetime.now()})")
             else:
                 print(f"Could not determine actual rows for query: {query}")
         except Exception as e:
             print(f"Error logging query: {query}\nError: {e}")
-        
+
         conn.commit()
     except Exception as e:
         print(f"Error logging SELECT statements: {e}")
     finally:
         if cursor:
             cursor.close()
+
 
 def main():
     # Database connection parameters
@@ -136,7 +143,7 @@ def main():
         set_schema(conn, 'imdb_schema')
 
         # Execute queries from file
-        file_path = 'Join-Order-Benchmark-queries/JOB-light-3.sql'
+        file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
         yaml = YAML()
         yaml.indent(mapping=2, sequence=4, offset=2)
         queries = read_queries_from_file(file_path)
@@ -153,6 +160,7 @@ def main():
             log_queries(conn, query, actual)
     finally:
         conn.close()
+
 
 if __name__ == "__main__":
     main()
