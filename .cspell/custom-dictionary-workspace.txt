@@ -1,6 +1,7 @@
 # Custom Dictionary Words
 aomondi
 Boncz
+datname
 dbid
 hashjoin
 imdb

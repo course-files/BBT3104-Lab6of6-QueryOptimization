@@ -26,26 +26,30 @@
       - Q-error > 1 indicates how many times the estimate was off compared to the
         actual execution.
     results:
-      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
         actual_rows: 250
-        estimated_rows: 1
-        q_error: 250.0
+        estimated_rows: 460
+        q_error: 1.84
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 250
+        estimated_rows: 460
+        q_error: 1.84
       - node: Aggregate/Nested Loop/Nested Loop/Index Only Scan
         actual_rows: 1
         estimated_rows: 1
         q_error: 1.0
       - node: Aggregate/Nested Loop/Nested Loop
         actual_rows: 250
-        estimated_rows: 1
-        q_error: 250.0
+        estimated_rows: 460
+        q_error: 1.84
       - node: Aggregate/Nested Loop/Index Scan
         actual_rows: 3
         estimated_rows: 3
         q_error: 1.0
       - node: Aggregate/Nested Loop
         actual_rows: 715
-        estimated_rows: 1
-        q_error: 715.0
+        estimated_rows: 299
+        q_error: 2.391304347826087
       - node: Aggregate
         actual_rows: 1
         estimated_rows: 1
@@ -92,26 +96,30 @@
       - Q-error > 1 indicates how many times the estimate was off compared to the
         actual execution.
     results:
-      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
         actual_rows: 250
-        estimated_rows: 1
-        q_error: 250.0
+        estimated_rows: 460
+        q_error: 1.84
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 250
+        estimated_rows: 460
+        q_error: 1.84
       - node: Aggregate/Nested Loop/Nested Loop/Index Scan
         actual_rows: 0
         estimated_rows: 1
         q_error: .inf
       - node: Aggregate/Nested Loop/Nested Loop
         actual_rows: 12
-        estimated_rows: 1
-        q_error: 12.0
+        estimated_rows: 72
+        q_error: 6.0
       - node: Aggregate/Nested Loop/Index Scan
         actual_rows: 4
         estimated_rows: 3
         q_error: 1.3333333333333333
       - node: Aggregate/Nested Loop
         actual_rows: 47
-        estimated_rows: 1
-        q_error: 47.0
+        estimated_rows: 47
+        q_error: 1.0
       - node: Aggregate
         actual_rows: 1
         estimated_rows: 1
