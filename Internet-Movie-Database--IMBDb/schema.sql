@@ -546,3 +546,11 @@ GRANT ALL ON SCHEMA imdb_schema TO postgres;
 -- movie_companies (2,609,129 rows)
 -- movie_info (14,835,720 rows)
 -- cast_info (36,244,344 rows)
+
+-- Used to record the training data from the query workload
+CREATE TABLE query_log (
+    id SERIAL PRIMARY KEY,
+    query_text TEXT,
+    actual_rows INTEGER,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
