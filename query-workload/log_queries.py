@@ -62,10 +62,10 @@ def execute_queries(conn, query):
     analyze_results = cursor.fetchall()
     analyze_data = yaml.safe_load(analyze_results[0][0])
 
-    # Get the EXPLAIN output in YAML format
-    # cursor.execute("EXPLAIN (FORMAT YAML) " + query)
-    # explain_results = cursor.fetchall()
-    # explain_data = yaml.safe_load(explain_results[0][0])
+    # Get the EXPLAIN output in YAML format (not mandatory)
+    cursor.execute("EXPLAIN (FORMAT YAML) " + query)
+    explain_results = cursor.fetchall()
+    explain_data = yaml.safe_load(explain_results[0][0])
 
     # Process YAML data to extract actual and estimated rows and maintain node order
     def extract_rows(data, key_actual, key_estimated):
