@@ -9,15 +9,6 @@ import yaml
 from ruamel.yaml import YAML
 
 
-# Create the following table in the IMDb database first:
-# CREATE TABLE query_log (
-#     id SERIAL PRIMARY KEY,
-#     query_text TEXT,
-#     actual_rows INTEGER,
-#     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-# );
-
-
 def connect_to_database(conn_params):
     try:
         conn = psycopg2.connect(**conn_params)
@@ -96,16 +87,16 @@ def execute_queries(conn, query):
     return q_error
 
 
-def log_queries(conn, query, actual_rows):
+def log_queries(conn, query, actual_rows, estimated_rows, q_error):
     cursor = None
     try:
         cursor = conn.cursor()
         try:
             if actual_rows is not None:
                 cursor.execute("""
-                    INSERT INTO query_log (query_text, actual_rows, timestamp) 
-                    VALUES (%s, %s, %s);
-                """, (query, actual_rows, datetime.now()))
+                    INSERT INTO query_log (query_text, actual_rows, estimated_rows, q_error, timestamp) 
+                    VALUES (%s, %s, %s, %s, %s);
+                """, (query, actual_rows, estimated_rows, q_error, datetime.now()))
 
                 print(f"\nLOGGED QUERY:\n"
                       f"INSERT INTO query_log (query_text, actual_rows, timestamp) "
@@ -129,7 +120,7 @@ def main():
         'database': 'imdb',
         'user': 'postgres',
         'password': '5trathm0re',
-        'host': 'localhost',
+        'host': '10.20.113.55',
         'port': '5432'
     }
 
@@ -143,7 +134,7 @@ def main():
         set_schema(conn, 'imdb_schema')
 
         # Execute queries from file
-        file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
+        file_path = 'Join-Order-Benchmark-queries/JOB-light-3.sql'
         yaml = YAML()
         yaml.indent(mapping=2, sequence=4, offset=2)
         queries = read_queries_from_file(file_path)
@@ -153,11 +144,17 @@ def main():
             print("\nQuery Execution Plan (QEP):")
             for node, actual, estimated, error in q_error:
                 print(f"Node: {node}, Actual Rows: {actual}, Estimated Rows: {estimated}, Q-Error: {error}")
+            
             print("\n")
             print("QUERY:\n", query)
             print("\n")
             print("ACTUAL ROWS:\n", actual)
-            log_queries(conn, query, actual)
+            print("\n")
+            print("ESTIMATED ROWS:\n", estimated)
+            print("\n")
+            print("Q-ERROR:\n", error)
+
+            log_queries(conn, query, actual, estimated, error)
     finally:
         conn.close()
 
