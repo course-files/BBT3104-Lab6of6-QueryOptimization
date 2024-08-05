@@ -551,6 +551,7 @@ GRANT ALL ON SCHEMA imdb_schema TO postgres;
 CREATE TABLE query_log (
     id SERIAL PRIMARY KEY,
     query_text TEXT,
+    qep TEXT,
     actual_rows INTEGER,
     estimated_rows INTEGER,
     q_error INTEGER,
