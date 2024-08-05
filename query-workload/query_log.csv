@@ -1,0 +1,3533 @@
+"id","query_text","qep","actual_rows","estimated_rows","q_error","timestamp"
+7,"/*
+Credit: 
+Kipf, A., Kipf, T., Radke, B., Leis, V., Boncz, P., & Kemper, A. (2019).
+Learned cardinalities: Estimating correlated joins with deep learning.
+9th Biennial Conference on Innovative Data Systems Research (CIDR ‘19), CA, USA.
+https://arxiv.org/abs/1809.00677
+
+""JOB-light"" contains 70 of the original 113 JOB queries.
+As outlined by Kipf et al. (2019), JOB-light:
+1. Does not contain any predicates on strings or disjunctions
+2. Contains only queries with 1-4 joins
+3. Has mostly equality predicates on dimension table attributes
+4. The only range predicate is on production_year
+*/
+
+SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=112 AND mc.company_type_id=2","  - query: |-
+      /*
+      Credit: 
+      Kipf, A., Kipf, T., Radke, B., Leis, V., Boncz, P., & Kemper, A. (2019).
+      Learned cardinalities: Estimating correlated joins with deep learning.
+      9th Biennial Conference on Innovative Data Systems Research (CIDR ‘19), CA, USA.
+      https://arxiv.org/abs/1809.00677
+
+      ""JOB-light"" contains 70 of the original 113 JOB queries.
+      As outlined by Kipf et al. (2019), JOB-light:
+      1. Does not contain any predicates on strings or disjunctions
+      2. Contains only queries with 1-4 joins
+      3. Has mostly equality predicates on dimension table attributes
+      4. The only range predicate is on production_year
+      */
+
+      SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=112 AND mc.company_type_id=2
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 250
+        estimated_rows: 276
+        q_error: 1.104
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 250
+        estimated_rows: 276
+        q_error: 1.104
+      - node: Aggregate/Nested Loop/Nested Loop/Index Only Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 250
+        estimated_rows: 276
+        q_error: 1.104
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 3
+        estimated_rows: 3
+        q_error: 1.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 715
+        estimated_rows: 146
+        q_error: 4.897260273972603
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:36:35.459
+8,"SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=113 AND mc.company_type_id=2 AND t.production_year>2005 AND t.production_year<2010","  - query: |-
+      SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=113 AND mc.company_type_id=2 AND t.production_year>2005 AND t.production_year<2010
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 10
+        estimated_rows: 1
+        q_error: 10.0
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 3
+        estimated_rows: 1
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 3
+        estimated_rows: 3
+        q_error: 1.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 9
+        estimated_rows: 1
+        q_error: 9.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:36:35.520
+9,"SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=112 AND mc.company_type_id=2 AND t.production_year>2010","  - query: |-
+      SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=112 AND mc.company_type_id=2 AND t.production_year>2010
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 250
+        estimated_rows: 276
+        q_error: 1.104
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 250
+        estimated_rows: 276
+        q_error: 1.104
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 12
+        estimated_rows: 43
+        q_error: 3.5833333333333335
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 4
+        estimated_rows: 3
+        q_error: 1.3333333333333333
+      - node: Aggregate/Nested Loop
+        actual_rows: 47
+        estimated_rows: 23
+        q_error: 2.0434782608695654
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:36:35.581
+10,"SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=113 AND mc.company_type_id=2 AND t.production_year>2000","  - query: |-
+      SELECT COUNT(*) FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=113 AND mc.company_type_id=2 AND t.production_year>2000
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 10
+        estimated_rows: 1
+        q_error: 10.0
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 6
+        estimated_rows: 1
+        q_error: 6.0
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 3
+        estimated_rows: 3
+        q_error: 1.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 16
+        estimated_rows: 1
+        q_error: 16.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:36:35.632
+11,"SELECT COUNT(*) FROM movie_companies mc,title t,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=mk.movie_id AND mk.keyword_id=117","  - query: |-
+      SELECT COUNT(*) FROM movie_companies mc,title t,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=mk.movie_id AND mk.keyword_id=117
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 41840
+        estimated_rows: 38267
+        q_error: 1.0933702668095227
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 41840
+        estimated_rows: 38267
+        q_error: 1.0933702668095227
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize/Index Only Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 41840
+        estimated_rows: 38267
+        q_error: 1.0933702668095227
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 4
+        estimated_rows: 5
+        q_error: 1.25
+      - node: Aggregate/Nested Loop
+        actual_rows: 148552
+        estimated_rows: 39487
+        q_error: 3.7620482690505734
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:36:36.910
+12,"SELECT COUNT(*) FROM title t,movie_info mi,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.production_year>2005","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.production_year>2005
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 14835720
+        estimated_rows: 14861770
+        q_error: 1.0017558972533858
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 1012920
+        estimated_rows: 1012903
+        q_error: 1.000016783443232
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1012920
+        estimated_rows: 1012903
+        q_error: 1.000016783443232
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 1253091
+        estimated_rows: 1810556
+        q_error: 1.4448719207144574
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 1253091
+        estimated_rows: 1810556
+        q_error: 1.4448719207144574
+      - node: Aggregate/Hash Join
+        actual_rows: 62682311
+        estimated_rows: 10641891
+        q_error: 5.890147813015563
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:36:52.292
+13,"SELECT COUNT(*) FROM title t,movie_info mi,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.production_year>2010","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.production_year>2010
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 14835720
+        estimated_rows: 14861770
+        q_error: 1.0017558972533858
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 391666
+        estimated_rows: 397073
+        q_error: 1.0138051298810722
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 391666
+        estimated_rows: 397073
+        q_error: 1.0138051298810722
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 299534
+        estimated_rows: 709765
+        q_error: 2.3695640561672464
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 299534
+        estimated_rows: 709765
+        q_error: 2.3695640561672464
+      - node: Aggregate/Hash Join
+        actual_rows: 11990578
+        estimated_rows: 4171779
+        q_error: 2.874212176627765
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:36:58.139
+14,"SELECT COUNT(*) FROM title t,movie_info mi,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.production_year>1990","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.production_year>1990
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 14835720
+        estimated_rows: 14861770
+        q_error: 1.0017558972533858
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 1749032
+        estimated_rows: 1759567
+        q_error: 1.0060233317629408
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1749032
+        estimated_rows: 1759567
+        q_error: 1.0060233317629408
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 2742670
+        estimated_rows: 3145211
+        q_error: 1.1467697535613106
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 2742670
+        estimated_rows: 3145211
+        q_error: 1.1467697535613106
+      - node: Aggregate/Hash Join
+        actual_rows: 157041640
+        estimated_rows: 18486586
+        q_error: 8.49489678624274
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:37:17.302
+15,"SELECT COUNT(*) FROM title t,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi_idx.movie_id AND t.id=mk.movie_id AND t.production_year>2005 AND mi_idx.info_type_id=101","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi_idx.movie_id AND t.id=mk.movie_id AND t.production_year>2005 AND mi_idx.info_type_id=101
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 1012920
+        estimated_rows: 1012903
+        q_error: 1.000016783443232
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan/Bitmap Index
+          Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 143567
+        estimated_rows: 183209
+        q_error: 1.2761219500302994
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 143567
+        estimated_rows: 183209
+        q_error: 1.2761219500302994
+      - node: Aggregate/Hash Join
+        actual_rows: 850677
+        estimated_rows: 327485
+        q_error: 2.5976059972212466
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:37:18.855
+16,"SELECT COUNT(*) FROM title t,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi_idx.movie_id AND t.id=mk.movie_id AND t.production_year>2010 AND mi_idx.info_type_id=101","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi_idx.movie_id AND t.id=mk.movie_id AND t.production_year>2010 AND mi_idx.info_type_id=101
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 391666
+        estimated_rows: 397073
+        q_error: 1.0138051298810722
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 391666
+        estimated_rows: 397073
+        q_error: 1.0138051298810722
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 43838
+        estimated_rows: 71821
+        q_error: 1.6383274784433597
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 43838
+        estimated_rows: 71821
+        q_error: 1.6383274784433597
+      - node: Aggregate/Hash Join
+        actual_rows: 179616
+        estimated_rows: 128379
+        q_error: 1.3991073306381885
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:37:20.065
+17,"SELECT COUNT(*) FROM title t,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi_idx.movie_id AND t.id=mk.movie_id AND t.production_year>1990 AND mi_idx.info_type_id=101","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi_idx.movie_id AND t.id=mk.movie_id AND t.production_year>1990 AND mi_idx.info_type_id=101
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 1749032
+        estimated_rows: 1759567
+        q_error: 1.0060233317629408
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan/Bitmap Index
+          Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 303486
+        estimated_rows: 318262
+        q_error: 1.0486875836117646
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 303486
+        estimated_rows: 318262
+        q_error: 1.0486875836117646
+      - node: Aggregate/Hash Join
+        actual_rows: 2031666
+        estimated_rows: 568891
+        q_error: 3.5712746378480236
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:37:22.027
+18,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.production_year>2005 AND mc.company_type_id=2","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.production_year>2005 AND mc.company_type_id=2
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 14835720
+        estimated_rows: 14861770
+        q_error: 1.0017558972533858
+      - node: Aggregate/Hash Join/Hash/Hash Join/Index Scan
+        actual_rows: 1334883
+        estimated_rows: 1333004
+        q_error: 1.0014095981707483
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 1012920
+        estimated_rows: 1012903
+        q_error: 1.000016783443232
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1012920
+        estimated_rows: 1012903
+        q_error: 1.000016783443232
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 450556
+        estimated_rows: 533993
+        q_error: 1.1851867470414332
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 450556
+        estimated_rows: 533993
+        q_error: 1.1851867470414332
+      - node: Aggregate/Hash Join
+        actual_rows: 6333736
+        estimated_rows: 3138648
+        q_error: 2.0179822649752377
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:37:27.261
+19,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.production_year>2010 AND mc.company_type_id=2","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.production_year>2010 AND mc.company_type_id=2
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Hash Join/Index Scan
+        actual_rows: 1334883
+        estimated_rows: 1333004
+        q_error: 1.0014095981707483
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Seq Scan
+        actual_rows: 391666
+        estimated_rows: 397073
+        q_error: 1.0138051298810722
+      - node: Aggregate/Nested Loop/Hash Join/Hash
+        actual_rows: 391666
+        estimated_rows: 397073
+        q_error: 1.0138051298810722
+      - node: Aggregate/Nested Loop/Hash Join
+        actual_rows: 176197
+        estimated_rows: 209333
+        q_error: 1.1880622258040716
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 11
+        estimated_rows: 39
+        q_error: 3.5454545454545454
+      - node: Aggregate/Nested Loop
+        actual_rows: 1931628
+        estimated_rows: 1230396
+        q_error: 1.5699238294012658
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:37:30.439
+20,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.production_year>1990 AND mc.company_type_id=2","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.production_year>1990 AND mc.company_type_id=2
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 14835720
+        estimated_rows: 14861770
+        q_error: 1.0017558972533858
+      - node: Aggregate/Hash Join/Hash/Hash Join/Index Scan
+        actual_rows: 1334883
+        estimated_rows: 1333004
+        q_error: 1.0014095981707483
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 1749032
+        estimated_rows: 1759567
+        q_error: 1.0060233317629408
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1749032
+        estimated_rows: 1759567
+        q_error: 1.0060233317629408
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 794787
+        estimated_rows: 927628
+        q_error: 1.1671403784913443
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 794787
+        estimated_rows: 927628
+        q_error: 1.1671403784913443
+      - node: Aggregate/Hash Join
+        actual_rows: 12738520
+        estimated_rows: 5452309
+        q_error: 2.336353277116172
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:37:37.025
+21,"SELECT COUNT(*) FROM movie_keyword mk,title t,cast_info ci WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2010 AND mk.keyword_id=8200","  - query: |-
+      SELECT COUNT(*) FROM movie_keyword mk,title t,cast_info ci WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2010 AND mk.keyword_id=8200
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 14
+        estimated_rows: 247
+        q_error: 17.642857142857142
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 14
+        estimated_rows: 247
+        q_error: 17.642857142857142
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 11
+        estimated_rows: 39
+        q_error: 3.5454545454545454
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 111
+        estimated_rows: 38
+        q_error: 2.9210526315789473
+      - node: Aggregate/Nested Loop
+        actual_rows: 1224
+        estimated_rows: 558
+        q_error: 2.193548387096774
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:37:37.088
+22,"SELECT COUNT(*) FROM movie_keyword mk,title t,cast_info ci WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2014","  - query: |-
+      SELECT COUNT(*) FROM movie_keyword mk,title t,cast_info ci WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2014
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Seq Scan
+        actual_rows: 438
+        estimated_rows: 1840
+        q_error: 4.200913242009133
+      - node: Aggregate/Nested Loop/Nested Loop/Index Only Scan
+        actual_rows: 2
+        estimated_rows: 55
+        q_error: 27.5
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 1054
+        estimated_rows: 3289
+        q_error: 3.120493358633776
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 13
+        estimated_rows: 38
+        q_error: 2.923076923076923
+      - node: Aggregate/Nested Loop
+        actual_rows: 13221
+        estimated_rows: 47061
+        q_error: 3.559564329475834
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:37:37.439
+23,"SELECT COUNT(*) FROM movie_keyword mk,title t,cast_info ci WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2014 AND mk.keyword_id=8200","  - query: |-
+      SELECT COUNT(*) FROM movie_keyword mk,title t,cast_info ci WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2014 AND mk.keyword_id=8200
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 14
+        estimated_rows: 247
+        q_error: 17.642857142857142
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 14
+        estimated_rows: 247
+        q_error: 17.642857142857142
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 2
+        estimated_rows: 1
+        q_error: 2.0
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 16
+        estimated_rows: 38
+        q_error: 2.375
+      - node: Aggregate/Nested Loop
+        actual_rows: 33
+        estimated_rows: 14
+        q_error: 2.357142857142857
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:37:37.508
+24,"SELECT COUNT(*) FROM movie_keyword mk,title t,cast_info ci WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2000 AND mk.keyword_id=8200","  - query: |-
+      SELECT COUNT(*) FROM movie_keyword mk,title t,cast_info ci WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2000 AND mk.keyword_id=8200
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 14
+        estimated_rows: 247
+        q_error: 17.642857142857142
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 14
+        estimated_rows: 247
+        q_error: 17.642857142857142
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 11
+        estimated_rows: 136
+        q_error: 12.363636363636363
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 111
+        estimated_rows: 38
+        q_error: 2.9210526315789473
+      - node: Aggregate/Nested Loop
+        actual_rows: 1224
+        estimated_rows: 1946
+        q_error: 1.5898692810457515
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:37:37.569
+25,"SELECT COUNT(*) FROM movie_keyword mk,title t,cast_info ci WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2000","  - query: |-
+      SELECT COUNT(*) FROM movie_keyword mk,title t,cast_info ci WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2000
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 36244344
+        estimated_rows: 36179463
+        q_error: 1.0017933101992145
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 1381453
+        estimated_rows: 1388272
+        q_error: 1.004936107127785
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1381453
+        estimated_rows: 1388272
+        q_error: 1.004936107127785
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 1970380
+        estimated_rows: 2481525
+        q_error: 1.2594144276738497
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 1970380
+        estimated_rows: 2481525
+        q_error: 1.2594144276738497
+      - node: Aggregate/Hash Join
+        actual_rows: 114182642
+        estimated_rows: 35507257
+        q_error: 3.215755077898583
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:38:02.484
+26,"SELECT COUNT(*) FROM cast_info ci,title t WHERE t.id=ci.movie_id AND t.production_year>1980 AND t.production_year<1995","  - query: |-
+      SELECT COUNT(*) FROM cast_info ci,title t WHERE t.id=ci.movie_id AND t.production_year>1980 AND t.production_year<1995
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 36244344
+        estimated_rows: 36179463
+        q_error: 1.0017933101992145
+      - node: Aggregate/Hash Join/Hash/Seq Scan
+        actual_rows: 288970
+        estimated_rows: 287214
+        q_error: 1.0061139080964019
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 288970
+        estimated_rows: 287214
+        q_error: 1.0061139080964019
+      - node: Aggregate/Hash Join
+        actual_rows: 4533382
+        estimated_rows: 4109643
+        q_error: 1.1031084695191284
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:38:13.073
+27,"SELECT COUNT(*) FROM cast_info ci,title t WHERE t.id=ci.movie_id AND t.production_year>1980 AND t.production_year<1984","  - query: |-
+      SELECT COUNT(*) FROM cast_info ci,title t WHERE t.id=ci.movie_id AND t.production_year>1980 AND t.production_year<1984
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Seq Scan
+        actual_rows: 44715
+        estimated_rows: 43666
+        q_error: 1.024023267530802
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 16
+        estimated_rows: 38
+        q_error: 2.375
+      - node: Aggregate/Nested Loop
+        actual_rows: 695701
+        estimated_rows: 624801
+        q_error: 1.1134761308000467
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:38:38.183
+28,"SELECT COUNT(*) FROM cast_info ci,title t WHERE t.id=ci.movie_id AND t.production_year>1980 AND t.production_year<2010","  - query: |-
+      SELECT COUNT(*) FROM cast_info ci,title t WHERE t.id=ci.movie_id AND t.production_year>1980 AND t.production_year<2010
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 36244344
+        estimated_rows: 36179463
+        q_error: 1.0017933101992145
+      - node: Aggregate/Hash Join/Hash/Seq Scan
+        actual_rows: 1399115
+        estimated_rows: 1400259
+        q_error: 1.0008176597349039
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 1399115
+        estimated_rows: 1400259
+        q_error: 1.0008176597349039
+      - node: Aggregate/Hash Join
+        actual_rows: 21454165
+        estimated_rows: 20035807
+        q_error: 1.0707911590483976
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:38:53.304
+29,"SELECT COUNT(*) FROM cast_info ci,title t,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mc.movie_id AND ci.role_id=2","  - query: |-
+      SELECT COUNT(*) FROM cast_info ci,title t,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mc.movie_id AND ci.role_id=2
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Index Scan
+        actual_rows: 7451973
+        estimated_rows: 7473471
+        q_error: 1.002884873576434
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join
+        actual_rows: 13355828
+        estimated_rows: 7711773
+        q_error: 1.7318751472586136
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:39:00.266
+30,"SELECT COUNT(*) FROM cast_info ci,title t,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mc.movie_id AND ci.role_id=4","  - query: |-
+      SELECT COUNT(*) FROM cast_info ci,title t,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mc.movie_id AND ci.role_id=4
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Index Scan
+        actual_rows: 2728943
+        estimated_rows: 2682104
+        q_error: 1.0174635286327451
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join
+        actual_rows: 4450853
+        estimated_rows: 2767627
+        q_error: 1.6081838340209862
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:39:04.715
+31,"SELECT COUNT(*) FROM cast_info ci,title t,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mc.movie_id AND ci.role_id=7","  - query: |-
+      SELECT COUNT(*) FROM cast_info ci,title t,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mc.movie_id AND ci.role_id=7
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Index Scan
+        actual_rows: 276403
+        estimated_rows: 293054
+        q_error: 1.0602417484614857
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 276403
+        estimated_rows: 293054
+        q_error: 1.0602417484614857
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 276403
+        estimated_rows: 293054
+        q_error: 1.0602417484614857
+      - node: Aggregate/Hash Join
+        actual_rows: 794591
+        estimated_rows: 302398
+        q_error: 2.6276331192666618
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:39:06.639
+32,"SELECT COUNT(*) FROM cast_info ci,title t,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mc.movie_id AND t.production_year>2005 AND t.production_year<2015 AND ci.role_id=2","  - query: |-
+      SELECT COUNT(*) FROM cast_info ci,title t,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mc.movie_id AND t.production_year>2005 AND t.production_year<2015 AND ci.role_id=2
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Index Scan
+        actual_rows: 7451973
+        estimated_rows: 7473471
+        q_error: 1.002884873576434
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 1012482
+        estimated_rows: 1011112
+        q_error: 1.0013549438637857
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1012482
+        estimated_rows: 1011112
+        q_error: 1.0013549438637857
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 828838
+        estimated_rows: 1043353
+        q_error: 1.2588141470347642
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 828838
+        estimated_rows: 1043353
+        q_error: 1.2588141470347642
+      - node: Aggregate/Hash Join
+        actual_rows: 4893440
+        estimated_rows: 3083826
+        q_error: 1.586808075423192
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:39:11.724
+33,"SELECT COUNT(*) FROM cast_info ci,title t,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mc.movie_id AND t.production_year>2007 AND t.production_year<2010 AND ci.role_id=2","  - query: |-
+      SELECT COUNT(*) FROM cast_info ci,title t,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mc.movie_id AND t.production_year>2007 AND t.production_year<2010 AND ci.role_id=2
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Index Scan
+        actual_rows: 7451973
+        estimated_rows: 7473471
+        q_error: 1.002884873576434
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 251557
+        estimated_rows: 246002
+        q_error: 1.0225811172266892
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 251557
+        estimated_rows: 246002
+        q_error: 1.0225811172266892
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 221088
+        estimated_rows: 253846
+        q_error: 1.148167245621653
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 221088
+        estimated_rows: 253846
+        q_error: 1.148167245621653
+      - node: Aggregate/Hash Join
+        actual_rows: 1381288
+        estimated_rows: 750290
+        q_error: 1.8410054778818856
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:39:15.284
+34,"SELECT COUNT(*) FROM title t,cast_info ci,movie_companies mc WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.production_year>2005 AND ci.role_id=1","  - query: |-
+      SELECT COUNT(*) FROM title t,cast_info ci,movie_companies mc WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.production_year>2005 AND ci.role_id=1
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Index Scan
+        actual_rows: 12670688
+        estimated_rows: 12633869
+        q_error: 1.0029143091478945
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 1012920
+        estimated_rows: 1012903
+        q_error: 1.000016783443232
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1012920
+        estimated_rows: 1012903
+        q_error: 1.000016783443232
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 829639
+        estimated_rows: 1045201
+        q_error: 1.2598262617837397
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 829639
+        estimated_rows: 1045201
+        q_error: 1.2598262617837397
+      - node: Aggregate/Hash Join
+        actual_rows: 8720023
+        estimated_rows: 5222428
+        q_error: 1.6697258439944027
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:39:22.992
+35,"SELECT COUNT(*) FROM title t,cast_info ci,movie_companies mc WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.production_year>2010 AND ci.role_id=1","  - query: |-
+      SELECT COUNT(*) FROM title t,cast_info ci,movie_companies mc WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.production_year>2010 AND ci.role_id=1
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Index Scan
+        actual_rows: 12670688
+        estimated_rows: 12633869
+        q_error: 1.0029143091478945
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 391666
+        estimated_rows: 397073
+        q_error: 1.0138051298810722
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 391666
+        estimated_rows: 397073
+        q_error: 1.0138051298810722
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 294635
+        estimated_rows: 409734
+        q_error: 1.3906494476216336
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 294635
+        estimated_rows: 409734
+        q_error: 1.3906494476216336
+      - node: Aggregate/Hash Join
+        actual_rows: 2873214
+        estimated_rows: 2047269
+        q_error: 1.4034374574127777
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:39:28.294
+36,"SELECT COUNT(*) FROM title t,cast_info ci,movie_companies mc WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.production_year>1990","  - query: |-
+      SELECT COUNT(*) FROM title t,cast_info ci,movie_companies mc WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.production_year>1990
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 36244344
+        estimated_rows: 36179463
+        q_error: 1.0017933101992145
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 1749032
+        estimated_rows: 1759567
+        q_error: 1.0060233317629408
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1749032
+        estimated_rows: 1759567
+        q_error: 1.0060233317629408
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 1508127
+        estimated_rows: 1815673
+        q_error: 1.2039257967001453
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 1508127
+        estimated_rows: 1815673
+        q_error: 1.2039257967001453
+      - node: Aggregate/Hash Join
+        actual_rows: 56965403
+        estimated_rows: 25979823
+        q_error: 2.1926786414210753
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:39:52.758
+37,"SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND mk.keyword_id=398 AND mc.company_type_id=2 AND t.production_year>1950 AND t.production_year<2000","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND mk.keyword_id=398 AND mc.company_type_id=2 AND t.production_year>1950 AND t.production_year<2000
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 5181
+        estimated_rows: 3731
+        q_error: 1.388635754489413
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 7153
+        estimated_rows: 1967
+        q_error: 3.6365022877478395
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:39:53.580
+38,"SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND mk.keyword_id=398 AND mc.company_type_id=2","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND mk.keyword_id=398 AND mc.company_type_id=2
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize/Index Only Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 14102
+        estimated_rows: 5798
+        q_error: 2.4322180062090375
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:39:53.783
+39,"SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND t.production_year>1950","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND t.production_year>1950
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 2287271
+        estimated_rows: 2301023
+        q_error: 1.0060124051762995
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 2287271
+        estimated_rows: 2301023
+        q_error: 1.0060124051762995
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 2229308
+        estimated_rows: 2374394
+        q_error: 1.06508118214262
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 2229308
+        estimated_rows: 2374394
+        q_error: 1.06508118214262
+      - node: Aggregate/Hash Join
+        actual_rows: 31339132
+        estimated_rows: 4244211
+        q_error: 7.383971249308765
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:39:59.883
+40,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND mi_idx.info_type_id=101 AND mi.info_type_id=3 AND t.production_year>2005 AND t.production_year<2008 AND mc.company_type_id=2","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND mi_idx.info_type_id=101 AND mi.info_type_id=3 AND t.production_year>2005 AND t.production_year<2008 AND mc.company_type_id=2
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Seq Scan
+        actual_rows: 227994
+        estimated_rows: 222571
+        q_error: 1.024365258726429
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash
+        actual_rows: 227994
+        estimated_rows: 222571
+        q_error: 1.024365258726429
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join
+        actual_rows: 39862
+        estimated_rows: 40258
+        q_error: 1.0099342732426873
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 52944
+        estimated_rows: 21224
+        q_error: 2.4945344892574446
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 75440
+        estimated_rows: 13090
+        q_error: 5.763177998472116
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:40:28.436
+41,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND mi_idx.info_type_id=113 AND mi.info_type_id=105","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND mi_idx.info_type_id=113 AND mi.info_type_id=105
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 10
+        estimated_rows: 1
+        q_error: 10.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Only Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 10
+        estimated_rows: 1
+        q_error: 10.0
+      - node: Aggregate/Nested Loop/Nested Loop/Index Only Scan
+        actual_rows: 12
+        estimated_rows: 5
+        q_error: 2.4
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 120
+        estimated_rows: 1
+        q_error: 120.0
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 72
+        estimated_rows: 1
+        q_error: 72.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:40:28.593
+42,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND mi_idx.info_type_id=101 AND mi.info_type_id=3 AND t.production_year>2000 AND t.production_year<2010 AND mc.company_type_id=2","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND mi_idx.info_type_id=101 AND mi.info_type_id=3 AND t.production_year>2000 AND t.production_year<2010 AND mc.company_type_id=2
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Hash Join/Index Scan
+        actual_rows: 1334883
+        estimated_rows: 1333004
+        q_error: 1.0014095981707483
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 848084
+        estimated_rows: 845706
+        q_error: 1.002811851872873
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 157251
+        estimated_rows: 152967
+        q_error: 1.0280060405185432
+      - node: Aggregate/Nested Loop/Hash Join/Hash
+        actual_rows: 157251
+        estimated_rows: 152967
+        q_error: 1.0280060405185432
+      - node: Aggregate/Nested Loop/Hash Join
+        actual_rows: 207561
+        estimated_rows: 80643
+        q_error: 2.5738253785201444
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 305691
+        estimated_rows: 49738
+        q_error: 6.14602517190076
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:40:35.448
+43,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,movie_info_idx mi_idx WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=mi_idx.movie_id AND t.kind_id=1 AND mc.company_type_id=2 AND mi_idx.info_type_id=101 AND mi.info_type_id=16","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,movie_info_idx mi_idx WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=mi_idx.movie_id AND t.kind_id=1 AND mc.company_type_id=2 AND mi_idx.info_type_id=101 AND mi.info_type_id=16
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Hash Join/Index Scan
+        actual_rows: 1334883
+        estimated_rows: 1333004
+        q_error: 1.0014095981707483
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 662825
+        estimated_rows: 656737
+        q_error: 1.0092700731038453
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 662825
+        estimated_rows: 656737
+        q_error: 1.0092700731038453
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 662825
+        estimated_rows: 656737
+        q_error: 1.0092700731038453
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 209880
+        estimated_rows: 118788
+        q_error: 1.7668451358723103
+      - node: Aggregate/Nested Loop/Hash Join/Hash
+        actual_rows: 209880
+        estimated_rows: 118788
+        q_error: 1.7668451358723103
+      - node: Aggregate/Nested Loop/Hash Join
+        actual_rows: 302610
+        estimated_rows: 62624
+        q_error: 4.832172968829841
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 6
+        estimated_rows: 8
+        q_error: 1.3333333333333333
+      - node: Aggregate/Nested Loop
+        actual_rows: 1919495
+        estimated_rows: 75420
+        q_error: 25.450742508618404
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:40:40.283
+44,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.production_year>2010 AND t.kind_id=1 AND mi.info_type_id=8 AND mi_idx.info_type_id=101","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.production_year>2010 AND t.kind_id=1 AND mi.info_type_id=8 AND mi_idx.info_type_id=101
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 662825
+        estimated_rows: 656737
+        q_error: 1.0092700731038453
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 98992
+        estimated_rows: 103133
+        q_error: 1.0418316631647002
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash
+        actual_rows: 98992
+        estimated_rows: 103133
+        q_error: 1.0418316631647002
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join
+        actual_rows: 17526
+        estimated_rows: 18654
+        q_error: 1.064361520027388
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 20716
+        estimated_rows: 9930
+        q_error: 2.0862034239677745
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 7
+        estimated_rows: 55
+        q_error: 7.857142857142857
+      - node: Aggregate/Nested Loop
+        actual_rows: 150780
+        estimated_rows: 17750
+        q_error: 8.494647887323943
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:40:41.568
+45,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.kind_id=1 AND mi.info_type_id=8 AND mi_idx.info_type_id=101","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.kind_id=1 AND mi.info_type_id=8 AND mi_idx.info_type_id=101
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 662825
+        estimated_rows: 656737
+        q_error: 1.0092700731038453
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 662825
+        estimated_rows: 656737
+        q_error: 1.0092700731038453
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 662825
+        estimated_rows: 656737
+        q_error: 1.0092700731038453
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 209880
+        estimated_rows: 118788
+        q_error: 1.7668451358723103
+      - node: Aggregate/Nested Loop/Hash Join/Hash
+        actual_rows: 209880
+        estimated_rows: 118788
+        q_error: 1.7668451358723103
+      - node: Aggregate/Nested Loop/Hash Join
+        actual_rows: 2503305
+        estimated_rows: 212333
+        q_error: 11.789524002392469
+      - node: Aggregate/Nested Loop/Memoize/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Memoize
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 3243247
+        estimated_rows: 113028
+        q_error: 28.694190819973812
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:40:45.134
+46,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.production_year>2005 AND mi.info_type_id=8 AND mi_idx.info_type_id=101","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.production_year>2005 AND mi.info_type_id=8 AND mi_idx.info_type_id=101
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 1012920
+        estimated_rows: 1012903
+        q_error: 1.000016783443232
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 143567
+        estimated_rows: 183209
+        q_error: 1.2761219500302994
+      - node: Aggregate/Nested Loop/Hash Join/Hash
+        actual_rows: 143567
+        estimated_rows: 183209
+        q_error: 1.2761219500302994
+      - node: Aggregate/Nested Loop/Hash Join
+        actual_rows: 850677
+        estimated_rows: 327485
+        q_error: 2.5976059972212466
+      - node: Aggregate/Nested Loop/Memoize/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Memoize
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 1043763
+        estimated_rows: 174329
+        q_error: 5.9873170843634735
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:40:50.607
+47,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mi.info_type_id=16 AND t.production_year>2000","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mi.info_type_id=16 AND t.production_year>2000
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 1381453
+        estimated_rows: 1388272
+        q_error: 1.004936107127785
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1381453
+        estimated_rows: 1388272
+        q_error: 1.004936107127785
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 1170186
+        estimated_rows: 1432539
+        q_error: 1.2241976916490198
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1170186
+        estimated_rows: 1432539
+        q_error: 1.2241976916490198
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 6621484
+        estimated_rows: 1725264
+        q_error: 3.8379540754342525
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 6621484
+        estimated_rows: 1725264
+        q_error: 3.8379540754342525
+      - node: Aggregate/Hash Join
+        actual_rows: 512575801
+        estimated_rows: 3083895
+        q_error: 166.21052305607031
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:41:37.539
+48,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mi.info_type_id=16 AND t.production_year>2005 AND t.production_year<2010","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mi.info_type_id=16 AND t.production_year>2005 AND t.production_year<2010
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 479551
+        estimated_rows: 470336
+        q_error: 1.0195923765138113
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 479551
+        estimated_rows: 470336
+        q_error: 1.0195923765138113
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 420388
+        estimated_rows: 485333
+        q_error: 1.15448823467844
+      - node: Aggregate/Nested Loop/Hash Join/Hash
+        actual_rows: 420388
+        estimated_rows: 485333
+        q_error: 1.15448823467844
+      - node: Aggregate/Nested Loop/Hash Join
+        actual_rows: 6670791
+        estimated_rows: 867529
+        q_error: 7.689415569969419
+      - node: Aggregate/Nested Loop/Memoize/Index Scan
+        actual_rows: 3
+        estimated_rows: 8
+        q_error: 2.6666666666666665
+      - node: Aggregate/Nested Loop/Memoize
+        actual_rows: 31
+        estimated_rows: 8
+        q_error: 3.875
+      - node: Aggregate/Nested Loop
+        actual_rows: 206778521
+        estimated_rows: 1044800
+        q_error: 197.91206068147014
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:42:11.181
+49,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mi.info_type_id=16 AND t.production_year>1990","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mi.info_type_id=16 AND t.production_year>1990
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 1749032
+        estimated_rows: 1759567
+        q_error: 1.0060233317629408
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1749032
+        estimated_rows: 1759567
+        q_error: 1.0060233317629408
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 1508127
+        estimated_rows: 1815673
+        q_error: 1.2039257967001453
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1508127
+        estimated_rows: 1815673
+        q_error: 1.2039257967001453
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 8193781
+        estimated_rows: 2186687
+        q_error: 3.7471211014653676
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 8193781
+        estimated_rows: 2186687
+        q_error: 3.7471211014653676
+      - node: Aggregate/Hash Join
+        actual_rows: 625302823
+        estimated_rows: 3908685
+        q_error: 159.9777989272607
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:43:07.748
+50,"SELECT COUNT(*) FROM cast_info ci,title t,movie_keyword mk,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mk.keyword_id=117","  - query: |-
+      SELECT COUNT(*) FROM cast_info ci,title t,movie_keyword mk,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mk.keyword_id=117
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 41840
+        estimated_rows: 38267
+        q_error: 1.0933702668095227
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 41840
+        estimated_rows: 38267
+        q_error: 1.0933702668095227
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Memoize/Index Only Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Memoize
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 41840
+        estimated_rows: 38267
+        q_error: 1.0933702668095227
+      - node: Aggregate/Nested Loop/Nested Loop/Index Only Scan
+        actual_rows: 4
+        estimated_rows: 5
+        q_error: 1.25
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 148552
+        estimated_rows: 39487
+        q_error: 3.7620482690505734
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 52
+        estimated_rows: 38
+        q_error: 1.368421052631579
+      - node: Aggregate/Nested Loop
+        actual_rows: 7796926
+        estimated_rows: 565008
+        q_error: 13.79967363293971
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:47:59.830
+51,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND mi.info_type_id=105 AND mi_idx.info_type_id=100","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND mi.info_type_id=105 AND mi_idx.info_type_id=100
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 121863
+        estimated_rows: 110472
+        q_error: 1.1031121008038236
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Bitmap Heap Scan
+        actual_rows: 121863
+        estimated_rows: 110472
+        q_error: 1.1031121008038236
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join
+        actual_rows: 45431
+        estimated_rows: 108975
+        q_error: 2.3986925227267726
+      - node: Aggregate/Nested Loop/Nested Loop/Index Only Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 45431
+        estimated_rows: 20179
+        q_error: 2.2513999702661183
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 40
+        estimated_rows: 38
+        q_error: 1.0526315789473684
+      - node: Aggregate/Nested Loop
+        actual_rows: 1831108
+        estimated_rows: 288734
+        q_error: 6.341850977023835
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:50:05.058
+52,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND mi.info_type_id=3 AND mi_idx.info_type_id=101 AND t.production_year>2008 AND t.production_year<2014","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND mi.info_type_id=3 AND mi_idx.info_type_id=101 AND t.production_year>2008 AND t.production_year<2014
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 1533909
+        estimated_rows: 1559495
+        q_error: 1.0166802593895727
+      - node: Aggregate/Nested Loop/Hash Join/Bitmap Heap Scan
+        actual_rows: 1533909
+        estimated_rows: 1559495
+        q_error: 1.0166802593895727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 658550
+        estimated_rows: 663458
+        q_error: 1.0074527370738744
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 658550
+        estimated_rows: 663458
+        q_error: 1.0074527370738744
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 84173
+        estimated_rows: 120003
+        q_error: 1.4256709396124647
+      - node: Aggregate/Nested Loop/Hash Join/Hash
+        actual_rows: 84173
+        estimated_rows: 120003
+        q_error: 1.4256709396124647
+      - node: Aggregate/Nested Loop/Hash Join
+        actual_rows: 96377
+        estimated_rows: 74014
+        q_error: 1.3021455400329667
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 30
+        estimated_rows: 38
+        q_error: 1.2666666666666666
+      - node: Aggregate/Nested Loop
+        actual_rows: 2936093
+        estimated_rows: 1059040
+        q_error: 2.7724099184166793
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:50:54.026
+53,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND mi.info_type_id=3 AND mi_idx.info_type_id=100","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND mi.info_type_id=3 AND mi_idx.info_type_id=100
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 1533909
+        estimated_rows: 1559495
+        q_error: 1.0166802593895727
+      - node: Aggregate/Nested Loop/Hash Join/Bitmap Heap Scan
+        actual_rows: 1533909
+        estimated_rows: 1559495
+        q_error: 1.0166802593895727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Hash Join/Hash
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Hash Join
+        actual_rows: 546205
+        estimated_rows: 284855
+        q_error: 1.9174843341349108
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 30
+        estimated_rows: 38
+        q_error: 1.2666666666666666
+      - node: Aggregate/Nested Loop
+        actual_rows: 16461908
+        estimated_rows: 4075889
+        q_error: 4.038850910807434
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:51:43.001
+54,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2005 AND t.production_year<2009","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2005 AND t.production_year<2009
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Index Scan
+        actual_rows: 7451973
+        estimated_rows: 7473471
+        q_error: 1.002884873576434
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 350855
+        estimated_rows: 344052
+        q_error: 1.0197731738225617
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 350855
+        estimated_rows: 344052
+        q_error: 1.0197731738225617
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 305063
+        estimated_rows: 355023
+        q_error: 1.1637694509003058
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 305063
+        estimated_rows: 355023
+        q_error: 1.1637694509003058
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 1816973
+        estimated_rows: 427567
+        q_error: 4.249563226348151
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 1816973
+        estimated_rows: 427567
+        q_error: 4.249563226348151
+      - node: Aggregate/Hash Join
+        actual_rows: 24675801
+        estimated_rows: 1263755
+        q_error: 19.525779126492083
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:51:51.497
+55,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND ci.role_id=2 AND mi.info_type_id=16","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND ci.role_id=2 AND mi.info_type_id=16
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Index Scan
+        actual_rows: 7451973
+        estimated_rows: 7473471
+        q_error: 1.002884873576434
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 10905021
+        estimated_rows: 3142277
+        q_error: 3.4704200170767887
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 10905021
+        estimated_rows: 3142277
+        q_error: 3.4704200170767887
+      - node: Aggregate/Hash Join
+        actual_rows: 132317651
+        estimated_rows: 9287593
+        q_error: 14.246710746261169
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:52:14.070
+56,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2000","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2000
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Index Scan
+        actual_rows: 7451973
+        estimated_rows: 7473471
+        q_error: 1.002884873576434
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 1381453
+        estimated_rows: 1388272
+        q_error: 1.004936107127785
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1381453
+        estimated_rows: 1388272
+        q_error: 1.004936107127785
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 1170186
+        estimated_rows: 1432539
+        q_error: 1.2241976916490198
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1170186
+        estimated_rows: 1432539
+        q_error: 1.2241976916490198
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 6621484
+        estimated_rows: 1725264
+        q_error: 3.8379540754342525
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 6621484
+        estimated_rows: 1725264
+        q_error: 3.8379540754342525
+      - node: Aggregate/Hash Join
+        actual_rows: 90649862
+        estimated_rows: 5099344
+        q_error: 17.77676932562306
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:52:29.307
+57,"SELECT COUNT(*) FROM title t,cast_info ci,movie_keyword mk WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>1950 AND t.kind_id=1","  - query: |-
+      SELECT COUNT(*) FROM title t,cast_info ci,movie_keyword mk WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>1950 AND t.kind_id=1
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 662825
+        estimated_rows: 656737
+        q_error: 1.0092700731038453
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 492483
+        estimated_rows: 597652
+        q_error: 1.2135484879681127
+      - node: Aggregate/Nested Loop/Hash Join/Hash
+        actual_rows: 492483
+        estimated_rows: 597652
+        q_error: 1.2135484879681127
+      - node: Aggregate/Nested Loop/Hash Join
+        actual_rows: 2343162
+        estimated_rows: 1068298
+        q_error: 2.1933599051949924
+      - node: Aggregate/Nested Loop/Memoize/Index Only Scan
+        actual_rows: 28
+        estimated_rows: 38
+        q_error: 1.3571428571428572
+      - node: Aggregate/Nested Loop/Memoize
+        actual_rows: 65
+        estimated_rows: 38
+        q_error: 1.7105263157894737
+      - node: Aggregate/Nested Loop
+        actual_rows: 151179813
+        estimated_rows: 15285896
+        q_error: 9.89015056755587
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:52:52.884
+58,"SELECT COUNT(*) FROM title t,cast_info ci,movie_keyword mk WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2000 AND t.kind_id=1","  - query: |-
+      SELECT COUNT(*) FROM title t,cast_info ci,movie_keyword mk WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2000 AND t.kind_id=1
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 662825
+        estimated_rows: 656737
+        q_error: 1.0092700731038453
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 274015
+        estimated_rows: 360581
+        q_error: 1.3159170118424175
+      - node: Aggregate/Nested Loop/Hash Join/Hash
+        actual_rows: 274015
+        estimated_rows: 360581
+        q_error: 1.3159170118424175
+      - node: Aggregate/Nested Loop/Hash Join
+        actual_rows: 1053171
+        estimated_rows: 644536
+        q_error: 1.6339987215609368
+      - node: Aggregate/Nested Loop/Memoize/Index Only Scan
+        actual_rows: 29
+        estimated_rows: 38
+        q_error: 1.3103448275862069
+      - node: Aggregate/Nested Loop/Memoize
+        actual_rows: 80
+        estimated_rows: 38
+        q_error: 2.1052631578947367
+      - node: Aggregate/Nested Loop
+        actual_rows: 84217062
+        estimated_rows: 9222430
+        q_error: 9.131764838551227
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:53:05.925
+59,"SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc,movie_info mi WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND t.id=mi.movie_id AND mk.keyword_id=398 AND mc.company_type_id=2 AND t.production_year>1950 AND t.production_year<2000","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc,movie_info mi WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND t.id=mi.movie_id AND mk.keyword_id=398 AND mc.company_type_id=2 AND t.production_year>1950 AND t.production_year<2000
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Memoize/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Memoize
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 5181
+        estimated_rows: 3731
+        q_error: 1.388635754489413
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 7153
+        estimated_rows: 1967
+        q_error: 3.6365022877478395
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 47
+        estimated_rows: 39
+        q_error: 1.205128205128205
+      - node: Aggregate/Nested Loop
+        actual_rows: 333474
+        estimated_rows: 11561
+        q_error: 28.844736614479718
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:53:07.988
+60,"SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc,movie_info mi WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND t.id=mi.movie_id AND mk.keyword_id=398 AND mc.company_type_id=2 AND t.production_year>2000 AND t.production_year<2010","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc,movie_info mi WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND t.id=mi.movie_id AND mk.keyword_id=398 AND mc.company_type_id=2 AND t.production_year>2000 AND t.production_year<2010
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Memoize/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Memoize
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 2699
+        estimated_rows: 3678
+        q_error: 1.362726935902186
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 3411
+        estimated_rows: 1939
+        q_error: 1.7591542031975245
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 90
+        estimated_rows: 39
+        q_error: 2.3076923076923075
+      - node: Aggregate/Nested Loop
+        actual_rows: 307213
+        estimated_rows: 11397
+        q_error: 26.955602351496008
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:53:08.434
+61,"SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc,movie_info mi WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND t.id=mi.movie_id AND mk.keyword_id=398 AND mc.company_type_id=2 AND t.production_year>1950 AND t.production_year<2010","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc,movie_info mi WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND t.id=mi.movie_id AND mk.keyword_id=398 AND mc.company_type_id=2 AND t.production_year>1950 AND t.production_year<2010
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Memoize/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Memoize
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 8209
+        estimated_rows: 7649
+        q_error: 1.0732121845992941
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 10936
+        estimated_rows: 4032
+        q_error: 2.7123015873015874
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 60
+        estimated_rows: 39
+        q_error: 1.5384615384615385
+      - node: Aggregate/Nested Loop
+        actual_rows: 658557
+        estimated_rows: 23699
+        q_error: 27.78838769568336
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:53:08.768
+62,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND t.production_year>2008 AND mi.info_type_id=8 AND mi_idx.info_type_id=101","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND t.production_year>2008 AND mi.info_type_id=8 AND mi_idx.info_type_id=101
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Bitmap Heap
+          Scan/Bitmap Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Bitmap Heap
+          Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash/Seq
+          Scan
+        actual_rows: 662065
+        estimated_rows: 667088
+        q_error: 1.007586868358847
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 662065
+        estimated_rows: 667088
+        q_error: 1.007586868358847
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 84174
+        estimated_rows: 120660
+        q_error: 1.433459262955307
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash
+        actual_rows: 84174
+        estimated_rows: 120660
+        q_error: 1.433459262955307
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join
+        actual_rows: 447627
+        estimated_rows: 215679
+        q_error: 2.07543154410026
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 532005
+        estimated_rows: 114811
+        q_error: 4.633745895428138
+      - node: Aggregate/Nested Loop/Memoize/Index Only Scan
+        actual_rows: 5
+        estimated_rows: 5
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Memoize
+        actual_rows: 16
+        estimated_rows: 5
+        q_error: 3.2
+      - node: Aggregate/Nested Loop
+        actual_rows: 8275169
+        estimated_rows: 118472
+        q_error: 69.84915423053549
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:53:16.094
+63,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND t.production_year>2009 AND mi.info_type_id=8 AND mi_idx.info_type_id=101","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND t.production_year>2009 AND mi.info_type_id=8 AND mi_idx.info_type_id=101
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Bitmap Heap
+          Scan/Bitmap Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Bitmap Heap
+          Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash/Seq
+          Scan
+        actual_rows: 533369
+        estimated_rows: 540804
+        q_error: 1.013939692783045
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 533369
+        estimated_rows: 540804
+        q_error: 1.013939692783045
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 64063
+        estimated_rows: 97818
+        q_error: 1.526903204657915
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash
+        actual_rows: 64063
+        estimated_rows: 97818
+        q_error: 1.526903204657915
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join
+        actual_rows: 305628
+        estimated_rows: 174849
+        q_error: 1.7479539488358526
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 346794
+        estimated_rows: 93076
+        q_error: 3.725922901714728
+      - node: Aggregate/Nested Loop/Memoize/Index Only Scan
+        actual_rows: 5
+        estimated_rows: 5
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Memoize
+        actual_rows: 15
+        estimated_rows: 5
+        q_error: 3.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 5060606
+        estimated_rows: 96044
+        q_error: 52.69049602265628
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:53:18.570
+64,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2010","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2010
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Index Scan
+        actual_rows: 7451973
+        estimated_rows: 7473471
+        q_error: 1.002884873576434
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Hash Join/Seq
+          Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq
+          Scan
+        actual_rows: 391666
+        estimated_rows: 397073
+        q_error: 1.0138051298810722
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 391666
+        estimated_rows: 397073
+        q_error: 1.0138051298810722
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 294635
+        estimated_rows: 409734
+        q_error: 1.3906494476216336
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 294635
+        estimated_rows: 409734
+        q_error: 1.3906494476216336
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 1258211
+        estimated_rows: 493459
+        q_error: 2.5497781983913557
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1258211
+        estimated_rows: 493459
+        q_error: 2.5497781983913557
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 67597282
+        estimated_rows: 882054
+        q_error: 76.63621728374906
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 67597282
+        estimated_rows: 882054
+        q_error: 76.63621728374906
+      - node: Aggregate/Hash Join
+        actual_rows: 1352809555
+        estimated_rows: 2607076
+        q_error: 518.8991632771733
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:56:00.857
+65,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2010 AND mc.company_id=22956","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2010 AND mc.company_id=22956
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 99
+        estimated_rows: 102
+        q_error: 1.0303030303030303
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 37
+        estimated_rows: 16
+        q_error: 2.3125
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 12
+        estimated_rows: 8
+        q_error: 1.5
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 430
+        estimated_rows: 19
+        q_error: 22.63157894736842
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 7
+        estimated_rows: 8
+        q_error: 1.1428571428571428
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 2967
+        estimated_rows: 56
+        q_error: 52.982142857142854
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 65
+        estimated_rows: 55
+        q_error: 1.1818181818181819
+      - node: Aggregate/Nested Loop
+        actual_rows: 191935
+        estimated_rows: 100
+        q_error: 1919.35
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 15:56:03.850
+66,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2000","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2000
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Index Scan
+        actual_rows: 7451973
+        estimated_rows: 7473471
+        q_error: 1.002884873576434
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Hash Join/Seq
+          Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq
+          Scan
+        actual_rows: 1381453
+        estimated_rows: 1388272
+        q_error: 1.004936107127785
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1381453
+        estimated_rows: 1388272
+        q_error: 1.004936107127785
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 1170186
+        estimated_rows: 1432539
+        q_error: 1.2241976916490198
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1170186
+        estimated_rows: 1432539
+        q_error: 1.2241976916490198
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 6621484
+        estimated_rows: 1725264
+        q_error: 3.8379540754342525
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 6621484
+        estimated_rows: 1725264
+        q_error: 3.8379540754342525
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 512575801
+        estimated_rows: 3083895
+        q_error: 166.21052305607031
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 512575801
+        estimated_rows: 3083895
+        q_error: 166.21052305607031
+      - node: Aggregate/Hash Join
+        actual_rows: 9537310863
+        estimated_rows: 9115035
+        q_error: 1046.327398962264
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 16:21:30.226
+67,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND mi.info_type_id=3 AND mi_idx.info_type_id=100","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND mi.info_type_id=3 AND mi_idx.info_type_id=100
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap
+          Heap Scan/Bitmap Index Scan
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap
+          Heap Scan
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join
+        actual_rows: 3461792
+        estimated_rows: 825557
+        q_error: 4.193280415525518
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize/Index Scan
+        actual_rows: 2
+        estimated_rows: 4
+        q_error: 2.0
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize
+        actual_rows: 2
+        estimated_rows: 4
+        q_error: 2.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 7567972
+        estimated_rows: 509176
+        q_error: 14.863175012176535
+      - node: Aggregate/Nested Loop/Memoize/Index Only Scan
+        actual_rows: 33
+        estimated_rows: 38
+        q_error: 1.1515151515151516
+      - node: Aggregate/Nested Loop/Memoize
+        actual_rows: 65
+        estimated_rows: 38
+        q_error: 1.7105263157894737
+      - node: Aggregate/Nested Loop
+        actual_rows: 492943940
+        estimated_rows: 7285618
+        q_error: 67.65986632842952
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 16:25:16.282
+68,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND mi.info_type_id=3 AND mi_idx.info_type_id=100 AND t.production_year>2010","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND mi.info_type_id=3 AND mi_idx.info_type_id=100 AND t.production_year>2010
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Hash Join/Hash/Nested Loop/Hash Join/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 1533909
+        estimated_rows: 1559495
+        q_error: 1.0166802593895727
+      - node: Aggregate/Hash Join/Hash/Nested Loop/Hash Join/Bitmap Heap Scan
+        actual_rows: 1533909
+        estimated_rows: 1559495
+        q_error: 1.0166802593895727
+      - node: Aggregate/Hash Join/Hash/Nested Loop/Hash Join/Hash/Hash Join/Bitmap
+          Heap Scan/Bitmap Index Scan
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Hash Join/Hash/Nested Loop/Hash Join/Hash/Hash Join/Bitmap
+          Heap Scan
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Hash Join/Hash/Nested Loop/Hash Join/Hash/Hash Join/Hash/Seq
+          Scan
+        actual_rows: 391666
+        estimated_rows: 397073
+        q_error: 1.0138051298810722
+      - node: Aggregate/Hash Join/Hash/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 391666
+        estimated_rows: 397073
+        q_error: 1.0138051298810722
+      - node: Aggregate/Hash Join/Hash/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 43838
+        estimated_rows: 72529
+        q_error: 1.6544778502668918
+      - node: Aggregate/Hash Join/Hash/Nested Loop/Hash Join/Hash
+        actual_rows: 43838
+        estimated_rows: 72529
+        q_error: 1.6544778502668918
+      - node: Aggregate/Hash Join/Hash/Nested Loop/Hash Join
+        actual_rows: 46654
+        estimated_rows: 44733
+        q_error: 1.0429436881049785
+      - node: Aggregate/Hash Join/Hash/Nested Loop/Index Only Scan
+        actual_rows: 31
+        estimated_rows: 38
+        q_error: 1.2258064516129032
+      - node: Aggregate/Hash Join/Hash/Nested Loop
+        actual_rows: 1436245
+        estimated_rows: 640069
+        q_error: 2.243890893013097
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 1436245
+        estimated_rows: 640069
+        q_error: 2.243890893013097
+      - node: Aggregate/Hash Join
+        actual_rows: 32355583
+        estimated_rows: 1144118
+        q_error: 28.279935286395283
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 16:25:45.030
+69,"SELECT COUNT(*) FROM title t,cast_info ci,movie_keyword mk,movie_info_idx mi_idx WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.id=mi_idx.movie_id AND t.production_year>2000 AND t.kind_id=1 AND mi_idx.info_type_id=101","  - query: |-
+      SELECT COUNT(*) FROM title t,cast_info ci,movie_keyword mk,movie_info_idx mi_idx WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.id=mi_idx.movie_id AND t.production_year>2000 AND t.kind_id=1 AND mi_idx.info_type_id=101
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 662825
+        estimated_rows: 656737
+        q_error: 1.0092700731038453
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 274015
+        estimated_rows: 360581
+        q_error: 1.3159170118424175
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 274015
+        estimated_rows: 360581
+        q_error: 1.3159170118424175
+      - node: Aggregate/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 86572
+        estimated_rows: 65220
+        q_error: 1.3273842379638148
+      - node: Aggregate/Nested Loop/Hash Join/Hash
+        actual_rows: 86572
+        estimated_rows: 65220
+        q_error: 1.3273842379638148
+      - node: Aggregate/Nested Loop/Hash Join
+        actual_rows: 897347
+        estimated_rows: 116581
+        q_error: 7.697197656564963
+      - node: Aggregate/Nested Loop/Memoize/Index Only Scan
+        actual_rows: 42
+        estimated_rows: 38
+        q_error: 1.105263157894737
+      - node: Aggregate/Nested Loop/Memoize
+        actual_rows: 91
+        estimated_rows: 38
+        q_error: 2.3947368421052633
+      - node: Aggregate/Nested Loop
+        actual_rows: 81495003
+        estimated_rows: 1668110
+        q_error: 48.85469363531182
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 16:25:58.783
+70,"SELECT COUNT(*) FROM title t,cast_info ci,movie_keyword mk,movie_info_idx mi_idx WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.id=mi_idx.movie_id AND t.production_year>2005 AND t.kind_id=1 AND mi_idx.info_type_id=101","  - query: |-
+      SELECT COUNT(*) FROM title t,cast_info ci,movie_keyword mk,movie_info_idx mi_idx WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.id=mi_idx.movie_id AND t.production_year>2005 AND t.kind_id=1 AND mi_idx.info_type_id=101
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 662825
+        estimated_rows: 656737
+        q_error: 1.0092700731038453
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 216282
+        estimated_rows: 263085
+        q_error: 1.2163980358975781
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash
+        actual_rows: 216282
+        estimated_rows: 263085
+        q_error: 1.2163980358975781
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join
+        actual_rows: 58024
+        estimated_rows: 47586
+        q_error: 1.2193502290589668
+      - node: Aggregate/Nested Loop/Nested Loop/Index Only Scan
+        actual_rows: 9
+        estimated_rows: 55
+        q_error: 6.111111111111111
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 547364
+        estimated_rows: 85059
+        q_error: 6.435109747351838
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 94
+        estimated_rows: 38
+        q_error: 2.473684210526316
+      - node: Aggregate/Nested Loop
+        actual_rows: 51282842
+        estimated_rows: 1217077
+        q_error: 42.13607027328592
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 16:26:13.912
+71,"SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc,movie_info mi WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND t.id=mi.movie_id AND mk.keyword_id=398 AND mc.company_type_id=2 AND t.production_year=1998","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_keyword mk,movie_companies mc,movie_info mi WHERE t.id=mk.movie_id AND t.id=mc.movie_id AND t.id=mi.movie_id AND mk.keyword_id=398 AND mc.company_type_id=2 AND t.production_year=1998
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap
+          Index Scan
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 10544
+        estimated_rows: 10998
+        q_error: 1.0430576631259485
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Memoize/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Memoize
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 271
+        estimated_rows: 215
+        q_error: 1.2604651162790699
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 372
+        estimated_rows: 113
+        q_error: 3.2920353982300883
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 51
+        estimated_rows: 39
+        q_error: 1.3076923076923077
+      - node: Aggregate/Nested Loop
+        actual_rows: 19006
+        estimated_rows: 664
+        q_error: 28.623493975903614
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 16:26:15.014
+72,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND t.production_year>2000 AND mi.info_type_id=8 AND mi_idx.info_type_id=101","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND t.production_year>2000 AND mi.info_type_id=8 AND mi_idx.info_type_id=101
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 1381453
+        estimated_rows: 1388272
+        q_error: 1.004936107127785
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap
+          Heap Scan/Bitmap Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap
+          Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 221314
+        estimated_rows: 251104
+        q_error: 1.1346051311710963
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash
+        actual_rows: 221314
+        estimated_rows: 251104
+        q_error: 1.1346051311710963
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join
+        actual_rows: 1402930
+        estimated_rows: 448846
+        q_error: 3.125637746576777
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 1801122
+        estimated_rows: 238930
+        q_error: 7.538283179173817
+      - node: Aggregate/Nested Loop/Memoize/Index Only Scan
+        actual_rows: 5
+        estimated_rows: 5
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Memoize
+        actual_rows: 15
+        estimated_rows: 5
+        q_error: 3.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 26718423
+        estimated_rows: 246549
+        q_error: 108.36962632174537
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 16:26:26.754
+73,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND t.production_year>2005 AND mi.info_type_id=8 AND mi_idx.info_type_id=101","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk,movie_companies mc WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mi_idx.movie_id AND t.id=mc.movie_id AND t.production_year>2005 AND mi.info_type_id=8 AND mi_idx.info_type_id=101
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 1012920
+        estimated_rows: 1012903
+        q_error: 1.000016783443232
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap
+          Heap Scan/Bitmap Index Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap
+          Heap Scan
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 459925
+        estimated_rows: 457344
+        q_error: 1.0056434543800727
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 143567
+        estimated_rows: 183209
+        q_error: 1.2761219500302994
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash
+        actual_rows: 143567
+        estimated_rows: 183209
+        q_error: 1.2761219500302994
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join
+        actual_rows: 850677
+        estimated_rows: 327485
+        q_error: 2.5976059972212466
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize/Index Scan
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize
+        actual_rows: 1
+        estimated_rows: 3
+        q_error: 3.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 1043763
+        estimated_rows: 174329
+        q_error: 5.9873170843634735
+      - node: Aggregate/Nested Loop/Memoize/Index Only Scan
+        actual_rows: 5
+        estimated_rows: 5
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Memoize
+        actual_rows: 15
+        estimated_rows: 5
+        q_error: 3.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 15813608
+        estimated_rows: 179888
+        q_error: 87.90807613626257
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 16:26:31.777
+74,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2000 AND t.production_year<2010 AND mk.keyword_id=7084","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2000 AND t.production_year<2010 AND mk.keyword_id=7084
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap
+          Scan/Bitmap Index Scan
+        actual_rows: 414
+        estimated_rows: 247
+        q_error: 1.6761133603238867
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap
+          Scan
+        actual_rows: 414
+        estimated_rows: 247
+        q_error: 1.6761133603238867
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Only
+          Scan
+        actual_rows: 8
+        estimated_rows: 5
+        q_error: 1.6
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 3218
+        estimated_rows: 1320
+        q_error: 2.437878787878788
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 2178
+        estimated_rows: 85
+        q_error: 25.623529411764707
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 39
+        estimated_rows: 8
+        q_error: 4.875
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 83888
+        estimated_rows: 103
+        q_error: 814.4466019417475
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 13
+        estimated_rows: 8
+        q_error: 1.625
+      - node: Aggregate/Nested Loop
+        actual_rows: 1067496
+        estimated_rows: 303
+        q_error: 3523.089108910891
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 16:27:10.301
+75,"SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2000 AND t.production_year<2005 AND mk.keyword_id=7084","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2000 AND t.production_year<2005 AND mk.keyword_id=7084
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap
+          Scan/Bitmap Index Scan
+        actual_rows: 414
+        estimated_rows: 247
+        q_error: 1.6761133603238867
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap
+          Scan
+        actual_rows: 414
+        estimated_rows: 247
+        q_error: 1.6761133603238867
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Only
+          Scan
+        actual_rows: 8
+        estimated_rows: 5
+        q_error: 1.6
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 3218
+        estimated_rows: 1320
+        q_error: 2.437878787878788
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 777
+        estimated_rows: 27
+        q_error: 28.77777777777778
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 30
+        estimated_rows: 8
+        q_error: 3.75
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 22926
+        estimated_rows: 33
+        q_error: 694.7272727272727
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 12
+        estimated_rows: 8
+        q_error: 1.5
+      - node: Aggregate/Nested Loop
+        actual_rows: 268172
+        estimated_rows: 98
+        q_error: 2736.4489795918366
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 16:27:11.626
+76,"SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND mi.info_type_id=3 AND mi_idx.info_type_id=100 AND t.production_year>2000","  - query: |-
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND mi.info_type_id=3 AND mi_idx.info_type_id=100 AND t.production_year>2000
+    calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
+      Rows)
+    interpretation:
+      - Q-error = 1 implies a perfect estimation.
+      - Q-error > 1 indicates how many times the estimate was off compared to the
+        actual execution.
+    results:
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 1381453
+        estimated_rows: 1388272
+        q_error: 1.004936107127785
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap
+          Heap Scan/Bitmap Index Scan
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap
+          Heap Scan
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 459925
+        estimated_rows: 461852
+        q_error: 1.0041898135565581
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 221314
+        estimated_rows: 253579
+        q_error: 1.1457883369330453
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash
+        actual_rows: 221314
+        estimated_rows: 253579
+        q_error: 1.1457883369330453
+      - node: Aggregate/Nested Loop/Nested Loop/Hash Join
+        actual_rows: 1402930
+        estimated_rows: 453270
+        q_error: 3.0951309374103735
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize/Index Scan
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Nested Loop/Nested Loop/Memoize
+        actual_rows: 2
+        estimated_rows: 4
+        q_error: 2.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 2912311
+        estimated_rows: 279562
+        q_error: 10.417406514476216
+      - node: Aggregate/Nested Loop/Memoize/Index Only Scan
+        actual_rows: 36
+        estimated_rows: 38
+        q_error: 1.0555555555555556
+      - node: Aggregate/Nested Loop/Memoize
+        actual_rows: 89
+        estimated_rows: 38
+        q_error: 2.3421052631578947
+      - node: Aggregate/Nested Loop
+        actual_rows: 258385218
+        estimated_rows: 4000153
+        q_error: 64.5938337858577
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-05 16:28:16.115
