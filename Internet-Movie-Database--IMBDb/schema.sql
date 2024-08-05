@@ -552,5 +552,7 @@ CREATE TABLE query_log (
     id SERIAL PRIMARY KEY,
     query_text TEXT,
     actual_rows INTEGER,
+    estimated_rows INTEGER,
+    q_error INTEGER,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
