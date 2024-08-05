@@ -15,3 +15,11 @@ The dataset is retrieved by executing ```EXPLAIN``` and ```EXPLAIN ANALYZE``` us
 - **Work-in-Progress**: Line 71-571: [JOB-scale-500.sql](/Join-Order-Benchmark-queries/JOB-scale-500.sql)
 - **Work-in-Progress**: Line 572-5,572: [JOB-synthetic-5000.sql](/Join-Order-Benchmark-queries/JOB-synthetic-5000.sql)
 - **Work-in-Progress**: Line 5,573-5,690: [1a.sql - 33c.sql](/Join-Order-Benchmark-queries/)
+
+The alternative to having a manual list of queries is to track executed queries and their statistics as they are executed. The following lines would be added to [postgresql.conf](/container-volumes/postgresql/postgresql.conf) for this automatic tracking.
+
+```conf
+shared_preload_libraries = 'pg_stat_statements'
+pg_stat_statements.max = 10000
+pg_stat_statements.track = all
+```
