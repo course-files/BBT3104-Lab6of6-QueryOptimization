@@ -13,6 +13,6 @@ The dataset is retrieved by executing ```EXPLAIN``` and ```EXPLAIN ANALYZE``` us
 
 - Line 1-70: [JOB-light-70.sql](/Join-Order-Benchmark-queries/JOB-light-70.sql)
 - **Work-in-Progress**: Line 71-571: [JOB-scale-500.sql](/Join-Order-Benchmark-queries/JOB-scale-500.sql)
-- **Work-in-Progress**: Line 572-5,572: [JOB-synthetic-5000.sql](/Join-Order-Benchmark-queries\JOB-synthetic-5000.sql)
-- **Work-in-Progress**: Line 5,572-5,689: [1a.sql - 33c.sql](/Join-Order-Benchmark-queries\)
-- **Work-in-Progress**: Line 572-5,572: [JOB-synthetic-5000.sql](/Join-Order-Benchmark-queries\JOB-synthetic-5000.sql)
+- **Work-in-Progress**: Line 572-5,572: [JOB-synthetic-5000.sql](/Join-Order-Benchmark-queries/JOB-synthetic-5000.sql)
+- **Work-in-Progress**: Line 5,572-5,689: [1a.sql - 33c.sql](/Join-Order-Benchmark-queries/)
+- **Work-in-Progress**: Line 572-5,572: [JOB-synthetic-5000.sql](/Join-Order-Benchmark-queries/JOB-synthetic-5000.sql)
