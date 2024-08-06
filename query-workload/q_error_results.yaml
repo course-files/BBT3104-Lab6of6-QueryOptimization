@@ -1,5 +1,5 @@
   - query: |-
-      SELECT COUNT(*) FROM title t,movie_keyword mk WHERE t.id=mk.movie_id AND mk.keyword_id>2242
+      SELECT COUNT(*) FROM title t,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND mc.company_type_id=2 AND ci.role_id=10 AND mk.keyword_id<4030
     calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
       Rows)
     interpretation:
@@ -7,22 +7,46 @@
       - Q-error > 1 indicates how many times the estimate was off compared to the
         actual execution.
     results:
-      - node: Aggregate/Hash Join/Seq Scan
-        actual_rows: 2986860
-        estimated_rows: 2989858
-        q_error: 1.0010037296692849
-      - node: Aggregate/Hash Join/Hash/Seq Scan
+      - node: Aggregate/Hash Join/Index Scan
+        actual_rows: 4323018
+        estimated_rows: 4539316
+        q_error: 1.050034027154178
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2144947
+        estimated_rows: 2141679
+        q_error: 1.0015259056095709
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Index Scan
+        actual_rows: 1334883
+        estimated_rows: 1333004
+        q_error: 1.0014095981707483
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq Scan
         actual_rows: 2528313
         estimated_rows: 2528504
         q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 1334883
+        estimated_rows: 1333004
+        q_error: 1.0014095981707483
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1334883
+        estimated_rows: 1333004
+        q_error: 1.0014095981707483
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 3934171
+        estimated_rows: 1129073
+        q_error: 3.484425719151906
       - node: Aggregate/Hash Join/Hash
-        actual_rows: 2528313
-        estimated_rows: 2528504
-        q_error: 1.000075544444062
+        actual_rows: 3934171
+        estimated_rows: 1129073
+        q_error: 3.484425719151906
       - node: Aggregate/Hash Join
-        actual_rows: 2986860
-        estimated_rows: 2989858
-        q_error: 1.0010037296692849
+        actual_rows: 90750250
+        estimated_rows: 2026978
+        q_error: 44.771206199573946
       - node: Aggregate
         actual_rows: 1
         estimated_rows: 1
