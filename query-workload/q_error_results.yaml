@@ -1,5 +1,5 @@
   - query: |-
-      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND mi.info_type_id=3 AND mi_idx.info_type_id=100 AND t.production_year>2000
+      SELECT COUNT(*) FROM title t,movie_keyword mk WHERE t.id=mk.movie_id AND mk.keyword_id>2242
     calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
       Rows)
     interpretation:
@@ -7,64 +7,22 @@
       - Q-error > 1 indicates how many times the estimate was off compared to the
         actual execution.
     results:
-      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Seq Scan
-        actual_rows: 4523930
-        estimated_rows: 4519680
-        q_error: 1.0009403320589068
-      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Seq Scan
-        actual_rows: 1381453
-        estimated_rows: 1388272
-        q_error: 1.004936107127785
-      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap
-          Heap Scan/Bitmap Index Scan
-        actual_rows: 459925
-        estimated_rows: 461852
-        q_error: 1.0041898135565581
-      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash/Bitmap
-          Heap Scan
-        actual_rows: 459925
-        estimated_rows: 461852
-        q_error: 1.0041898135565581
-      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join/Hash
-        actual_rows: 459925
-        estimated_rows: 461852
-        q_error: 1.0041898135565581
-      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash/Hash Join
-        actual_rows: 221314
-        estimated_rows: 253579
-        q_error: 1.1457883369330453
-      - node: Aggregate/Nested Loop/Nested Loop/Hash Join/Hash
-        actual_rows: 221314
-        estimated_rows: 253579
-        q_error: 1.1457883369330453
-      - node: Aggregate/Nested Loop/Nested Loop/Hash Join
-        actual_rows: 1402930
-        estimated_rows: 453270
-        q_error: 3.0951309374103735
-      - node: Aggregate/Nested Loop/Nested Loop/Memoize/Index Scan
-        actual_rows: 1
-        estimated_rows: 4
-        q_error: 4.0
-      - node: Aggregate/Nested Loop/Nested Loop/Memoize
-        actual_rows: 2
-        estimated_rows: 4
-        q_error: 2.0
-      - node: Aggregate/Nested Loop/Nested Loop
-        actual_rows: 2912311
-        estimated_rows: 279562
-        q_error: 10.417406514476216
-      - node: Aggregate/Nested Loop/Memoize/Index Only Scan
-        actual_rows: 36
-        estimated_rows: 38
-        q_error: 1.0555555555555556
-      - node: Aggregate/Nested Loop/Memoize
-        actual_rows: 89
-        estimated_rows: 38
-        q_error: 2.3421052631578947
-      - node: Aggregate/Nested Loop
-        actual_rows: 258385218
-        estimated_rows: 4000153
-        q_error: 64.5938337858577
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 2986860
+        estimated_rows: 2989858
+        q_error: 1.0010037296692849
+      - node: Aggregate/Hash Join/Hash/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join
+        actual_rows: 2986860
+        estimated_rows: 2989858
+        q_error: 1.0010037296692849
       - node: Aggregate
         actual_rows: 1
         estimated_rows: 1
