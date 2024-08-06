@@ -1,5 +1,5 @@
   - query: |-
-      SELECT COUNT(*) FROM movie_info_idx mi_idx WHERE mi_idx.info_type_id<100
+      SELECT COUNT(*) FROM title t,movie_keyword mk WHERE t.id=mk.movie_id AND mk.keyword_id>2242
     calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
       Rows)
     interpretation:
@@ -7,10 +7,22 @@
       - Q-error > 1 indicates how many times the estimate was off compared to the
         actual execution.
     results:
-      - node: Aggregate/Index Only Scan
-        actual_rows: 459925
-        estimated_rows: 460564
-        q_error: 1.001389356960374
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 2986860
+        estimated_rows: 2989858
+        q_error: 1.0010037296692849
+      - node: Aggregate/Hash Join/Hash/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join
+        actual_rows: 2986860
+        estimated_rows: 2989858
+        q_error: 1.0010037296692849
       - node: Aggregate
         actual_rows: 1
         estimated_rows: 1
