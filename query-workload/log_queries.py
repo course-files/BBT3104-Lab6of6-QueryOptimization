@@ -133,7 +133,7 @@ def main():
         set_schema(conn, 'imdb_schema')
 
         # Execute queries from file
-        file_path = 'Join-Order-Benchmark-queries/JOB-scale-500.sql'
+        file_path = 'Join-Order-Benchmark-queries/JOB-scale-500-delete.sql'
         yaml = YAML()
         yaml.indent(mapping=2, sequence=4, offset=2)
         queries = read_queries_from_file(file_path)
