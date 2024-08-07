@@ -1,7 +1,7 @@
 {
     "zenMode.hideLineNumbers": false,
     "zenMode.centerLayout": true,
-    "zenMode.hideStatusBar": false,
+    "zenMode.hideStatusBar": true,
     "editor.wordWrap": "on",
     "cSpell.customDictionaries": {
         "custom-dictionary-workspace": {
@@ -10,5 +10,6 @@
             "addWords": true,
             "scope": "workspace"
         }
-    }
+    },
+    "zenMode.hideActivityBar": true
 }
