@@ -69,7 +69,7 @@ SELECT COUNT(*) FROM title t,movie_companies mc,movie_info_idx mi_idx WHERE t.id
 SELECT COUNT(*) FROM movie_keyword mk WHERE mk.keyword_id<245;
 SELECT COUNT(*) FROM title t,movie_companies mc WHERE t.id=mc.movie_id AND mc.company_id=31319 AND mc.company_type_id=1;
 SELECT COUNT(*) FROM movie_companies mc WHERE mc.company_id<3598 AND mc.company_type_id=2;
-SELECT COUNT(*) FROM title t,cast_info ci,movie_info mi,movie_info_idx mi_idx WHERE t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND ci.person_id>2812137;
+/*SLOW */SELECT COUNT(*) FROM title t,cast_info ci,movie_info mi,movie_info_idx mi_idx WHERE t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND ci.person_id>2812137;
 SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.production_year<2008;
 SELECT COUNT(*) FROM title t,movie_keyword mk WHERE t.id=mk.movie_id AND t.production_year>1994 AND mk.keyword_id<2488;
 SELECT COUNT(*) FROM title t,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND mc.company_type_id>1;
