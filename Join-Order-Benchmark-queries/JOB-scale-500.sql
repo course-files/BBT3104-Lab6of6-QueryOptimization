@@ -83,7 +83,7 @@ SELECT COUNT(*) FROM title t,movie_companies mc,movie_keyword mk WHERE t.id=mc.m
 SELECT COUNT(*) FROM title t,cast_info ci,movie_info mi,movie_keyword mk WHERE t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mk.movie_id AND ci.person_id>2767669 AND mi.info_type_id=2 AND mk.keyword_id>11171;
 SELECT COUNT(*) FROM title t WHERE t.kind_id>4;
 SELECT COUNT(*) FROM title t,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi_idx.movie_id AND t.id=mk.movie_id AND mk.keyword_id=3054;
-SELECT COUNT(*) FROM title t,movie_companies mc,cast_info ci,movie_info mi,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mk.movie_id AND ci.person_id<926305 AND ci.role_id<10 AND mi.info_type_id<7 AND mk.keyword_id>1074;
+/*SLOW */SELECT COUNT(*) FROM title t,movie_companies mc,cast_info ci,movie_info mi,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mk.movie_id AND ci.person_id<926305 AND ci.role_id<10 AND mi.info_type_id<7 AND mk.keyword_id>1074;
 SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND mk.keyword_id<1887;
 SELECT COUNT(*) FROM movie_info_idx mi_idx WHERE mi_idx.info_type_id>99;
 SELECT COUNT(*) FROM title t,movie_companies mc,cast_info ci,movie_info mi,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mk.movie_id AND t.kind_id=7 AND t.production_year=2004 AND ci.role_id<2 AND mk.keyword_id<2909;

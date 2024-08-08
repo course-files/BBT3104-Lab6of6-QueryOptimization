@@ -1,5 +1,5 @@
   - query: |-
-      SELECT COUNT(*) FROM movie_companies mc WHERE mc.company_id<3598 AND mc.company_type_id=2
+      SELECT COUNT(*) FROM title t,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi_idx.movie_id AND t.id=mk.movie_id AND mk.keyword_id=3054
     calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
       Rows)
     interpretation:
@@ -7,10 +7,30 @@
       - Q-error > 1 indicates how many times the estimate was off compared to the
         actual execution.
     results:
-      - node: Aggregate/Index Scan
-        actual_rows: 278429
-        estimated_rows: 486746
-        q_error: 1.7481871500454336
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 71
+        estimated_rows: 247
+        q_error: 3.4788732394366195
+      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
+        actual_rows: 71
+        estimated_rows: 247
+        q_error: 3.4788732394366195
+      - node: Aggregate/Nested Loop/Nested Loop/Index Only Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 71
+        estimated_rows: 247
+        q_error: 3.4788732394366195
+      - node: Aggregate/Nested Loop/Index Only Scan
+        actual_rows: 2
+        estimated_rows: 3
+        q_error: 1.5
+      - node: Aggregate/Nested Loop
+        actual_rows: 177
+        estimated_rows: 135
+        q_error: 1.3111111111111111
       - node: Aggregate
         actual_rows: 1
         estimated_rows: 1
