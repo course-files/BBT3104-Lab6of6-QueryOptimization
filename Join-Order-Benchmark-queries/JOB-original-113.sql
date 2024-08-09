@@ -24,6 +24,8 @@ WHERE
 	AND it.id = mi_idx.info_type_id;
 
 -- JOB Query 1b
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
 SELECT
 	MIN(mc.note) AS production_note,
 	MIN(t.title) AS movie_title,
@@ -46,6 +48,8 @@ WHERE
 	AND it.id = mi_idx.info_type_id;
 
 -- JOB Query 1c
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
 SELECT
 	MIN(mc.note) AS production_note,
 	MIN(t.title) AS movie_title,
@@ -69,6 +73,8 @@ WHERE
 	AND it.id = mi_idx.info_type_id;
 
 -- JOB Query 1d
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
 SELECT
 	MIN(mc.note) AS production_note,
 	MIN(t.title) AS movie_title,
@@ -200,7 +206,7 @@ WHERE k.keyword LIKE '%sequel%'
 -- JOB Query 3c
 -- EXPLAIN (BUFFERS,
 -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
-SELECT qMIN(t.title) AS movie_title
+SELECT MIN(t.title) AS movie_title
 FROM keyword AS k,
      movie_info AS mi,
      movie_keyword AS mk,
@@ -4256,4 +4262,3 @@ WHERE cn1.country_code != '[us]'
   AND ml.linked_movie_id = mi_idx2.movie_id
   AND ml.linked_movie_id = mc2.movie_id
   AND mi_idx2.movie_id = mc2.movie_id;
-
