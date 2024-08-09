@@ -1,43 +1,47 @@
   - query: |-
-      SELECT * FROM title t,movie_info mi,movie_companies mc,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mi.info_type_id=16 AND t.production_year>2005 AND t.production_year<2010
+      SELECT * FROM title t,movie_info mi,movie_companies mc,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mi.info_type_id=16 AND t.production_year>1990
     qep:
-      - node: Nested Loop/Hash Join/Seq Scan
+      - node: Hash Join/Seq Scan
         actual_rows: 4523930
         estimated_rows: 4519680
         q_error: 1.0009403320589068
-      - node: Nested Loop/Hash Join/Hash/Hash Join/Seq Scan
+      - node: Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 3036719
+        estimated_rows: 3045177
+        q_error: 1.002785242888789
+      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Seq Scan
         actual_rows: 2609129
         estimated_rows: 2609129
         q_error: 1.0
-      - node: Nested Loop/Hash Join/Hash/Hash Join/Hash/Seq Scan
-        actual_rows: 479551
-        estimated_rows: 470336
-        q_error: 1.0195923765138113
-      - node: Nested Loop/Hash Join/Hash/Hash Join/Hash
-        actual_rows: 479551
-        estimated_rows: 470336
-        q_error: 1.0195923765138113
-      - node: Nested Loop/Hash Join/Hash/Hash Join
-        actual_rows: 420388
-        estimated_rows: 485333
-        q_error: 1.15448823467844
-      - node: Nested Loop/Hash Join/Hash
-        actual_rows: 420388
-        estimated_rows: 485333
-        q_error: 1.15448823467844
-      - node: Nested Loop/Hash Join
-        actual_rows: 6670791
-        estimated_rows: 867529
-        q_error: 7.689415569969419
-      - node: Nested Loop/Memoize/Index Scan
-        actual_rows: 3
-        estimated_rows: 8
-        q_error: 2.6666666666666665
-      - node: Nested Loop/Memoize
-        actual_rows: 31
-        estimated_rows: 8
-        q_error: 3.875
-      - node: Nested Loop
-        actual_rows: 206778521
-        estimated_rows: 1044800
-        q_error: 197.91206068147014
+      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 1749032
+        estimated_rows: 1759567
+        q_error: 1.0060233317629408
+      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1749032
+        estimated_rows: 1759567
+        q_error: 1.0060233317629408
+      - node: Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 1508127
+        estimated_rows: 1815673
+        q_error: 1.2039257967001453
+      - node: Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1508127
+        estimated_rows: 1815673
+        q_error: 1.2039257967001453
+      - node: Hash Join/Hash/Hash Join
+        actual_rows: 8193781
+        estimated_rows: 2186687
+        q_error: 3.7471211014653676
+      - node: Hash Join/Hash
+        actual_rows: 8193781
+        estimated_rows: 2186687
+        q_error: 3.7471211014653676
+      - node: Hash Join
+        actual_rows: 625302823
+        estimated_rows: 3908685
+        q_error: 159.9777989272607
