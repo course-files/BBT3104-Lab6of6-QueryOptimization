@@ -1771,3 +1771,569 @@ WHERE k.keyword = 'marvel-cinematic-universe'
         estimated_rows: 1
         q_error: 1.0
 ",1,1,1,2024-08-09 11:11:45.109
+21,"-- JOB Query 6d
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(k.keyword) AS movie_keyword,
+       MIN(n.name) AS actor_name,
+       MIN(t.title) AS hero_movie
+FROM cast_info AS ci,
+     keyword AS k,
+     movie_keyword AS mk,
+     name AS n,
+     title AS t
+WHERE k.keyword IN ('superhero',
+                    'sequel',
+                    'second-part',
+                    'marvel-comics',
+                    'based-on-comic',
+                    'tv-special',
+                    'fight',
+                    'violence')
+  AND n.name LIKE '%Downey%Robert%'
+  AND t.production_year > 2000
+  AND k.id = mk.keyword_id
+  AND t.id = mk.movie_id
+  AND t.id = ci.movie_id
+  AND ci.movie_id = mk.movie_id
+  AND n.id = ci.person_id","  - query: |-
+      -- JOB Query 6d
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(k.keyword) AS movie_keyword,
+             MIN(n.name) AS actor_name,
+             MIN(t.title) AS hero_movie
+      FROM cast_info AS ci,
+           keyword AS k,
+           movie_keyword AS mk,
+           name AS n,
+           title AS t
+      WHERE k.keyword IN ('superhero',
+                          'sequel',
+                          'second-part',
+                          'marvel-comics',
+                          'based-on-comic',
+                          'tv-special',
+                          'fight',
+                          'violence')
+        AND n.name LIKE '%Downey%Robert%'
+        AND t.production_year > 2000
+        AND k.id = mk.keyword_id
+        AND t.id = mk.movie_id
+        AND t.id = ci.movie_id
+        AND ci.movie_id = mk.movie_id
+        AND n.id = ci.person_id
+    qep:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Seq Scan
+        actual_rows: 8
+        estimated_rows: 8
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap
+          Scan/Bitmap Index Scan
+        actual_rows: 4444
+        estimated_rows: 302
+        q_error: 14.71523178807947
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap
+          Scan
+        actual_rows: 4444
+        estimated_rows: 302
+        q_error: 14.71523178807947
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 35548
+        estimated_rows: 269
+        q_error: 132.14869888475837
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 14165
+        estimated_rows: 148
+        q_error: 95.70945945945945
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 55
+        estimated_rows: 38
+        q_error: 1.4473684210526316
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 785477
+        estimated_rows: 5668
+        q_error: 138.58098094565983
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop
+        actual_rows: 88
+        estimated_rows: 1
+        q_error: 88.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-09 11:52:50.527
+22,"-- JOB Query 6e
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(k.keyword) AS movie_keyword,
+       MIN(n.name) AS actor_name,
+       MIN(t.title) AS marvel_movie
+FROM cast_info AS ci,
+     keyword AS k,
+     movie_keyword AS mk,
+     name AS n,
+     title AS t
+WHERE k.keyword = 'marvel-cinematic-universe'
+  AND n.name LIKE '%Downey%Robert%'
+  AND t.production_year > 2000
+  AND k.id = mk.keyword_id
+  AND t.id = mk.movie_id
+  AND t.id = ci.movie_id
+  AND ci.movie_id = mk.movie_id
+  AND n.id = ci.person_id","  - query: |-
+      -- JOB Query 6e
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(k.keyword) AS movie_keyword,
+             MIN(n.name) AS actor_name,
+             MIN(t.title) AS marvel_movie
+      FROM cast_info AS ci,
+           keyword AS k,
+           movie_keyword AS mk,
+           name AS n,
+           title AS t
+      WHERE k.keyword = 'marvel-cinematic-universe'
+        AND n.name LIKE '%Downey%Robert%'
+        AND t.production_year > 2000
+        AND k.id = mk.keyword_id
+        AND t.id = mk.movie_id
+        AND t.id = ci.movie_id
+        AND ci.movie_id = mk.movie_id
+        AND n.id = ci.person_id
+    qep:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Seq Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap
+          Scan/Bitmap Index Scan
+        actual_rows: 14
+        estimated_rows: 302
+        q_error: 21.571428571428573
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap
+          Scan
+        actual_rows: 14
+        estimated_rows: 302
+        q_error: 21.571428571428573
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 14
+        estimated_rows: 34
+        q_error: 2.4285714285714284
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 11
+        estimated_rows: 19
+        q_error: 1.7272727272727273
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 111
+        estimated_rows: 38
+        q_error: 2.9210526315789473
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 1224
+        estimated_rows: 708
+        q_error: 1.728813559322034
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop
+        actual_rows: 6
+        estimated_rows: 1
+        q_error: 6.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-09 11:52:50.612
+23,"-- JOB Query 6f
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(k.keyword) AS movie_keyword,
+       MIN(n.name) AS actor_name,
+       MIN(t.title) AS hero_movie
+FROM cast_info AS ci,
+     keyword AS k,
+     movie_keyword AS mk,
+     name AS n,
+     title AS t
+WHERE k.keyword IN ('superhero',
+                    'sequel',
+                    'second-part',
+                    'marvel-comics',
+                    'based-on-comic',
+                    'tv-special',
+                    'fight',
+                    'violence')
+  AND t.production_year > 2000
+  AND k.id = mk.keyword_id
+  AND t.id = mk.movie_id
+  AND t.id = ci.movie_id
+  AND ci.movie_id = mk.movie_id
+  AND n.id = ci.person_id","  - query: |-
+      -- JOB Query 6f
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(k.keyword) AS movie_keyword,
+             MIN(n.name) AS actor_name,
+             MIN(t.title) AS hero_movie
+      FROM cast_info AS ci,
+           keyword AS k,
+           movie_keyword AS mk,
+           name AS n,
+           title AS t
+      WHERE k.keyword IN ('superhero',
+                          'sequel',
+                          'second-part',
+                          'marvel-comics',
+                          'based-on-comic',
+                          'tv-special',
+                          'fight',
+                          'violence')
+        AND t.production_year > 2000
+        AND k.id = mk.keyword_id
+        AND t.id = mk.movie_id
+        AND t.id = ci.movie_id
+        AND ci.movie_id = mk.movie_id
+        AND n.id = ci.person_id
+    qep:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Seq Scan
+        actual_rows: 8
+        estimated_rows: 8
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap
+          Scan/Bitmap Index Scan
+        actual_rows: 4444
+        estimated_rows: 302
+        q_error: 14.71523178807947
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap
+          Scan
+        actual_rows: 4444
+        estimated_rows: 302
+        q_error: 14.71523178807947
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 35548
+        estimated_rows: 269
+        q_error: 132.14869888475837
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 14165
+        estimated_rows: 148
+        q_error: 95.70945945945945
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 55
+        estimated_rows: 38
+        q_error: 1.4473684210526316
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 785477
+        estimated_rows: 5668
+        q_error: 138.58098094565983
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 785477
+        estimated_rows: 5668
+        q_error: 138.58098094565983
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-09 11:52:53.824
+24,"-- JOB Query 7a
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(n.name) AS of_person,
+       MIN(t.title) AS biography_movie
+FROM aka_name AS an,
+     cast_info AS ci,
+     info_type AS it,
+     link_type AS lt,
+     movie_link AS ml,
+     name AS n,
+     person_info AS pi,
+     title AS t
+WHERE an.name LIKE '%a%'
+  AND it.info ='mini biography'
+  AND lt.link ='features'
+  AND n.name_pcode_cf BETWEEN 'A' AND 'F'
+  AND (n.gender='m'
+       OR (n.gender = 'f'
+           AND n.name LIKE 'B%'))
+  AND pi.note ='Volker Boehm'
+  AND t.production_year BETWEEN 1980 AND 1995
+  AND n.id = an.person_id
+  AND n.id = pi.person_id
+  AND ci.person_id = n.id
+  AND t.id = ci.movie_id
+  AND ml.linked_movie_id = t.id
+  AND lt.id = ml.link_type_id
+  AND it.id = pi.info_type_id
+  AND pi.person_id = an.person_id
+  AND pi.person_id = ci.person_id
+  AND an.person_id = ci.person_id
+  AND ci.movie_id = ml.linked_movie_id","  - query: |-
+      -- JOB Query 7a
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(n.name) AS of_person,
+             MIN(t.title) AS biography_movie
+      FROM aka_name AS an,
+           cast_info AS ci,
+           info_type AS it,
+           link_type AS lt,
+           movie_link AS ml,
+           name AS n,
+           person_info AS pi,
+           title AS t
+      WHERE an.name LIKE '%a%'
+        AND it.info ='mini biography'
+        AND lt.link ='features'
+        AND n.name_pcode_cf BETWEEN 'A' AND 'F'
+        AND (n.gender='m'
+             OR (n.gender = 'f'
+                 AND n.name LIKE 'B%'))
+        AND pi.note ='Volker Boehm'
+        AND t.production_year BETWEEN 1980 AND 1995
+        AND n.id = an.person_id
+        AND n.id = pi.person_id
+        AND ci.person_id = n.id
+        AND t.id = ci.movie_id
+        AND ml.linked_movie_id = t.id
+        AND lt.id = ml.link_type_id
+        AND it.id = pi.info_type_id
+        AND pi.person_id = an.person_id
+        AND pi.person_id = ci.person_id
+        AND an.person_id = ci.person_id
+        AND ci.movie_id = ml.linked_movie_id
+    qep:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Hash Join/Seq Scan
+        actual_rows: 29997
+        estimated_rows: 29997
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Hash Join/Hash/Seq Scan
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Hash Join/Hash
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Hash Join
+        actual_rows: 5186
+        estimated_rows: 169
+        q_error: 30.68639053254438
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop
+        actual_rows: 1467
+        estimated_rows: 23
+        q_error: 63.78260869565217
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index
+          Scan
+        actual_rows: 72
+        estimated_rows: 38
+        q_error: 1.894736842105263
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 105262
+        estimated_rows: 885
+        q_error: 118.94011299435029
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 17559
+        estimated_rows: 103
+        q_error: 170.4757281553398
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 14
+        estimated_rows: 1
+        q_error: 14.0
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 2
+        estimated_rows: 2
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 32
+        estimated_rows: 1
+        q_error: 32.0
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 32
+        estimated_rows: 1
+        q_error: 32.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-09 11:55:02.264
+25,"-- JOB Query 7b
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(n.name) AS of_person,
+       MIN(t.title) AS biography_movie
+FROM aka_name AS an,
+     cast_info AS ci,
+     info_type AS it,
+     link_type AS lt,
+     movie_link AS ml,
+     name AS n,
+     person_info AS pi,
+     title AS t
+WHERE an.name LIKE '%a%'
+  AND it.info ='mini biography'
+  AND lt.link ='features'
+  AND n.name_pcode_cf LIKE 'D%'
+  AND n.gender='m'
+  AND pi.note ='Volker Boehm'
+  AND t.production_year BETWEEN 1980 AND 1984
+  AND n.id = an.person_id
+  AND n.id = pi.person_id
+  AND ci.person_id = n.id
+  AND t.id = ci.movie_id
+  AND ml.linked_movie_id = t.id
+  AND lt.id = ml.link_type_id
+  AND it.id = pi.info_type_id
+  AND pi.person_id = an.person_id
+  AND pi.person_id = ci.person_id
+  AND an.person_id = ci.person_id
+  AND ci.movie_id = ml.linked_movie_id","  - query: |-
+      -- JOB Query 7b
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(n.name) AS of_person,
+             MIN(t.title) AS biography_movie
+      FROM aka_name AS an,
+           cast_info AS ci,
+           info_type AS it,
+           link_type AS lt,
+           movie_link AS ml,
+           name AS n,
+           person_info AS pi,
+           title AS t
+      WHERE an.name LIKE '%a%'
+        AND it.info ='mini biography'
+        AND lt.link ='features'
+        AND n.name_pcode_cf LIKE 'D%'
+        AND n.gender='m'
+        AND pi.note ='Volker Boehm'
+        AND t.production_year BETWEEN 1980 AND 1984
+        AND n.id = an.person_id
+        AND n.id = pi.person_id
+        AND ci.person_id = n.id
+        AND t.id = ci.movie_id
+        AND ml.linked_movie_id = t.id
+        AND lt.id = ml.link_type_id
+        AND it.id = pi.info_type_id
+        AND pi.person_id = an.person_id
+        AND pi.person_id = ci.person_id
+        AND an.person_id = ci.person_id
+        AND ci.movie_id = ml.linked_movie_id
+    qep:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Hash Join/Seq Scan
+        actual_rows: 29997
+        estimated_rows: 29997
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Hash Join/Hash/Seq Scan
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Hash Join/Hash
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Hash Join
+        actual_rows: 5186
+        estimated_rows: 169
+        q_error: 30.68639053254438
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop
+        actual_rows: 435
+        estimated_rows: 5
+        q_error: 87.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index
+          Scan
+        actual_rows: 77
+        estimated_rows: 38
+        q_error: 2.026315789473684
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 33415
+        estimated_rows: 205
+        q_error: 163.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 1076
+        estimated_rows: 4
+        q_error: 269.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 8
+        estimated_rows: 1
+        q_error: 8.0
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 2
+        estimated_rows: 2
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 16
+        estimated_rows: 1
+        q_error: 16.0
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 16
+        estimated_rows: 1
+        q_error: 16.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-09 11:55:02.818
