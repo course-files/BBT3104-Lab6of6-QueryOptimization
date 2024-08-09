@@ -554,6 +554,6 @@ CREATE TABLE query_log (
     qep TEXT,
     actual_rows INTEGER,
     estimated_rows INTEGER,
-    q_error INTEGER,
+    q_error DECIMAL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
