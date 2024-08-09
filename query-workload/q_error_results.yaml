@@ -1,5 +1,5 @@
   - query: |-
-      SELECT COUNT(*) FROM title t,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi_idx.movie_id AND t.id=mk.movie_id AND mk.keyword_id=3054
+      SELECT COUNT(*) FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND mi.info_type_id=3 AND mk.keyword_id>819
     calculation: Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated
       Rows)
     interpretation:
@@ -7,30 +7,50 @@
       - Q-error > 1 indicates how many times the estimate was off compared to the
         actual execution.
     results:
-      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
-        actual_rows: 71
-        estimated_rows: 247
-        q_error: 3.4788732394366195
-      - node: Aggregate/Nested Loop/Nested Loop/Bitmap Heap Scan
-        actual_rows: 71
-        estimated_rows: 247
-        q_error: 3.4788732394366195
-      - node: Aggregate/Nested Loop/Nested Loop/Index Only Scan
-        actual_rows: 1
-        estimated_rows: 1
+      - node: Aggregate/Hash Join/Seq Scan
+        actual_rows: 3662604
+        estimated_rows: 3659900
+        q_error: 1.000738818000492
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 1533909
+        estimated_rows: 1559495
+        q_error: 1.0166802593895727
+      - node: Aggregate/Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 1533909
+        estimated_rows: 1559495
+        q_error: 1.0166802593895727
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 1380035
+        estimated_rows: 1380035
         q_error: 1.0
-      - node: Aggregate/Nested Loop/Nested Loop
-        actual_rows: 71
-        estimated_rows: 247
-        q_error: 3.4788732394366195
-      - node: Aggregate/Nested Loop/Index Only Scan
-        actual_rows: 2
-        estimated_rows: 3
-        q_error: 1.5
-      - node: Aggregate/Nested Loop
-        actual_rows: 177
-        estimated_rows: 135
-        q_error: 1.3111111111111111
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 1380035
+        estimated_rows: 1380035
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1380035
+        estimated_rows: 1380035
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 1639327
+        estimated_rows: 851159
+        q_error: 1.9259938507376413
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 1639327
+        estimated_rows: 851159
+        q_error: 1.9259938507376413
+      - node: Aggregate/Hash Join
+        actual_rows: 18938693
+        estimated_rows: 1232016
+        q_error: 15.372116108881702
       - node: Aggregate
         actual_rows: 1
         estimated_rows: 1

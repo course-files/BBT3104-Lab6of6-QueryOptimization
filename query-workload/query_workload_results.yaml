@@ -1,0 +1,64 @@
+  - query: |-
+      -- JOB Query 2b
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(t.title) AS movie_title
+      FROM company_name AS cn,
+           keyword AS k,
+           movie_companies AS mc,
+           movie_keyword AS mk,
+           title AS t
+      WHERE cn.country_code ='[nl]'
+        AND k.keyword ='character-name-in-title'
+        AND cn.id = mc.company_id
+        AND mc.movie_id = t.id
+        AND t.id = mk.movie_id
+        AND mk.keyword_id = k.id
+        AND mc.movie_id = mk.movie_id
+    qep:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Seq Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap
+          Scan/Bitmap Index Scan
+        actual_rows: 41840
+        estimated_rows: 302
+        q_error: 138.5430463576159
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Bitmap Heap
+          Scan
+        actual_rows: 41840
+        estimated_rows: 302
+        q_error: 138.5430463576159
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 41840
+        estimated_rows: 34
+        q_error: 1230.5882352941176
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 4
+        estimated_rows: 5
+        q_error: 1.25
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 148552
+        estimated_rows: 182
+        q_error: 816.2197802197802
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 5228
+        estimated_rows: 2
+        q_error: 2614.0
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 5228
+        estimated_rows: 2
+        q_error: 2614.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0

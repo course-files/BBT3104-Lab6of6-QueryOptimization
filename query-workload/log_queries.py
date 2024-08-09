@@ -7,6 +7,7 @@ import psycopg2
 from datetime import datetime
 import yaml
 from ruamel.yaml import YAML, scalarstring
+from decimal import Decimal
 
 def connect_to_database(conn_params):
     try:
@@ -36,7 +37,6 @@ def read_queries_from_file(file_path):
         queries = file.read().strip().split(';')
     # Removes any empty strings that may result from splitting
     queries = [query.strip() for query in queries if query.strip()]
-    # TODO: Remove any comments from the queries
     return queries
 
 
@@ -53,9 +53,9 @@ def execute_queries(conn, query):
     analyze_data = yaml.safe_load(analyze_results[0][0])
 
     # Get the EXPLAIN output in YAML format (not mandatory)
-    cursor.execute("EXPLAIN (FORMAT YAML) " + query)
-    explain_results = cursor.fetchall()
-    explain_data = yaml.safe_load(explain_results[0][0])
+    # cursor.execute("EXPLAIN (FORMAT YAML) " + query)
+    # explain_results = cursor.fetchall()
+    # explain_data = yaml.safe_load(explain_results[0][0])
 
     # Process YAML data to extract actual and estimated rows and maintain node order
     def extract_rows(data, key_actual, key_estimated):
@@ -87,6 +87,7 @@ def execute_queries(conn, query):
 
 
 def log_queries(conn, query, results, actual_rows, estimated_rows, q_error):
+    q_error = Decimal(q_error)
     cursor = None
     try:
         cursor = conn.cursor()
@@ -99,7 +100,7 @@ def log_queries(conn, query, results, actual_rows, estimated_rows, q_error):
 
                 print(f"\nLOGGED QUERY:\n"
                       f"INSERT INTO query_log (query_text, qep, actual_rows, estimated_rows, q_error, timestamp) "
-                      f"VALUES ({query}, {results}, {actual_rows}, {estimated_rows}, {datetime.now()})")
+                      f"VALUES ({query}, {results}, {actual_rows}, {estimated_rows}, {q_error}, {datetime.now()})")
             else:
                 print(f"Could not determine actual rows for query: {query}")
         except Exception as e:
@@ -152,12 +153,10 @@ def main():
             results = []
             query_result = {
                 "query": scalarstring.PreservedScalarString(query),
-                "calculation": "Q-Error = max(Estimated Rows / Actual Rows, Actual Rows / Estimated Rows)",
-                "interpretation": [
-                    "Q-error = 1 implies a perfect estimation.",
-                    "Q-error > 1 indicates how many times the estimate was off compared to the actual execution."
-                ],
-                "results": [{"node": node, "actual_rows": actual, "estimated_rows": estimated, "q_error": error} for node, actual, estimated, error in q_error]
+                "qep": [{"node": node,
+                         "actual_rows": actual,
+                         "estimated_rows": estimated,
+                         "q_error": error} for node, actual, estimated, error in q_error]
             }
             results.append(query_result)
             # Write results to a YAML file
