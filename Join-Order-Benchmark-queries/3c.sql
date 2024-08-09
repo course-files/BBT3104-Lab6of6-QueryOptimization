@@ -1,7 +1,7 @@
 -- JOB Query 3c
 -- EXPLAIN (BUFFERS,
 -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
-SELECT qMIN(t.title) AS movie_title
+SELECT MIN(t.title) AS movie_title
 FROM keyword AS k,
      movie_info AS mi,
      movie_keyword AS mk,
