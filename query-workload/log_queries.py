@@ -133,7 +133,7 @@ def main():
         set_schema(conn, 'imdb_schema')
 
         # Execute queries from file
-        file_path = 'Join-Order-Benchmark-queries/JOB-scale-500-delete.sql'
+        file_path = 'Join-Order-Benchmark-queries/JOB-original-133.sql'
         yaml = YAML()
         yaml.indent(mapping=2, sequence=4, offset=2)
         queries = read_queries_from_file(file_path)
@@ -161,11 +161,11 @@ def main():
             }
             results.append(query_result)
             # Write results to a YAML file
-            with open('query-workload/q_error_results.yaml', 'w') as yaml_file:
+            with open('query-workload/query_workload_results.yaml', 'w') as yaml_file:
                 yaml.dump(results, yaml_file)
 
             # Read results from the YAML file
-            with open('query-workload/q_error_results.yaml', 'r') as yaml_file:
+            with open('query-workload/query_workload_results.yaml', 'r') as yaml_file:
                 qep = yaml_file.read()
 
             print("\n")
