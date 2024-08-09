@@ -2337,3 +2337,947 @@ WHERE an.name LIKE '%a%'
         estimated_rows: 1
         q_error: 1.0
 ",1,1,1,2024-08-09 11:55:02.818
+26,"-- JOB Query 7c
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(n.name) AS cast_member_name,
+       MIN(pi.info) AS cast_member_info
+FROM aka_name AS an,
+     cast_info AS ci,
+     info_type AS it,
+     link_type AS lt,
+     movie_link AS ml,
+     name AS n,
+     person_info AS pi,
+     title AS t
+WHERE an.name IS NOT NULL
+  AND (an.name LIKE '%a%'
+       OR an.name LIKE 'A%')
+  AND it.info ='mini biography'
+  AND lt.link IN ('references',
+                  'referenced in',
+                  'features',
+                  'featured in')
+  AND n.name_pcode_cf BETWEEN 'A' AND 'F'
+  AND (n.gender='m'
+       OR (n.gender = 'f'
+           AND n.name LIKE 'A%'))
+  AND pi.note IS NOT NULL
+  AND t.production_year BETWEEN 1980 AND 2010
+  AND n.id = an.person_id
+  AND n.id = pi.person_id
+  AND ci.person_id = n.id
+  AND t.id = ci.movie_id
+  AND ml.linked_movie_id = t.id
+  AND lt.id = ml.link_type_id
+  AND it.id = pi.info_type_id
+  AND pi.person_id = an.person_id
+  AND pi.person_id = ci.person_id
+  AND an.person_id = ci.person_id
+  AND ci.movie_id = ml.linked_movie_id","  - query: |-
+      -- JOB Query 7c
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(n.name) AS cast_member_name,
+             MIN(pi.info) AS cast_member_info
+      FROM aka_name AS an,
+           cast_info AS ci,
+           info_type AS it,
+           link_type AS lt,
+           movie_link AS ml,
+           name AS n,
+           person_info AS pi,
+           title AS t
+      WHERE an.name IS NOT NULL
+        AND (an.name LIKE '%a%'
+             OR an.name LIKE 'A%')
+        AND it.info ='mini biography'
+        AND lt.link IN ('references',
+                        'referenced in',
+                        'features',
+                        'featured in')
+        AND n.name_pcode_cf BETWEEN 'A' AND 'F'
+        AND (n.gender='m'
+             OR (n.gender = 'f'
+                 AND n.name LIKE 'A%'))
+        AND pi.note IS NOT NULL
+        AND t.production_year BETWEEN 1980 AND 2010
+        AND n.id = an.person_id
+        AND n.id = pi.person_id
+        AND ci.person_id = n.id
+        AND t.id = ci.movie_id
+        AND ml.linked_movie_id = t.id
+        AND lt.id = ml.link_type_id
+        AND it.id = pi.info_type_id
+        AND pi.person_id = an.person_id
+        AND pi.person_id = ci.person_id
+        AND an.person_id = ci.person_id
+        AND ci.movie_id = ml.linked_movie_id
+    qep:
+      - node: Aggregate/Nested Loop/Nested Loop/Seq Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Hash Join/Seq Scan
+        actual_rows: 29997
+        estimated_rows: 29997
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Hash Join/Hash/Seq Scan
+        actual_rows: 4
+        estimated_rows: 14
+        q_error: 3.5
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Hash Join/Hash
+        actual_rows: 4
+        estimated_rows: 14
+        q_error: 3.5
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Hash Join
+        actual_rows: 21505
+        estimated_rows: 591
+        q_error: 36.387478849407785
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop
+        actual_rows: 14194
+        estimated_rows: 365
+        q_error: 38.88767123287671
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index
+          Scan
+        actual_rows: 77
+        estimated_rows: 38
+        q_error: 2.026315789473684
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 1097209
+        estimated_rows: 14013
+        q_error: 78.29936487547278
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 150772
+        estimated_rows: 1607
+        q_error: 93.82202862476665
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 40157
+        estimated_rows: 32
+        q_error: 1254.90625
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 40157
+        estimated_rows: 1
+        q_error: 40157.0
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 2
+        estimated_rows: 2
+        q_error: 1.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 68185
+        estimated_rows: 1
+        q_error: 68185.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-09 12:02:05.959
+27,"-- JOB Query 8a
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(an1.name) AS actress_pseudonym,
+       MIN(t.title) AS japanese_movie_dubbed
+FROM aka_name AS an1,
+     cast_info AS ci,
+     company_name AS cn,
+     movie_companies AS mc,
+     name AS n1,
+     role_type AS rt,
+     title AS t
+WHERE ci.note ='(voice: English version)'
+  AND cn.country_code ='[jp]'
+  AND mc.note LIKE '%(Japan)%'
+  AND mc.note NOT LIKE '%(USA)%'
+  AND n1.name LIKE '%Yo%'
+  AND n1.name NOT LIKE '%Yu%'
+  AND rt.role ='actress'
+  AND an1.person_id = n1.id
+  AND n1.id = ci.person_id
+  AND ci.movie_id = t.id
+  AND t.id = mc.movie_id
+  AND mc.company_id = cn.id
+  AND ci.role_id = rt.id
+  AND an1.person_id = ci.person_id
+  AND ci.movie_id = mc.movie_id","  - query: |-
+      -- JOB Query 8a
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(an1.name) AS actress_pseudonym,
+             MIN(t.title) AS japanese_movie_dubbed
+      FROM aka_name AS an1,
+           cast_info AS ci,
+           company_name AS cn,
+           movie_companies AS mc,
+           name AS n1,
+           role_type AS rt,
+           title AS t
+      WHERE ci.note ='(voice: English version)'
+        AND cn.country_code ='[jp]'
+        AND mc.note LIKE '%(Japan)%'
+        AND mc.note NOT LIKE '%(USA)%'
+        AND n1.name LIKE '%Yo%'
+        AND n1.name NOT LIKE '%Yu%'
+        AND rt.role ='actress'
+        AND an1.person_id = n1.id
+        AND n1.id = ci.person_id
+        AND ci.movie_id = t.id
+        AND t.id = mc.movie_id
+        AND mc.company_id = cn.id
+        AND ci.role_id = rt.id
+        AND an1.person_id = ci.person_id
+        AND ci.movie_id = mc.movie_id
+    qep:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Hash
+          Join/Seq Scan
+        actual_rows: 48897
+        estimated_rows: 12199
+        q_error: 4.008279367161243
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Hash
+          Join/Hash/Seq Scan
+        actual_rows: 6752
+        estimated_rows: 6760
+        q_error: 1.0011848341232228
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Hash
+          Join/Hash
+        actual_rows: 6752
+        estimated_rows: 6760
+        q_error: 1.0011848341232228
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Hash
+          Join
+        actual_rows: 48328
+        estimated_rows: 351
+        q_error: 137.6866096866097
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index
+          Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 48328
+        estimated_rows: 351
+        q_error: 137.6866096866097
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 19600
+        estimated_rows: 36
+        q_error: 544.4444444444445
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Memoize/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Memoize
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 7438
+        estimated_rows: 1
+        q_error: 7438.0
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 2
+        estimated_rows: 2
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 17379
+        estimated_rows: 1
+        q_error: 17379.0
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop
+        actual_rows: 62
+        estimated_rows: 1
+        q_error: 62.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-09 12:07:39.713
+28,"-- JOB Query 8b
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(an.name) AS acress_pseudonym,
+       MIN(t.title) AS japanese_anime_movie
+FROM aka_name AS an,
+     cast_info AS ci,
+     company_name AS cn,
+     movie_companies AS mc,
+     name AS n,
+     role_type AS rt,
+     title AS t
+WHERE ci.note ='(voice: English version)'
+  AND cn.country_code ='[jp]'
+  AND mc.note LIKE '%(Japan)%'
+  AND mc.note NOT LIKE '%(USA)%'
+  AND (mc.note LIKE '%(2006)%'
+       OR mc.note LIKE '%(2007)%')
+  AND n.name LIKE '%Yo%'
+  AND n.name NOT LIKE '%Yu%'
+  AND rt.role ='actress'
+  AND t.production_year BETWEEN 2006 AND 2007
+  AND (t.title LIKE 'One Piece%'
+       OR t.title LIKE 'Dragon Ball Z%')
+  AND an.person_id = n.id
+  AND n.id = ci.person_id
+  AND ci.movie_id = t.id
+  AND t.id = mc.movie_id
+  AND mc.company_id = cn.id
+  AND ci.role_id = rt.id
+  AND an.person_id = ci.person_id
+  AND ci.movie_id = mc.movie_id","  - query: |-
+      -- JOB Query 8b
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(an.name) AS acress_pseudonym,
+             MIN(t.title) AS japanese_anime_movie
+      FROM aka_name AS an,
+           cast_info AS ci,
+           company_name AS cn,
+           movie_companies AS mc,
+           name AS n,
+           role_type AS rt,
+           title AS t
+      WHERE ci.note ='(voice: English version)'
+        AND cn.country_code ='[jp]'
+        AND mc.note LIKE '%(Japan)%'
+        AND mc.note NOT LIKE '%(USA)%'
+        AND (mc.note LIKE '%(2006)%'
+             OR mc.note LIKE '%(2007)%')
+        AND n.name LIKE '%Yo%'
+        AND n.name NOT LIKE '%Yu%'
+        AND rt.role ='actress'
+        AND t.production_year BETWEEN 2006 AND 2007
+        AND (t.title LIKE 'One Piece%'
+             OR t.title LIKE 'Dragon Ball Z%')
+        AND an.person_id = n.id
+        AND n.id = ci.person_id
+        AND ci.movie_id = t.id
+        AND t.id = mc.movie_id
+        AND mc.company_id = cn.id
+        AND ci.role_id = rt.id
+        AND an.person_id = ci.person_id
+        AND ci.movie_id = mc.movie_id
+    qep:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Seq Scan
+        actual_rows: 8569
+        estimated_rows: 584
+        q_error: 14.672945205479452
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop
+        actual_rows: 8495
+        estimated_rows: 17
+        q_error: 499.70588235294116
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index
+          Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 4
+        estimated_rows: 1
+        q_error: 4.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 26
+        estimated_rows: 1
+        q_error: 26.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 104
+        estimated_rows: 1
+        q_error: 104.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 2
+        estimated_rows: 2
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 171
+        estimated_rows: 1
+        q_error: 171.0
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 6
+        estimated_rows: 1
+        q_error: 6.0
+      - node: Aggregate/Nested Loop/Seq Scan
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 6
+        estimated_rows: 1
+        q_error: 6.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-09 12:07:40.322
+29,"-- JOB Query 8c
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(a1.name) AS writer_pseudo_name,
+       MIN(t.title) AS movie_title
+FROM aka_name AS a1,
+     cast_info AS ci,
+     company_name AS cn,
+     movie_companies AS mc,
+     name AS n1,
+     role_type AS rt,
+     title AS t
+WHERE cn.country_code ='[us]'
+  AND rt.role ='writer'
+  AND a1.person_id = n1.id
+  AND n1.id = ci.person_id
+  AND ci.movie_id = t.id
+  AND t.id = mc.movie_id
+  AND mc.company_id = cn.id
+  AND ci.role_id = rt.id
+  AND a1.person_id = ci.person_id
+  AND ci.movie_id = mc.movie_id","  - query: |-
+      -- JOB Query 8c
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(a1.name) AS writer_pseudo_name,
+             MIN(t.title) AS movie_title
+      FROM aka_name AS a1,
+           cast_info AS ci,
+           company_name AS cn,
+           movie_companies AS mc,
+           name AS n1,
+           role_type AS rt,
+           title AS t
+      WHERE cn.country_code ='[us]'
+        AND rt.role ='writer'
+        AND a1.person_id = n1.id
+        AND n1.id = ci.person_id
+        AND ci.movie_id = t.id
+        AND t.id = mc.movie_id
+        AND mc.company_id = cn.id
+        AND ci.role_id = rt.id
+        AND a1.person_id = ci.person_id
+        AND ci.movie_id = mc.movie_id
+    qep:
+      - node: Aggregate/Hash Join/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash Join/Hash/Seq Scan
+        actual_rows: 84843
+        estimated_rows: 84286
+        q_error: 1.0066084521747385
+      - node: Aggregate/Hash Join/Hash Join/Hash
+        actual_rows: 84843
+        estimated_rows: 84286
+        q_error: 1.0066084521747385
+      - node: Aggregate/Hash Join/Hash Join
+        actual_rows: 1153798
+        estimated_rows: 935812
+        q_error: 1.232937812295632
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 901343
+        estimated_rows: 901343
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Hash Join/Hash/Nested
+          Loop/Seq Scan
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Hash Join/Hash/Nested
+          Loop/Index Scan
+        actual_rows: 2728943
+        estimated_rows: 3289042
+        q_error: 1.2052439351060098
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Hash Join/Hash/Nested
+          Loop
+        actual_rows: 2728943
+        estimated_rows: 203828
+        q_error: 13.388459877936299
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Hash Join/Hash
+        actual_rows: 2728943
+        estimated_rows: 203828
+        q_error: 13.388459877936299
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Hash Join
+        actual_rows: 2728943
+        estimated_rows: 203828
+        q_error: 13.388459877936299
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Memoize/Index Only
+          Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Memoize
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop
+        actual_rows: 2728943
+        estimated_rows: 203828
+        q_error: 13.388459877936299
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 2728943
+        estimated_rows: 203828
+        q_error: 13.388459877936299
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 2343724
+        estimated_rows: 473385
+        q_error: 4.9509891525924985
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 2343724
+        estimated_rows: 473385
+        q_error: 4.9509891525924985
+      - node: Aggregate/Hash Join
+        actual_rows: 2487611
+        estimated_rows: 469062
+        q_error: 5.303373541237619
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-09 12:07:54.440
+30,"-- JOB Query 8d
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(an1.name) AS costume_designer_pseudo,
+       MIN(t.title) AS movie_with_costumes
+FROM aka_name AS an1,
+     cast_info AS ci,
+     company_name AS cn,
+     movie_companies AS mc,
+     name AS n1,
+     role_type AS rt,
+     title AS t
+WHERE cn.country_code ='[us]'
+  AND rt.role ='costume designer'
+  AND an1.person_id = n1.id
+  AND n1.id = ci.person_id
+  AND ci.movie_id = t.id
+  AND t.id = mc.movie_id
+  AND mc.company_id = cn.id
+  AND ci.role_id = rt.id
+  AND an1.person_id = ci.person_id
+  AND ci.movie_id = mc.movie_id","  - query: |-
+      -- JOB Query 8d
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(an1.name) AS costume_designer_pseudo,
+             MIN(t.title) AS movie_with_costumes
+      FROM aka_name AS an1,
+           cast_info AS ci,
+           company_name AS cn,
+           movie_companies AS mc,
+           name AS n1,
+           role_type AS rt,
+           title AS t
+      WHERE cn.country_code ='[us]'
+        AND rt.role ='costume designer'
+        AND an1.person_id = n1.id
+        AND n1.id = ci.person_id
+        AND ci.movie_id = t.id
+        AND t.id = mc.movie_id
+        AND mc.company_id = cn.id
+        AND ci.role_id = rt.id
+        AND an1.person_id = ci.person_id
+        AND ci.movie_id = mc.movie_id
+    qep:
+      - node: Aggregate/Hash Join/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash Join/Hash/Seq Scan
+        actual_rows: 84843
+        estimated_rows: 84286
+        q_error: 1.0066084521747385
+      - node: Aggregate/Hash Join/Hash Join/Hash
+        actual_rows: 84843
+        estimated_rows: 84286
+        q_error: 1.0066084521747385
+      - node: Aggregate/Hash Join/Hash Join
+        actual_rows: 1153798
+        estimated_rows: 935812
+        q_error: 1.232937812295632
+      - node: Aggregate/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 901343
+        estimated_rows: 901343
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Hash Join/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Hash Join/Hash/Nested
+          Loop/Seq Scan
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Hash Join/Hash/Nested
+          Loop/Index Scan
+        actual_rows: 276403
+        estimated_rows: 3289042
+        q_error: 11.899443927887903
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Hash Join/Hash/Nested
+          Loop
+        actual_rows: 276403
+        estimated_rows: 203828
+        q_error: 1.3560600113821457
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Hash Join/Hash
+        actual_rows: 276403
+        estimated_rows: 203828
+        q_error: 1.3560600113821457
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Hash Join
+        actual_rows: 276403
+        estimated_rows: 203828
+        q_error: 1.3560600113821457
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Memoize/Index Only
+          Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop/Memoize
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash/Nested Loop
+        actual_rows: 276403
+        estimated_rows: 203828
+        q_error: 1.3560600113821457
+      - node: Aggregate/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 276403
+        estimated_rows: 203828
+        q_error: 1.3560600113821457
+      - node: Aggregate/Hash Join/Hash/Hash Join
+        actual_rows: 218966
+        estimated_rows: 473385
+        q_error: 2.161910981613584
+      - node: Aggregate/Hash Join/Hash
+        actual_rows: 218966
+        estimated_rows: 473385
+        q_error: 2.161910981613584
+      - node: Aggregate/Hash Join
+        actual_rows: 323005
+        estimated_rows: 469062
+        q_error: 1.45218185477005
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-09 12:07:57.435
+31,"-- JOB Query 9a
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(an.name) AS alternative_name,
+       MIN(chn.name) AS character_name,
+       MIN(t.title) AS movie
+FROM aka_name AS an,
+     char_name AS chn,
+     cast_info AS ci,
+     company_name AS cn,
+     movie_companies AS mc,
+     name AS n,
+     role_type AS rt,
+     title AS t
+WHERE ci.note IN ('(voice)',
+                  '(voice: Japanese version)',
+                  '(voice) (uncredited)',
+                  '(voice: English version)')
+  AND cn.country_code ='[us]'
+  AND mc.note IS NOT NULL
+  AND (mc.note LIKE '%(USA)%'
+       OR mc.note LIKE '%(worldwide)%')
+  AND n.gender ='f'
+  AND n.name LIKE '%Ang%'
+  AND rt.role ='actress'
+  AND t.production_year BETWEEN 2005 AND 2015
+  AND ci.movie_id = t.id
+  AND t.id = mc.movie_id
+  AND ci.movie_id = mc.movie_id
+  AND mc.company_id = cn.id
+  AND ci.role_id = rt.id
+  AND n.id = ci.person_id
+  AND chn.id = ci.person_role_id
+  AND an.person_id = n.id
+  AND an.person_id = ci.person_id","  - query: |-
+      -- JOB Query 9a
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(an.name) AS alternative_name,
+             MIN(chn.name) AS character_name,
+             MIN(t.title) AS movie
+      FROM aka_name AS an,
+           char_name AS chn,
+           cast_info AS ci,
+           company_name AS cn,
+           movie_companies AS mc,
+           name AS n,
+           role_type AS rt,
+           title AS t
+      WHERE ci.note IN ('(voice)',
+                        '(voice: Japanese version)',
+                        '(voice) (uncredited)',
+                        '(voice: English version)')
+        AND cn.country_code ='[us]'
+        AND mc.note IS NOT NULL
+        AND (mc.note LIKE '%(USA)%'
+             OR mc.note LIKE '%(worldwide)%')
+        AND n.gender ='f'
+        AND n.name LIKE '%Ang%'
+        AND rt.role ='actress'
+        AND t.production_year BETWEEN 2005 AND 2015
+        AND ci.movie_id = t.id
+        AND t.id = mc.movie_id
+        AND ci.movie_id = mc.movie_id
+        AND mc.company_id = cn.id
+        AND ci.role_id = rt.id
+        AND n.id = ci.person_id
+        AND chn.id = ci.person_role_id
+        AND an.person_id = n.id
+        AND an.person_id = ci.person_id
+    qep:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Nested Loop/Seq Scan
+        actual_rows: 6768
+        estimated_rows: 96
+        q_error: 70.5
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 2
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Nested Loop
+        actual_rows: 1558
+        estimated_rows: 21
+        q_error: 74.19047619047619
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 12
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop
+        actual_rows: 425
+        estimated_rows: 46
+        q_error: 9.23913043478261
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Materialize/Seq
+          Scan
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Materialize
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 425
+        estimated_rows: 1
+        q_error: 425.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 387
+        estimated_rows: 1
+        q_error: 387.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 139
+        estimated_rows: 1
+        q_error: 139.0
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 123
+        estimated_rows: 1
+        q_error: 123.0
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop
+        actual_rows: 121
+        estimated_rows: 1
+        q_error: 121.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-09 12:08:06.756
+32,"-- JOB Query 9b
+-- EXPLAIN (BUFFERS,
+-- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+SELECT MIN(an.name) AS alternative_name,
+       MIN(chn.name) AS voiced_character,
+       MIN(n.name) AS voicing_actress,
+       MIN(t.title) AS american_movie
+FROM aka_name AS an,
+     char_name AS chn,
+     cast_info AS ci,
+     company_name AS cn,
+     movie_companies AS mc,
+     name AS n,
+     role_type AS rt,
+     title AS t
+WHERE ci.note = '(voice)'
+  AND cn.country_code ='[us]'
+  AND mc.note LIKE '%(200%)%'
+  AND (mc.note LIKE '%(USA)%'
+       OR mc.note LIKE '%(worldwide)%')
+  AND n.gender ='f'
+  AND n.name LIKE '%Angel%'
+  AND rt.role ='actress'
+  AND t.production_year BETWEEN 2007 AND 2010
+  AND ci.movie_id = t.id
+  AND t.id = mc.movie_id
+  AND ci.movie_id = mc.movie_id
+  AND mc.company_id = cn.id
+  AND ci.role_id = rt.id
+  AND n.id = ci.person_id
+  AND chn.id = ci.person_role_id
+  AND an.person_id = n.id
+  AND an.person_id = ci.person_id","  - query: |-
+      -- JOB Query 9b
+      -- EXPLAIN (BUFFERS,
+      -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
+      SELECT MIN(an.name) AS alternative_name,
+             MIN(chn.name) AS voiced_character,
+             MIN(n.name) AS voicing_actress,
+             MIN(t.title) AS american_movie
+      FROM aka_name AS an,
+           char_name AS chn,
+           cast_info AS ci,
+           company_name AS cn,
+           movie_companies AS mc,
+           name AS n,
+           role_type AS rt,
+           title AS t
+      WHERE ci.note = '(voice)'
+        AND cn.country_code ='[us]'
+        AND mc.note LIKE '%(200%)%'
+        AND (mc.note LIKE '%(USA)%'
+             OR mc.note LIKE '%(worldwide)%')
+        AND n.gender ='f'
+        AND n.name LIKE '%Angel%'
+        AND rt.role ='actress'
+        AND t.production_year BETWEEN 2007 AND 2010
+        AND ci.movie_id = t.id
+        AND t.id = mc.movie_id
+        AND ci.movie_id = mc.movie_id
+        AND mc.company_id = cn.id
+        AND ci.role_id = rt.id
+        AND n.id = ci.person_id
+        AND chn.id = ci.person_role_id
+        AND an.person_id = n.id
+        AND an.person_id = ci.person_id
+    qep:
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Nested Loop/Seq Scan
+        actual_rows: 5409
+        estimated_rows: 96
+        q_error: 56.34375
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 2
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Nested Loop
+        actual_rows: 1296
+        estimated_rows: 21
+        q_error: 61.714285714285715
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 10
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested
+          Loop
+        actual_rows: 265
+        estimated_rows: 37
+        q_error: 7.162162162162162
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Materialize/Seq
+          Scan
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Materialize
+        actual_rows: 1
+        estimated_rows: 4
+        q_error: 4.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 265
+        estimated_rows: 1
+        q_error: 265.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 237
+        estimated_rows: 1
+        q_error: 237.0
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 94
+        estimated_rows: 1
+        q_error: 94.0
+      - node: Aggregate/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+      - node: Aggregate/Nested Loop/Nested Loop
+        actual_rows: 94
+        estimated_rows: 1
+        q_error: 94.0
+      - node: Aggregate/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Aggregate/Nested Loop
+        actual_rows: 40
+        estimated_rows: 1
+        q_error: 40.0
+      - node: Aggregate
+        actual_rows: 1
+        estimated_rows: 1
+        q_error: 1.0
+",1,1,1,2024-08-09 12:08:07.428
