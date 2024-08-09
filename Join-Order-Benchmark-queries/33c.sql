@@ -1,4 +1,4 @@
--- JOB Query 33b
+-- JOB Query 33c
 -- EXPLAIN (BUFFERS,
 -- VERBOSE /*, FORMAT YAML*/, ANALYZE)
 SELECT MIN(cn1.name) AS first_company,
