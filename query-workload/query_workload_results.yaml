@@ -1,27 +1,43 @@
   - query: |-
-      SELECT * FROM movie_keyword mk,title t,cast_info ci WHERE t.id=mk.movie_id AND t.id=ci.movie_id AND t.production_year>2000 AND mk.keyword_id=8200
+      SELECT * FROM title t,movie_info mi,movie_companies mc,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mi.info_type_id=16 AND t.production_year>2005 AND t.production_year<2010
     qep:
-      - node: Nested Loop/Nested Loop/Bitmap Heap Scan/Bitmap Index Scan
-        actual_rows: 14
-        estimated_rows: 247
-        q_error: 17.642857142857142
-      - node: Nested Loop/Nested Loop/Bitmap Heap Scan
-        actual_rows: 14
-        estimated_rows: 247
-        q_error: 17.642857142857142
-      - node: Nested Loop/Nested Loop/Index Scan
-        actual_rows: 1
-        estimated_rows: 1
+      - node: Nested Loop/Hash Join/Seq Scan
+        actual_rows: 4523930
+        estimated_rows: 4519680
+        q_error: 1.0009403320589068
+      - node: Nested Loop/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 2609129
+        estimated_rows: 2609129
         q_error: 1.0
-      - node: Nested Loop/Nested Loop
-        actual_rows: 11
-        estimated_rows: 136
-        q_error: 12.363636363636363
-      - node: Nested Loop/Index Scan
-        actual_rows: 111
-        estimated_rows: 38
-        q_error: 2.9210526315789473
+      - node: Nested Loop/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 479551
+        estimated_rows: 470336
+        q_error: 1.0195923765138113
+      - node: Nested Loop/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 479551
+        estimated_rows: 470336
+        q_error: 1.0195923765138113
+      - node: Nested Loop/Hash Join/Hash/Hash Join
+        actual_rows: 420388
+        estimated_rows: 485333
+        q_error: 1.15448823467844
+      - node: Nested Loop/Hash Join/Hash
+        actual_rows: 420388
+        estimated_rows: 485333
+        q_error: 1.15448823467844
+      - node: Nested Loop/Hash Join
+        actual_rows: 6670791
+        estimated_rows: 867529
+        q_error: 7.689415569969419
+      - node: Nested Loop/Memoize/Index Scan
+        actual_rows: 3
+        estimated_rows: 8
+        q_error: 2.6666666666666665
+      - node: Nested Loop/Memoize
+        actual_rows: 31
+        estimated_rows: 8
+        q_error: 3.875
       - node: Nested Loop
-        actual_rows: 1224
-        estimated_rows: 1946
-        q_error: 1.5898692810457515
+        actual_rows: 206778521
+        estimated_rows: 1044800
+        q_error: 197.91206068147014
