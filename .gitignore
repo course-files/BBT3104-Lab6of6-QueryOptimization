@@ -2,10 +2,6 @@
 /container-volumes/postgresql/var-lib-postgresql-data
 /Internet-Movie-Database--IMDb/Export from DBeaver
 /Internet-Movie-Database--IMDb/As Used in Leis et al. (2018)
-
-/Internet-Movie-Database--IMBDb/Export from DBeaver
-/Internet-Movie-Database--IMBDb/As Used in Leis et al. (2018)
-
 /sandbox
 /assets
 /.venv
