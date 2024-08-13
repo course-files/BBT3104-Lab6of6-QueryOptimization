@@ -20900,3 +20900,83 @@ SELECT * FROM movie_companies mc,title t,movie_info_idx mi_idx WHERE t.id=mc.mov
         estimated_rows: 4000153
         q_error: 64.5938337858577
 ",258385218,4000153,64.593833785857697193932835943996906280517578125,2024-08-13 10:57:48.843
+182,"/* SLOW */ SELECT * FROM cast_info ci,title t,movie_keyword mk,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mk.keyword_id=117","  - query: |-
+      /* SLOW */ SELECT * FROM cast_info ci,title t,movie_keyword mk,movie_companies mc WHERE t.id=ci.movie_id AND t.id=mk.movie_id AND t.id=mc.movie_id AND mk.keyword_id=117
+    qep:
+      - node: Nested Loop/Nested Loop/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 41840
+        estimated_rows: 38267
+        q_error: 1.0933702668095227
+      - node: Nested Loop/Nested Loop/Hash Join/Bitmap Heap Scan
+        actual_rows: 41840
+        estimated_rows: 38267
+        q_error: 1.0933702668095227
+      - node: Nested Loop/Nested Loop/Hash Join/Hash/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Nested Loop/Nested Loop/Hash Join/Hash
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Nested Loop/Nested Loop/Hash Join
+        actual_rows: 41840
+        estimated_rows: 38267
+        q_error: 1.0933702668095227
+      - node: Nested Loop/Nested Loop/Index Scan
+        actual_rows: 4
+        estimated_rows: 5
+        q_error: 1.25
+      - node: Nested Loop/Nested Loop
+        actual_rows: 148552
+        estimated_rows: 39487
+        q_error: 3.7620482690505734
+      - node: Nested Loop/Index Scan
+        actual_rows: 52
+        estimated_rows: 38
+        q_error: 1.368421052631579
+      - node: Nested Loop
+        actual_rows: 7796926
+        estimated_rows: 565008
+        q_error: 13.79967363293971
+",7796926,565008,13.7996736329397098330673543387092649936676025390625,2024-08-13 11:06:42.203
+183,"/* SLOW */ SELECT * FROM title t,movie_info mi,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2010 AND mc.company_id=22956","  - query: |-
+      /* SLOW */ SELECT * FROM title t,movie_info mi,movie_companies mc,cast_info ci,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mk.movie_id AND ci.role_id=2 AND mi.info_type_id=16 AND t.production_year>2010 AND mc.company_id=22956
+    qep:
+      - node: Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 99
+        estimated_rows: 102
+        q_error: 1.0303030303030303
+      - node: Nested Loop/Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 0
+        estimated_rows: 1
+        q_error: .inf
+      - node: Nested Loop/Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 37
+        estimated_rows: 16
+        q_error: 2.3125
+      - node: Nested Loop/Nested Loop/Nested Loop/Index Scan
+        actual_rows: 12
+        estimated_rows: 8
+        q_error: 1.5
+      - node: Nested Loop/Nested Loop/Nested Loop
+        actual_rows: 430
+        estimated_rows: 19
+        q_error: 22.63157894736842
+      - node: Nested Loop/Nested Loop/Index Scan
+        actual_rows: 7
+        estimated_rows: 8
+        q_error: 1.1428571428571428
+      - node: Nested Loop/Nested Loop
+        actual_rows: 2967
+        estimated_rows: 56
+        q_error: 52.982142857142854
+      - node: Nested Loop/Index Scan
+        actual_rows: 65
+        estimated_rows: 55
+        q_error: 1.1818181818181819
+      - node: Nested Loop
+        actual_rows: 191935
+        estimated_rows: 100
+        q_error: 1919.35
+",191935,100,1919.34999999999990905052982270717620849609375,2024-08-13 11:06:43.205
