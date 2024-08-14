@@ -7,6 +7,7 @@ The query workload stored in [query_log.csv](/query-workload/query_log.csv) incl
 - The Query Execution Plan (QEP) in YAML (YAML to preserve the hierarchical nature of the nodes). Each node shows the actual cardinality and the estimated cardinality.
 - The overall actual cardinality retrieved by the query
 - The query optimizer's overall estimated cardinality
+- The query's overall q-error
 - The timestamp of when the QEP was obtained
 - The table set identified from the query
 - The table alias set identified from the query
