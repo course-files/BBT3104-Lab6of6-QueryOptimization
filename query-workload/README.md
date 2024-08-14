@@ -8,6 +8,10 @@ The query workload stored in [query_log.csv](/query-workload/query_log.csv) incl
 - The overall actual cardinality retrieved by the query
 - The query optimizer's overall estimated cardinality
 - The timestamp of when the QEP was obtained
+- The table set identified from the query
+- The table alias set identified from the query
+- The join set identified from the query
+- The predicate set identified from the query
 
 The dataset is retrieved by executing ```EXPLAIN ANALYZE``` using [log_queries.py](/query-workload/log_queries.py). This is done for each Join Order Benchmark (JOB) query available [here](/Join-Order-Benchmark-queries/). The JOB queries in the query_log dataset are (sorted by timestamp in ascending order):
 
