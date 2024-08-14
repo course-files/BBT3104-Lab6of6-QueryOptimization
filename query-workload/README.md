@@ -28,3 +28,5 @@ shared_preload_libraries = 'pg_stat_statements'
 pg_stat_statements.max = 10000
 pg_stat_statements.track = all
 ```
+
+The second phase involves executing [get_table_join_predicate_sets_from_db.py](/query-featurization/get_table_join_predicate_sets_from_db.py) for each query to get the table set, table alias set, join set, and predicate set. The result is recorded in the same [query_log.csv](/query-workload/query_log.csv) file.
