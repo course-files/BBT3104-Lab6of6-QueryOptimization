@@ -1,7 +1,11 @@
   - query: |-
-      SELECT * FROM title t WHERE t.production_year>2004
+      SELECT * FROM movie_info_idx mi_idx WHERE mi_idx.info_type_id<100
     qep:
-      - node: Seq Scan
-        actual_rows: 1107925
-        estimated_rows: 1114155
-        q_error: 1.005623124308956
+      - node: Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 459925
+        estimated_rows: 460564
+        q_error: 1.001389356960374
+      - node: Bitmap Heap Scan
+        actual_rows: 459925
+        estimated_rows: 460564
+        q_error: 1.001389356960374
