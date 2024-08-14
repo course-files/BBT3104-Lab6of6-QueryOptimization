@@ -549,11 +549,16 @@ GRANT ALL ON SCHEMA imdb_schema TO postgres;
 
 -- Used to record the training data from the query workload
 CREATE TABLE query_log (
-    id SERIAL PRIMARY KEY,
-    query_text TEXT,
-    qep TEXT,
-    actual_rows int8,
-    estimated_rows int8,
-    q_error DECIMAL,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	id serial4 NOT NULL,
+	query_text TEXT NULL,
+	qep TEXT NULL,
+	actual_rows int8 NULL,
+	estimated_rows int8 NULL,
+	q_error decimal NULL,
+	"timestamp" timestamp DEFAULT CURRENT_TIMESTAMP NULL,
+	table_set varchar NULL,
+	table_alias_set varchar NULL,
+	join_set varchar NULL,
+	predicate_set varchar NULL,
+	CONSTRAINT query_log_pkey PRIMARY KEY (id)
 );
