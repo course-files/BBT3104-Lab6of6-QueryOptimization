@@ -1,12 +1,3 @@
-SELECT * FROM title t,cast_info ci,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND mi.info_type_id>15;
-SELECT * FROM title t,movie_companies mc,cast_info ci,movie_info mi,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.kind_id<7 AND t.production_year<1999 AND mc.company_type_id=2 AND mi_idx.info_type_id=100;
-SELECT * FROM movie_keyword mk WHERE mk.keyword_id<5990;
-SELECT * FROM title t,movie_keyword mk WHERE t.id=mk.movie_id AND mk.keyword_id>2282;
-SELECT * FROM movie_info mi WHERE mi.info_type_id=3;
-SELECT * FROM title t,movie_companies mc WHERE t.id=mc.movie_id;
-SELECT * FROM movie_info_idx mi_idx WHERE mi_idx.info_type_id>100;
-SELECT * FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND t.kind_id<7 AND t.production_year=1994 AND mi.info_type_id>8;
-SELECT * FROM title t WHERE t.production_year=2007;
 SELECT * FROM title t,movie_companies mc,cast_info ci,movie_info mi,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.kind_id=1 AND t.production_year<2012 AND mc.company_id>7851 AND mi.info_type_id>16 AND mi_idx.info_type_id=101;
 SELECT * FROM title t,movie_keyword mk WHERE t.id=mk.movie_id;
 SELECT * FROM title t,movie_info mi WHERE t.id=mi.movie_id AND mi.info_type_id<16;
