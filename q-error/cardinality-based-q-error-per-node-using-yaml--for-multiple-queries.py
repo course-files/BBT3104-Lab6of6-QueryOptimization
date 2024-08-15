@@ -77,9 +77,12 @@ def main():
     # if you are running it from the 'q-error' directory.
 
     # file_path = 'Join-Order-Benchmark-queries/1a.sql'
-    # file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
-    file_path = 'Join-Order-Benchmark-queries/JOB-light-70-delete.sql'
-    # file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
+    file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
+    # file_path = 'Join-Order-Benchmark-queries/JOB-light-70-pending.sql'
+    # file_path = 'Join-Order-Benchmark-queries/JOB-scale-500.sql'
+    # file_path = 'Join-Order-Benchmark-queries/JOB-scale-500-pending.sql'
+    # file_path = 'Join-Order-Benchmark-queries/JOB-synthetic-5000.sql'
+    # file_path = 'Join-Order-Benchmark-queries/JOB-synthetic-5000-pending.sql'
     
     queries = read_queries_from_file(file_path)
     results = []  # Prepare a list to store results for each query
