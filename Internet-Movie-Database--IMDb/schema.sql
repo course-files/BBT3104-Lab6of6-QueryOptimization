@@ -560,5 +560,5 @@ CREATE TABLE query_log (
 	table_alias_set varchar NULL,
 	join_set varchar NULL,
 	predicate_set varchar NULL,
-	CONSTRAINT query_log_pkey PRIMARY KEY (id)
+	CONSTRAINT query_log_pk PRIMARY KEY (id)
 );
