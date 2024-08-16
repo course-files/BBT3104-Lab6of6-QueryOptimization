@@ -1,31 +1,47 @@
   - query: |-
-      /*
-      Credit: 
-      Kipf, A., Kipf, T., Radke, B., Leis, V., Boncz, P., & Kemper, A. (2019).
-      Learned cardinalities: Estimating correlated joins with deep learning.
-      9th Biennial Conference on Innovative Data Systems Research (CIDR ‘19), CA,
-      USA. https://arxiv.org/abs/1809.00677
-
-      "JOB-scale" contains 500 queries with 0-4 joins (100 queries each).
-      It is used by Kipf et al. (2019) to test whether the Multi-Set Convolutional
-      Network (MSCN) can generalize to queries with more joins than it was trained
-      on. MSCN was trained using queries that had 0-2 joins.
-      */
-      SELECT * FROM title t,movie_info_idx mi_idx WHERE t.id=mi_idx.movie_id AND t.kind_id=7 AND mi_idx.info_type_id>99
+      SELECT * FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND mi.info_type_id=3 AND mk.keyword_id>819
     qep:
       - node: Hash Join/Seq Scan
-        actual_rows: 920110
-        estimated_rows: 919471
-        q_error: 1.0006949648221641
-      - node: Hash Join/Hash/Seq Scan
-        actual_rows: 1543265
-        estimated_rows: 1547782
-        q_error: 1.0029269114507229
+        actual_rows: 3662604
+        estimated_rows: 3659900
+        q_error: 1.000738818000492
+      - node: Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 1533909
+        estimated_rows: 1559495
+        q_error: 1.0166802593895727
+      - node: Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 1533909
+        estimated_rows: 1559495
+        q_error: 1.0166802593895727
+      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 1380035
+        estimated_rows: 1380035
+        q_error: 1.0
+      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 1380035
+        estimated_rows: 1380035
+        q_error: 1.0
+      - node: Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1380035
+        estimated_rows: 1380035
+        q_error: 1.0
+      - node: Hash Join/Hash/Hash Join
+        actual_rows: 1639327
+        estimated_rows: 851159
+        q_error: 1.9259938507376413
       - node: Hash Join/Hash
-        actual_rows: 1543265
-        estimated_rows: 1547782
-        q_error: 1.0029269114507229
+        actual_rows: 1639327
+        estimated_rows: 851159
+        q_error: 1.9259938507376413
       - node: Hash Join
-        actual_rows: 283812
-        estimated_rows: 562839
-        q_error: 1.9831402477696503
+        actual_rows: 18938693
+        estimated_rows: 1232016
+        q_error: 15.372116108881702
