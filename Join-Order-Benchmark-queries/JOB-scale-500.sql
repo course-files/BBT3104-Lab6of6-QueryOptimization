@@ -145,7 +145,7 @@ SELECT * FROM title t,movie_keyword mk WHERE t.id=mk.movie_id AND t.kind_id=7 AN
 SELECT * FROM title t WHERE t.kind_id=1 AND t.production_year<2002;
 SELECT * FROM title t,cast_info ci,movie_info mi WHERE t.id=ci.movie_id AND t.id=mi.movie_id AND t.kind_id<7 AND t.production_year>1993 AND ci.person_id>2542204;
 SELECT * FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND mi.info_type_id=3 AND mk.keyword_id>819;
-SELECT * FROM title t,movie_companies mc,cast_info ci,movie_info mi,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mk.movie_id AND mi.info_type_id<6;
+/* SLOW */ -- SELECT * FROM title t,movie_companies mc,cast_info ci,movie_info mi,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mk.movie_id AND mi.info_type_id<6;
 SELECT * FROM title t,movie_companies mc,movie_info mi WHERE t.id=mc.movie_id AND t.id=mi.movie_id AND t.kind_id<7 AND t.production_year=2007 AND mc.company_type_id>1 AND mi.info_type_id>16;
 SELECT * FROM title t,movie_keyword mk WHERE t.id=mk.movie_id AND t.kind_id>1 AND t.production_year<2007;
 SELECT * FROM movie_info_idx mi_idx WHERE mi_idx.info_type_id=100;
@@ -173,7 +173,7 @@ SELECT * FROM title t,cast_info ci,movie_info mi,movie_keyword mk WHERE t.id=ci.
 SELECT * FROM title t,movie_companies mc,cast_info ci,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND mc.company_type_id=2;
 SELECT * FROM title t,movie_info mi WHERE t.id=mi.movie_id AND t.kind_id=7 AND mi.info_type_id=6;
 SELECT * FROM movie_keyword mk WHERE mk.keyword_id>74318;
-SELECT * FROM title t,movie_companies mc,cast_info ci,movie_info mi,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mk.movie_id AND mi.info_type_id<8;
+/* SLOW */ -- SELECT * FROM title t,movie_companies mc,cast_info ci,movie_info mi,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mk.movie_id AND mi.info_type_id<8;
 SELECT * FROM title t,movie_companies mc,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND t.kind_id=7 AND t.production_year>2004 AND mi_idx.info_type_id<101 AND mk.keyword_id<44523;
 SELECT * FROM title t,movie_keyword mk WHERE t.id=mk.movie_id AND t.production_year<1946;
 SELECT * FROM cast_info ci WHERE ci.person_id<3002411;
