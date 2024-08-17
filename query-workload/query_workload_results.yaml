@@ -1,47 +1,11 @@
   - query: |-
-      SELECT * FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND mi.info_type_id=3 AND mk.keyword_id>819
+      SELECT * FROM movie_keyword mk WHERE mk.keyword_id>74318
     qep:
-      - node: Hash Join/Seq Scan
-        actual_rows: 3662604
-        estimated_rows: 3659900
-        q_error: 1.000738818000492
-      - node: Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
-        actual_rows: 1533909
-        estimated_rows: 1559495
-        q_error: 1.0166802593895727
-      - node: Hash Join/Hash/Hash Join/Bitmap Heap Scan
-        actual_rows: 1533909
-        estimated_rows: 1559495
-        q_error: 1.0166802593895727
-      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Seq Scan
-        actual_rows: 1380035
-        estimated_rows: 1380035
-        q_error: 1.0
-      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq Scan
-        actual_rows: 2528313
-        estimated_rows: 2528504
-        q_error: 1.000075544444062
-      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
-        actual_rows: 2528313
-        estimated_rows: 2528504
-        q_error: 1.000075544444062
-      - node: Hash Join/Hash/Hash Join/Hash/Hash Join
-        actual_rows: 1380035
-        estimated_rows: 1380035
-        q_error: 1.0
-      - node: Hash Join/Hash/Hash Join/Hash
-        actual_rows: 1380035
-        estimated_rows: 1380035
-        q_error: 1.0
-      - node: Hash Join/Hash/Hash Join
-        actual_rows: 1639327
-        estimated_rows: 851159
-        q_error: 1.9259938507376413
-      - node: Hash Join/Hash
-        actual_rows: 1639327
-        estimated_rows: 851159
-        q_error: 1.9259938507376413
-      - node: Hash Join
-        actual_rows: 18938693
-        estimated_rows: 1232016
-        q_error: 15.372116108881702
+      - node: Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 145378
+        estimated_rows: 142912
+        q_error: 1.0172553739364085
+      - node: Bitmap Heap Scan
+        actual_rows: 145378
+        estimated_rows: 142912
+        q_error: 1.0172553739364085
