@@ -14,10 +14,12 @@ The query workload stored in [query_log.csv](/query-workload/query_log.csv) incl
 - The join set identified from the query
 - The predicate set identified from the query
 
+## Phase 1
+
 The dataset is retrieved by executing ```EXPLAIN ANALYZE``` using [log_queries.py](/query-workload/log_queries.py). This is done for each Join Order Benchmark (JOB) query available [here](/Join-Order-Benchmark-queries/). The JOB queries in the query_log dataset are (sorted by timestamp in ascending order):
 
 - Line 1-113: [JOB-original-113.sql](/Join-Order-Benchmark-queries/JOB-original-113.sql)
-- **_Pending - 184_**: Line 114-184: [JOB-light-70.sql](/Join-Order-Benchmark-queries/JOB-light-70.sql)
+- Line 114-184: [JOB-light-70.sql](/Join-Order-Benchmark-queries/JOB-light-70.sql) **_(Issues: Line 184_)**:
 - **_Work-in-Progress_**: Line 185-685: [JOB-scale-500.sql](/Join-Order-Benchmark-queries/JOB-scale-500.sql)
 - **_Work-in-Progress_**: Line 686-5,686: [JOB-synthetic-5000.sql](/Join-Order-Benchmark-queries/JOB-synthetic-5000.sql)
 
@@ -28,5 +30,7 @@ shared_preload_libraries = 'pg_stat_statements'
 pg_stat_statements.max = 10000
 pg_stat_statements.track = all
 ```
+
+## Phase 2
 
 The second phase involves executing [get_table_join_predicate_sets_from_db.py](/query-featurization/get_table_join_predicate_sets_from_db.py) for each query to get the table set, table alias set, join set, and predicate set. The result is recorded in the same [query_log.csv](/query-workload/query_log.csv) file.
