@@ -1,40 +1,47 @@
   - query: |-
-      SELECT * FROM title t,movie_companies mc,cast_info ci,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mi_idx.movie_id AND t.kind_id=7 AND t.production_year>2006 AND mc.company_id=19 AND ci.person_id<493729 AND ci.role_id=1
+      SELECT * FROM title t,cast_info ci,movie_info mi,movie_info_idx mi_idx WHERE t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND mi.info_type_id=4
     qep:
-      - node: Nested Loop/Nested Loop/Hash Join/Seq Scan
-        actual_rows: 602403
-        estimated_rows: 554801
-        q_error: 1.0858001337416479
-      - node: Nested Loop/Nested Loop/Hash Join/Hash/Bitmap Heap Scan/Bitmap Index
-          Scan
-        actual_rows: 47252
-        estimated_rows: 48443
-        q_error: 1.0252052823160924
-      - node: Nested Loop/Nested Loop/Hash Join/Hash/Bitmap Heap Scan
-        actual_rows: 47252
-        estimated_rows: 48443
-        q_error: 1.0252052823160924
-      - node: Nested Loop/Nested Loop/Hash Join/Hash
-        actual_rows: 47252
-        estimated_rows: 48443
-        q_error: 1.0252052823160924
-      - node: Nested Loop/Nested Loop/Hash Join
-        actual_rows: 3417
-        estimated_rows: 10629
-        q_error: 3.1106233538191397
-      - node: Nested Loop/Nested Loop/Index Scan
-        actual_rows: 2
-        estimated_rows: 3
-        q_error: 1.5
-      - node: Nested Loop/Nested Loop
-        actual_rows: 5775
-        estimated_rows: 5801
-        q_error: 1.0045021645021646
-      - node: Nested Loop/Index Scan
-        actual_rows: 4
-        estimated_rows: 2
-        q_error: 2.0
-      - node: Nested Loop
-        actual_rows: 24879
-        estimated_rows: 4173
-        q_error: 5.961897915168943
+      - node: Hash Join/Seq Scan
+        actual_rows: 36244344
+        estimated_rows: 36179463
+        q_error: 1.0017933101992145
+      - node: Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 1298989
+        estimated_rows: 1460417
+        q_error: 1.1242720300171902
+      - node: Hash Join/Hash/Hash Join/Bitmap Heap Scan
+        actual_rows: 1298989
+        estimated_rows: 1460417
+        q_error: 1.1242720300171902
+      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Seq Scan
+        actual_rows: 1380035
+        estimated_rows: 1380035
+        q_error: 1.0
+      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq Scan
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
+        actual_rows: 2528313
+        estimated_rows: 2528504
+        q_error: 1.000075544444062
+      - node: Hash Join/Hash/Hash Join/Hash/Hash Join
+        actual_rows: 1380035
+        estimated_rows: 1380035
+        q_error: 1.0
+      - node: Hash Join/Hash/Hash Join/Hash
+        actual_rows: 1380035
+        estimated_rows: 1380035
+        q_error: 1.0
+      - node: Hash Join/Hash/Hash Join
+        actual_rows: 1282604
+        estimated_rows: 797083
+        q_error: 1.6091222620479926
+      - node: Hash Join/Hash
+        actual_rows: 1282604
+        estimated_rows: 797083
+        q_error: 1.6091222620479926
+      - node: Hash Join
+        actual_rows: 40701900
+        estimated_rows: 11405171
+        q_error: 3.5687233448757585
