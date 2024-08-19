@@ -403,7 +403,7 @@ SELECT * FROM title t,movie_companies mc,movie_info_idx mi_idx,movie_keyword mk 
 SELECT * FROM title t,movie_companies mc,movie_info mi WHERE t.id=mc.movie_id AND t.id=mi.movie_id AND t.kind_id>1 AND t.production_year>1999 AND mc.company_type_id<2;
 SELECT * FROM movie_keyword mk WHERE mk.keyword_id<1571;
 SELECT * FROM title t,movie_info mi,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.production_year>2012 AND mk.keyword_id<13699;
-SELECT * FROM title t,cast_info ci,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id;
+/* SLOW */ -- SELECT * FROM title t,cast_info ci,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id;
 SELECT * FROM title t,movie_companies mc,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND t.kind_id<7 AND t.production_year=1969 AND mc.company_id<115151 AND mi.info_type_id=16 AND mi_idx.info_type_id>101 AND mk.keyword_id>1614;
 SELECT * FROM title t,movie_companies mc,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND t.kind_id<7 AND t.production_year=1997 AND mc.company_id>10922 AND mc.company_type_id<2 AND mk.keyword_id=687;
 SELECT * FROM title t,cast_info ci,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND mi.info_type_id>4 AND mi_idx.info_type_id<100 AND mk.keyword_id>2048;

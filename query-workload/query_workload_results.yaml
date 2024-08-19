@@ -1,47 +1,27 @@
   - query: |-
-      SELECT * FROM title t,cast_info ci,movie_info mi,movie_info_idx mi_idx WHERE t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND mi.info_type_id=4
+      SELECT * FROM title t,movie_info mi,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mk.movie_id AND t.production_year>2012 AND mk.keyword_id<13699
     qep:
-      - node: Hash Join/Seq Scan
-        actual_rows: 36244344
-        estimated_rows: 36179463
-        q_error: 1.0017933101992145
-      - node: Hash Join/Hash/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
-        actual_rows: 1298989
-        estimated_rows: 1460417
-        q_error: 1.1242720300171902
-      - node: Hash Join/Hash/Hash Join/Bitmap Heap Scan
-        actual_rows: 1298989
-        estimated_rows: 1460417
-        q_error: 1.1242720300171902
-      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Seq Scan
-        actual_rows: 1380035
-        estimated_rows: 1380035
-        q_error: 1.0
-      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Hash/Seq Scan
-        actual_rows: 2528313
-        estimated_rows: 2528504
-        q_error: 1.000075544444062
-      - node: Hash Join/Hash/Hash Join/Hash/Hash Join/Hash
-        actual_rows: 2528313
-        estimated_rows: 2528504
-        q_error: 1.000075544444062
-      - node: Hash Join/Hash/Hash Join/Hash/Hash Join
-        actual_rows: 1380035
-        estimated_rows: 1380035
-        q_error: 1.0
-      - node: Hash Join/Hash/Hash Join/Hash
-        actual_rows: 1380035
-        estimated_rows: 1380035
-        q_error: 1.0
-      - node: Hash Join/Hash/Hash Join
-        actual_rows: 1282604
-        estimated_rows: 797083
-        q_error: 1.6091222620479926
-      - node: Hash Join/Hash
-        actual_rows: 1282604
-        estimated_rows: 797083
-        q_error: 1.6091222620479926
-      - node: Hash Join
-        actual_rows: 40701900
-        estimated_rows: 11405171
-        q_error: 3.5687233448757585
+      - node: Nested Loop/Hash Join/Seq Scan
+        actual_rows: 3233226
+        estimated_rows: 3204628
+        q_error: 1.0089239687102527
+      - node: Nested Loop/Hash Join/Hash/Seq Scan
+        actual_rows: 67342
+        estimated_rows: 65867
+        q_error: 1.0223936113683636
+      - node: Nested Loop/Hash Join/Hash
+        actual_rows: 67342
+        estimated_rows: 65867
+        q_error: 1.0223936113683636
+      - node: Nested Loop/Hash Join
+        actual_rows: 30795
+        estimated_rows: 83480
+        q_error: 2.71082968014288
+      - node: Nested Loop/Index Scan
+        actual_rows: 21
+        estimated_rows: 39
+        q_error: 1.8571428571428572
+      - node: Nested Loop
+        actual_rows: 657708
+        estimated_rows: 490669
+        q_error: 1.3404311256672012
