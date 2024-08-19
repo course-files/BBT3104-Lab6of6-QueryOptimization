@@ -5,7 +5,7 @@ Learned cardinalities: Estimating correlated joins with deep learning.
 9th Biennial Conference on Innovative Data Systems Research (CIDR ‘19), CA,
 USA. https://arxiv.org/abs/1809.00677
 
-"JOB-synthetic" contains 5000 uniuqe queries containing both (conjunctive)
+"JOB-synthetic" contains 5000 unique queries containing both (conjunctive)
 equality and range predicates on non-key columns with 0-2 joins.
 It is used by Kipf et al. (2019) to train the Multi-Set Convolutional
 Network (MSCN).

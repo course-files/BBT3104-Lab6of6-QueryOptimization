@@ -1,11 +1,44 @@
   - query: |-
-      SELECT * FROM movie_keyword mk WHERE mk.keyword_id=347
+      SELECT * FROM title t,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND t.kind_id=3 AND mk.keyword_id>121648
     qep:
-      - node: Bitmap Heap Scan/Bitmap Index Scan
-        actual_rows: 10799
-        estimated_rows: 9491
-        q_error: 1.1378147718891582
-      - node: Bitmap Heap Scan
-        actual_rows: 10799
-        estimated_rows: 9491
-        q_error: 1.1378147718891582
+      - node: Nested Loop/Nested Loop/Hash Join/Bitmap Heap Scan/Bitmap Index Scan
+        actual_rows: 14342
+        estimated_rows: 16212
+        q_error: 1.1303862780644263
+      - node: Nested Loop/Nested Loop/Hash Join/Bitmap Heap Scan
+        actual_rows: 14342
+        estimated_rows: 16212
+        q_error: 1.1303862780644263
+      - node: Nested Loop/Nested Loop/Hash Join/Hash/Bitmap Heap Scan/Bitmap Index
+          Scan
+        actual_rows: 100537
+        estimated_rows: 95577
+        q_error: 1.0518953304665348
+      - node: Nested Loop/Nested Loop/Hash Join/Hash/Bitmap Heap Scan
+        actual_rows: 100537
+        estimated_rows: 95577
+        q_error: 1.0518953304665348
+      - node: Nested Loop/Nested Loop/Hash Join/Hash
+        actual_rows: 100537
+        estimated_rows: 95577
+        q_error: 1.0518953304665348
+      - node: Nested Loop/Nested Loop/Hash Join
+        actual_rows: 953
+        estimated_rows: 613
+        q_error: 1.5546492659053834
+      - node: Nested Loop/Nested Loop/Index Scan
+        actual_rows: 2
+        estimated_rows: 3
+        q_error: 1.5
+      - node: Nested Loop/Nested Loop
+        actual_rows: 2052
+        estimated_rows: 334
+        q_error: 6.1437125748503
+      - node: Nested Loop/Index Scan
+        actual_rows: 23
+        estimated_rows: 39
+        q_error: 1.6956521739130435
+      - node: Nested Loop
+        actual_rows: 47745
+        estimated_rows: 1966
+        q_error: 24.2853509664293
