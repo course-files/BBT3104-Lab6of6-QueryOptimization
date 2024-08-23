@@ -35,7 +35,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: 5trathm0re
       PGADMIN_LISTEN_PORT: 8080
     ports:
-    - 8080:8080
+    - 8081:8080
     # volumes:
     # - ./container-volumes/postgresql/pgadmin/servers.json:/pgadmin4/servers.json
 
@@ -60,4 +60,4 @@ services:
     container_name: adminer-bbt3104
     restart: always
     ports:
-      - 8081:8080
+      - 8082:8080
