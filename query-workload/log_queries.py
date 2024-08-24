@@ -1,7 +1,7 @@
 """
 Purpose: Log the actual number of rows returned by SELECT queries in the IMDb
          database. This is needed to create the training and testing dataset
-         stored in the query_log table.
+         stored in the additional "query_log" table.
 """
 import psycopg2
 from datetime import datetime
