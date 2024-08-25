@@ -1,4 +1,5 @@
 version: "3.9"
+
 services:
 
   # The only container needed for the lab is Postgres.
