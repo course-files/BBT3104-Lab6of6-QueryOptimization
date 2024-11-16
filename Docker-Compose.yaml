@@ -1,12 +1,11 @@
-version: "3.9"
 services:
 
   # The only container needed for the lab is Postgres.
   # The other containers are for your own practice.
   postgres:
     image: postgres:16.2
-    hostname: postgres-bbt3104
-    container_name: postgres-bbt3104
+    hostname: postgres-16.2-bbt3104-lab6
+    container_name: postgres-16.2-bbt3104-lab6
     restart: always
     shm_size: 1g
     ports:
@@ -27,8 +26,8 @@ services:
 
   pgadmin4:
     image: elestio/pgadmin:REL-8_5
-    hostname: pgadmin-bbt3104
-    container_name: pgadmin-bbt3104
+    hostname: pgadmin-REL-8_5-bbt3104-lab6
+    container_name: pgadmin-REL-8_5-bbt3104-lab6
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@strathmore.edu
@@ -44,8 +43,8 @@ services:
 
   mysql:
     image: mysql:8.0.35
-    hostname: mysql-bbt3104
-    container_name: mysql-bbt3104
+    hostname: mysql-8.3.0-bbt3104-lab6
+    container_name: mysql-8.3.0-bbt3104-lab6
     ports:
       - 3307:3306
     environment:
@@ -56,8 +55,8 @@ services:
 
   adminer:
     image: adminer
-    hostname: adminer-bbt3104
-    container_name: adminer-bbt3104
+    hostname: adminer-bbt3104-lab6
+    container_name: adminer-bbt3104-lab6
     restart: always
     ports:
       - 8082:8080
