@@ -1,3 +1,6 @@
+# pip install psycopg2
+# pip install pyyaml
+
 import psycopg2
 import yaml
 
@@ -7,7 +10,7 @@ conn_params = {
     'user': 'postgres',
     'password': '5trathm0re',
     'host': 'localhost',
-    'port': '5432'
+    'port': '5433'
 }
 
 # Connect to the PostgreSQL database

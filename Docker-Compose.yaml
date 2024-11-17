@@ -19,15 +19,11 @@ services:
       - ./container-volumes/postgresql/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./container-volumes/postgresql/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
     command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'
-    
-    # Reminder: Open the ports in the firewall if you are using a Linux host, i.e.,
-    # execute the following in VS Code terminal:
-    # sudo ufw allow 5432/tcp
 
   pgadmin4:
-    image: elestio/pgadmin:REL-8_5
-    hostname: pgadmin-REL-8_5-bbt3104-lab6
-    container_name: pgadmin-REL-8_5-bbt3104-lab6
+    image: elestio/pgadmin:REL-8_13
+    hostname: pgadmin-REL-8_13-bbt3104-lab6
+    container_name: pgadmin-REL-8_13-bbt3104-lab6
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@strathmore.edu
@@ -35,14 +31,11 @@ services:
       PGADMIN_LISTEN_PORT: 8080
     ports:
     - 8081:8080
-    # volumes:
-    # - ./container-volumes/postgresql/pgadmin/servers.json:/pgadmin4/servers.json
-
-# Be patient and wait for the server to display "ready for connections" in the
-# logs. There are a total of 4 "ready for connections" messages in the logs.
+    volumes:
+      - ./container-volumes/postgresql/pgadmin/servers.json:/pgadmin4/servers.json
 
   mysql:
-    image: mysql:8.0.35
+    image: mysql:8.3.0
     hostname: mysql-8.3.0-bbt3104-lab6
     container_name: mysql-8.3.0-bbt3104-lab6
     ports:
@@ -50,13 +43,14 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 5trathm0re
     volumes:
-      - ./container-volumes/mysql/sample-data:/docker-entrypoint-initdb.d/
+      # To store the server's configuration file in the host
+      - ./container-volumes/mysql/etc-mysql/my.cnf:/etc/mysql/my.cnf
+      # To store the server's data persistently in the host
       - ./container-volumes/mysql/var-lib-mysql:/var/lib/mysql
-
-  adminer:
-    image: adminer
-    hostname: adminer-bbt3104-lab6
-    container_name: adminer-bbt3104-lab6
-    restart: always
-    ports:
-      - 8082:8080
+      # To run the SQL scripts used to create the required databases
+      - ./container-volumes/mysql/init-scripts:/docker-entrypoint-initdb.d/
+    command: >
+      /bin/bash -c "
+      chmod 644 /etc/mysql/my.cnf &&
+      exec docker-entrypoint.sh mysqld
+      "

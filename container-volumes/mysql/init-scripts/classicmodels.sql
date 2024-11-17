@@ -1,8 +1,9 @@
+CREATE DATABASE IF NOT EXISTS `classicmodels` ;
+USE `classicmodels` ;
+
 CREATE USER IF NOT EXISTS `student`@`%` IDENTIFIED WITH mysql_native_password BY '5trathm0re';
 GRANT ALL PRIVILEGES ON * . * TO `student`@`%` WITH GRANT OPTION;
-
-CREATE SCHEMA IF NOT EXISTS `classicmodels` ;
-USE `classicmodels` ;
+FLUSH PRIVILEGES;
 
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
