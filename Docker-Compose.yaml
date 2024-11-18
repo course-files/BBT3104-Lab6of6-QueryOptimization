@@ -1,7 +1,5 @@
 services:
 
-  # The only container needed for the lab is Postgres.
-  # The other containers are for your own practice.
   postgres:
     image: postgres:16.2
     hostname: postgres-16.2-bbt3104-lab6
