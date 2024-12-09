@@ -1,3 +1,4 @@
+-- DBMS: PostgreSQL
 -- DATABASE: imdb
 -- DROP DATABASE IF EXISTS imdb;
 CREATE DATABASE imdb WITH
