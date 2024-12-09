@@ -410,7 +410,7 @@ CREATE INDEX movie_id_movie_link USING btree ON imdb_schema.movie_link (movie_id
 -- link_type (18 rows)
 -- comp_cast_type (4 rows)
 -- char_name (3,140,339 rows)
--- aka_name (901,343 rows)
+-- aka_name (901,343 rows) *To continue from here
 -- title (2,528,313 rows)
 -- movie_keyword (4,523,930 rows)
 -- movie_info_idx (1,380,035 rows)
