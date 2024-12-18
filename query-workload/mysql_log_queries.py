@@ -3,7 +3,7 @@ Purpose: Log the actual number of rows returned by SELECT queries in the IMDb
          database. This is needed to create the training and testing dataset
          stored in the additional "query_log" table.
 """
-# pip install psycopg2-binary
+
 import psycopg2
 from datetime import datetime
 import yaml
