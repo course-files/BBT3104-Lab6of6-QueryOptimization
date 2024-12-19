@@ -134,6 +134,7 @@ def main():
         set_schema(conn, 'imdb_schema')
 
         # Execute queries from file
+        # file_path = 'Join-Order-Benchmark-queries/JOB-light-3.sql'
         # file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
         # file_path = 'Join-Order-Benchmark-queries/JOB-light-70-pending.sql'
         # file_path = 'Join-Order-Benchmark-queries/JOB-scale-500.sql'
