@@ -116,7 +116,7 @@ def main():
     conn_params = {
         'database': 'imdb_schema',
         'user': 'jkirui',
-        'password': 'jkirui_phd',
+        'password': '*****',
         'host': 'localhost',
         'port': '3306'
     }
