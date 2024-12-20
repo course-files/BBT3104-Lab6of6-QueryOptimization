@@ -3,8 +3,8 @@ Purpose: Log the actual number of rows returned by SELECT queries in the IMDb
          database. This is needed to create the training and testing dataset
          stored in the additional "query_log" table.
 """
-# pip install psycopg2-binary
-import psycopg2
+
+import mysql.connector
 from datetime import datetime
 import yaml
 from ruamel.yaml import YAML, scalarstring
@@ -12,7 +12,7 @@ from decimal import Decimal
 
 def connect_to_database(conn_params):
     try:
-        conn = psycopg2.connect(**conn_params)
+        conn = mysql.connector.connect(**conn_params)
         return conn
     except Exception as e:
         print(f"Error connecting to the database: {e}")
@@ -23,7 +23,7 @@ def set_schema(conn, schema):
     cursor = None
     try:
         cursor = conn.cursor()
-        cursor.execute(f"SET search_path TO {schema};")
+        cursor.execute(f"USE {schema};")
         conn.commit()
     except Exception as e:
         print(f"Error setting schema: {e}")
@@ -45,50 +45,46 @@ def execute_queries(conn, query):
     cursor = None
     try:
         cursor = conn.cursor()
+        cursor.execute("EXPLAIN FORMAT=JSON " + query)
+        analyze_results = cursor.fetchall()
+        analyze_data = yaml.safe_load(analyze_results[0][0])
+
+        def extract_rows(data, key_actual, key_estimated):
+            q_error_results = []
+
+            def recurse_nodes(node, path=""):
+                node_type = node.get('type', 'Unknown')
+                new_path = f"{path}/{node_type}" if path else node_type
+                if 'children' in node:
+                    for subnode in node['children']:
+                        recurse_nodes(subnode, new_path)
+
+                actual_rows = node.get(key_actual, 0)
+                estimated_rows = node.get(key_estimated, 0)
+                if actual_rows > 0:
+                    q_error = max(estimated_rows / actual_rows, actual_rows / estimated_rows)
+                else:
+                    q_error = None  # Handle cases where actual rows are zero
+                q_error_results.append((new_path, actual_rows, estimated_rows, q_error))
+
+            recurse_nodes(data['query_block'])
+            return q_error_results
+
+        actual_key = 'rows_examined_per_scan'
+        estimated_key = 'rows'
+        q_error = extract_rows(analyze_data, actual_key, estimated_key)
+
+        return q_error
     except Exception as e:
         print(f"Error executing queries from file: {e}")
-
-    # Get the EXPLAIN ANALYZE output in YAML format
-    cursor.execute("EXPLAIN (BUFFERS, VERBOSE, ANALYZE, FORMAT YAML) " + query)
-    analyze_results = cursor.fetchall()
-    analyze_data = yaml.safe_load(analyze_results[0][0])
-
-    # Get the EXPLAIN output in YAML format (not mandatory)
-    # cursor.execute("EXPLAIN (FORMAT YAML) " + query)
-    # explain_results = cursor.fetchall()
-    # explain_data = yaml.safe_load(explain_results[0][0])
-
-    # Process YAML data to extract actual and estimated rows and maintain node order
-    def extract_rows(data, key_actual, key_estimated):
-        q_error_results = []
-
-        def recurse_nodes(node, path=""):
-            node_type = node.get('Node Type', 'Unknown')
-            new_path = f"{path}/{node_type}" if path else node_type
-            if 'Plans' in node:
-                for subnode in node['Plans']:
-                    recurse_nodes(subnode, new_path)
-
-            actual_rows = node.get(key_actual, 0)
-            estimated_rows = node.get(key_estimated, 0)
-            if actual_rows > 0:
-                q_error = max(estimated_rows / actual_rows, actual_rows / estimated_rows)
-            else:
-                q_error = float('inf')  # Handle cases where actual rows are zero
-            q_error_results.append((new_path, actual_rows, estimated_rows, q_error))
-
-        recurse_nodes(data[0]['Plan'])
-        return q_error_results
-
-    actual_key = 'Actual Rows'
-    estimated_key = 'Plan Rows'
-    q_error = extract_rows(analyze_data, actual_key, estimated_key)
-
-    return q_error
+        return []
+    finally:
+        if cursor:
+            cursor.close()
 
 
 def log_queries(conn, query, results, actual_rows, estimated_rows, q_error):
-    q_error = Decimal(q_error)
+    q_error = Decimal(q_error) if q_error is not None else None
     cursor = None
     try:
         cursor = conn.cursor()
@@ -118,14 +114,14 @@ def log_queries(conn, query, results, actual_rows, estimated_rows, q_error):
 def main():
     # Database connection parameters
     conn_params = {
-        'database': 'imdb',
-        'user': 'postgres',
-        'password': '5trathm0re',
+        'database': 'imdb_schema',
+        'user': 'jkirui',
+        'password': '*****',
         'host': 'localhost',
-        'port': '5432'
+        'port': '3306'
     }
 
-    # Connect to the PostgreSQL database
+    # Connect to the MySQL database
     conn = connect_to_database(conn_params)
     if not conn:
         return
@@ -135,25 +131,20 @@ def main():
         set_schema(conn, 'imdb_schema')
 
         # Execute queries from file
-        # file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
-        # file_path = 'Join-Order-Benchmark-queries/JOB-light-70-pending.sql'
-        # file_path = 'Join-Order-Benchmark-queries/JOB-scale-500.sql'
-        file_path = 'Join-Order-Benchmark-queries/JOB-scale-500-pending.sql'
-        # file_path = 'Join-Order-Benchmark-queries/JOB-synthetic-5000.sql'
-        # file_path = 'Join-Order-Benchmark-queries/JOB-synthetic-5000-pending.sql'
+        file_path = 'Join-Order-Benchmark-queries/JOB-light-3.sql'
         
         yaml = YAML()
         yaml.indent(mapping=2, sequence=4, offset=2)
         queries = read_queries_from_file(file_path)
         for query in queries:
-            q_error = execute_queries(conn, query)
+            q_error_results = execute_queries(conn, query)
             print("\n\n--------------------------------------------------")
 
             print("\n")
             print("QUERY:\n", query)
 
             print("\nQUERY EXECUTION PLAN (QEP):")
-            for node, actual, estimated, error in q_error:
+            for node, actual, estimated, error in q_error_results:
                 print(f"Node: {node}, Actual Rows: {actual}, Estimated Rows: {estimated}, Q-Error: {error}")
 
             # QEP in YAML format for insertion into query_log table
@@ -163,16 +154,25 @@ def main():
                 "qep": [{"node": node,
                          "actual_rows": actual,
                          "estimated_rows": estimated,
-                         "q_error": error} for node, actual, estimated, error in q_error]
+                         "q_error": error} for node, actual, estimated, error in q_error_results]
             }
             results.append(query_result)
             # Write results to a YAML file
-            with open('query-workload/query_workload_results.yaml', 'w') as yaml_file:
+            with open('query-workload/mysql_query_workload_results.yaml', 'w') as yaml_file:
                 yaml.dump(results, yaml_file)
 
             # Read results from the YAML file
-            with open('query-workload/query_workload_results.yaml', 'r') as yaml_file:
+            with open('query-workload/mysql_query_workload_results.yaml', 'r') as yaml_file:
                 qep = yaml_file.read()
+
+            if q_error_results:
+                actual = q_error_results[0][1]
+                estimated = q_error_results[0][2]
+                error = q_error_results[0][3]
+            else:
+                actual = None
+                estimated = None
+                error = None
 
             print("\n")
             print("ACTUAL ROWS:\n", actual)
