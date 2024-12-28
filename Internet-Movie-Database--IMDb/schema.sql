@@ -523,6 +523,12 @@ GRANT ALL ON SCHEMA imdb_schema TO postgres;
 
 -- Data import
 
+-- Increase the JVM Heap Memory Allocation to import large files
+-- 1. Go to C:\Program Files\DBeaver\dbeaver.ini
+-- 2. Look for lines that start with -Xmx
+-- 3. Change the value to -Xmx4096m
+-- 4. Save the file and restart DBeaver
+
 -- Recommended order of importing the CSV data, one-by-one,
 -- to avoid referential integrity constraint errors:
 
