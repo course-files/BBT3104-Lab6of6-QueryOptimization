@@ -63,11 +63,34 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Insert data from a CSV file into a MySQL database.')
     print("Usage: python load_data.py <csv_file_path> --host <host> --port <port> --user <user> --password <password> --database <database> --table <table>")
 
-    # company_name
+    # company_name (234,997 rows)
     # python Internet-Movie-Database--IMDb/load_data.py 'Internet-Movie-Database--IMDb/As Used in Leis et al. (2018)/imdb/company_name.csv' --host localhost --port 3307 --user root --password 5trathm0re --database imdb_schema --table company_name
 
-    # company_type
+    # company_type (4 rows)
     # python Internet-Movie-Database--IMDb/load_data.py 'Internet-Movie-Database--IMDb/As Used in Leis et al. (2018)/imdb/company_type.csv' --host localhost --port 3307 --user root --password 5trathm0re --database imdb_schema --table company_type
+
+    # keyword (134,170 rows)
+    # python Internet-Movie-Database--IMDb/load_data.py 'Internet-Movie-Database--IMDb/As Used in Leis et al. (2018)/imdb/keyword.csv' --host localhost --port 3307 --user root --password 5trathm0re --database imdb_schema --table keyword
+
+
+    # info_type (113 rows)
+    # role_type (12 rows)
+    # name (4,167,491 rows)
+    # kind_type (7 rows)
+    # person_info (2,963,664 rows)
+    # link_type (18 rows)
+    # comp_cast_type (4 rows)
+    # char_name (3,140,339 rows)
+    # aka_name (901,343 rows)
+    # title (2,528,313 rows)
+    # movie_keyword (4,523,930 rows)
+    # movie_info_idx (1,380,035 rows)
+    # aka_title (361,472 rows)
+    # complete_cast (135,086 rows)
+    # movie_link (29,997 rows)
+    # movie_companies (2,609,129 rows)
+    # movie_info (14,835,720 rows)
+    # cast_info (36,244,344 rows)
 
     parser.add_argument('csv_file_path', type=str, help='The path to the CSV file.')
     parser.add_argument('--host', type=str, default='localhost', help='The MySQL database host.')
