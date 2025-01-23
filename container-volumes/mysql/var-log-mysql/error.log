@@ -1,0 +1,45 @@
+2025-01-23T05:24:16.136865Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2025-01-23T05:24:16.528373Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.3.0) starting as process 1
+2025-01-23T05:24:16.545856Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /var/lib/mysql/ is case insensitive
+2025-01-23T05:24:16.641696Z 0 [Warning] [MY-013907] [InnoDB] Deprecated configuration parameters innodb_log_file_size and/or innodb_log_files_in_group have been used to compute innodb_redo_log_capacity=268435456. Please use innodb_redo_log_capacity instead.
+2025-01-23T05:24:16.650790Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-01-23T05:24:21.647011Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-01-23T05:24:26.529302Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-01-23T05:24:26.532590Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-01-23T05:24:26.702789Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2025-01-23T05:24:26.821619Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2025-01-23T05:24:26.822311Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.3.0'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2025-01-23T05:27:02.740330Z 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.3.0).
+2025-01-23T05:27:04.758331Z 0 [Warning] [MY-010909] [Server] /usr/sbin/mysqld: Forcing close of thread 8  user: 'root'.
+2025-01-23T05:27:04.762102Z 0 [Warning] [MY-010909] [Server] /usr/sbin/mysqld: Forcing close of thread 7  user: 'root'.
+2025-01-23T05:27:06.542248Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.3.0)  MySQL Community Server - GPL.
+2025-01-23T05:27:06.543004Z 0 [System] [MY-015016] [Server] MySQL Server - end.
+2025-01-23T05:27:10.986859Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2025-01-23T05:27:11.254407Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.3.0) starting as process 1
+2025-01-23T05:27:11.272191Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /var/lib/mysql/ is case insensitive
+2025-01-23T05:27:11.328880Z 0 [Warning] [MY-013907] [InnoDB] Deprecated configuration parameters innodb_log_file_size and/or innodb_log_files_in_group have been used to compute innodb_redo_log_capacity=268435456. Please use innodb_redo_log_capacity instead.
+2025-01-23T05:27:11.336807Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-01-23T05:27:15.653366Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-01-23T05:27:18.601640Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-01-23T05:27:18.602679Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-01-23T05:27:18.629393Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2025-01-23T05:27:18.679935Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2025-01-23T05:27:18.681060Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.3.0'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2025-01-23T07:16:05.648937Z 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.3.0).
+2025-01-23T07:16:07.727070Z 0 [Warning] [MY-010909] [Server] /usr/sbin/mysqld: Forcing close of thread 10  user: 'root'.
+2025-01-23T07:16:07.729878Z 0 [Warning] [MY-010909] [Server] /usr/sbin/mysqld: Forcing close of thread 11  user: 'root'.
+2025-01-23T07:16:07.730747Z 0 [Warning] [MY-010909] [Server] /usr/sbin/mysqld: Forcing close of thread 28  user: 'root'.
+2025-01-23T07:16:07.731495Z 0 [Warning] [MY-010909] [Server] /usr/sbin/mysqld: Forcing close of thread 12  user: 'root'.
+2025-01-23T07:16:14.304331Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.3.0)  MySQL Community Server - GPL.
+2025-01-23T07:16:14.305206Z 0 [System] [MY-015016] [Server] MySQL Server - end.
+2025-01-23T07:16:26.066715Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2025-01-23T07:16:26.342820Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.3.0) starting as process 1
+2025-01-23T07:16:26.349850Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /var/lib/mysql/ is case insensitive
+2025-01-23T07:16:26.405300Z 0 [Warning] [MY-013907] [InnoDB] Deprecated configuration parameters innodb_log_file_size and/or innodb_log_files_in_group have been used to compute innodb_redo_log_capacity=268435456. Please use innodb_redo_log_capacity instead.
+2025-01-23T07:16:26.418917Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-01-23T07:16:29.389417Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-01-23T07:16:33.154575Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-01-23T07:16:33.157589Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-01-23T07:16:33.196868Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2025-01-23T07:16:33.346903Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2025-01-23T07:16:33.347199Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.3.0'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.

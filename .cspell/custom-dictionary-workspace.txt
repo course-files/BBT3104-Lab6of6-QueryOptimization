@@ -3,10 +3,16 @@ aomondi
 Boncz
 datname
 dbid
+elestio
 hashjoin
 imdb
+initdb
 Kipf
 mscn
+mysqld
+pgadmin
+pgdata
+PGDATA
 psycopg
 psycopg2
 qerror

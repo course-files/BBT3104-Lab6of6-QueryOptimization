@@ -32,23 +32,53 @@ services:
     volumes:
       - ./container-volumes/postgresql/pgadmin/servers.json:/pgadmin4/servers.json
 
-  mysql:
+  mysql-8.3.0:
     image: mysql:8.3.0
-    hostname: mysql-8.3.0-bbt3104-lab6
-    container_name: mysql-8.3.0-bbt3104-lab6
+    hostname: mysql-8.3.0
+    container_name: mysql-8.3.0
     ports:
       - 3307:3306
     environment:
       MYSQL_ROOT_PASSWORD: 5trathm0re
     volumes:
       # To store the server's configuration file in the host
-      - ./container-volumes/mysql/etc-mysql/my.cnf:/etc/mysql/my.cnf
+      - mysql-config:/etc/mysql/
+      # To store the server's log files in the host
+      - mysql-log:/var/log/mysql/
       # To store the server's data persistently in the host
-      - ./container-volumes/mysql/var-lib-mysql:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
       # To run the SQL scripts used to create the required databases
-      - ./container-volumes/mysql/init-scripts:/docker-entrypoint-initdb.d/
+      - mysql-init:/docker-entrypoint-initdb.d/
     command: >
       /bin/bash -c "
       chmod 644 /etc/mysql/my.cnf &&
+      chmod 644 /etc/mysql/conf.d/docker.cnf &&
+      chmod 644 /etc/mysql/conf.d/mysql.cnf &&
       exec docker-entrypoint.sh mysqld
       "
+
+volumes:
+  mysql-config:
+    driver: local # The volume will be stored locally on the host machine
+    driver_opts:
+      type: none # Binds to the path specified in "device" instead of creating a new directory/file on the host
+      o: bind # Confirms that Docker maps a directory/file on the host directly into the container
+      device: ./container-volumes/mysql/etc-mysql/
+  mysql-log:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./container-volumes/mysql/var-log-mysql
+  mysql-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./container-volumes/mysql/var-lib-mysql/
+  mysql-init:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./container-volumes/mysql/init-scripts/
