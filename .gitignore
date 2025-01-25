@@ -7,3 +7,4 @@
 /.venv
 /.idea
 /.vs
+/container-volumes/mysql/var-log-mysql
