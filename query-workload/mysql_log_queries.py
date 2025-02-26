@@ -27,6 +27,8 @@ def execute_query(conn, query):
         analyze_results = cursor.fetchall()
         
         nodes = []
+        total_actual_rows = 0
+        total_estimated_rows = 0
         for row in analyze_results:
             row_str = row[0]
             parts = row_str.split('->')
@@ -45,6 +47,9 @@ def execute_query(conn, query):
                             elif rows_count == 2:
                                 actual_rows = float(info.split('=')[1].replace(')', ''))
                                 break
+                    if actual_rows and estimated_rows:
+                        total_actual_rows += actual_rows
+                        total_estimated_rows += estimated_rows
                     q_error = None
                     if actual_rows and estimated_rows:
                         q_error = max(estimated_rows / actual_rows, actual_rows / estimated_rows)
@@ -66,16 +71,15 @@ def execute_query(conn, query):
         yaml.dump([result], result_stream)
         result_yaml = result_stream.getvalue()
         
-        return result_yaml, nodes
+        return result_yaml, total_actual_rows, total_estimated_rows, q_error
     except Exception as e:
         print(f"Error executing query: {e}")
-        return None, None
+        return None, None, None, None
     finally:
         if cursor:
             cursor.close()
 
 def log_queries(conn, query, results, actual_rows, estimated_rows, q_error):
-    q_error = Decimal(q_error)
     cursor = None
     try:
         cursor = conn.cursor()
@@ -84,7 +88,7 @@ def log_queries(conn, query, results, actual_rows, estimated_rows, q_error):
                 cursor.execute("""
                     INSERT INTO query_log (query_text, qep, actual_rows, estimated_rows, q_error, timestamp) 
                     VALUES (%s, %s, %s, %s, %s, %s);
-                """, (query, results, actual_rows, estimated_rows, q_error, datetime.now()))
+                """, (query, results, Decimal(actual_rows), Decimal(estimated_rows), Decimal(q_error), datetime.now()))
 
                 print(f"\nLOGGED QUERY:\n"
                       f"INSERT INTO query_log (query_text, qep, actual_rows, estimated_rows, q_error, timestamp) "
@@ -118,24 +122,18 @@ def main():
 
     try:
         # Read queries from file
-        file_path = 'Join-Order-Benchmark-queries/JOB-light-3.sql'
+        file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
         queries = read_queries_from_file(file_path)
 
         all_results = []
         for query in queries:
             # Execute query and get QEP results
-            result_yaml, nodes = execute_query(conn, query)
-            
-            if nodes:
-                for node in nodes:
-                    actual_rows = node['actual_rows']
-                    estimated_rows = node['estimated_rows']
-                    q_error = node['q_error']
-                    # Log query results
-                    log_queries(conn, query, result_yaml, actual_rows, estimated_rows, q_error)
+            result_yaml, total_actual_rows, total_estimated_rows, q_error = execute_query(conn, query)
             
             if result_yaml:
                 all_results.append(result_yaml)
+                # Log query results
+                log_queries(conn, query, result_yaml, total_actual_rows, total_estimated_rows, q_error)
 
         # Write all results to the output file
         output_file = 'query-workload/mysql_query_workload_results.yaml'

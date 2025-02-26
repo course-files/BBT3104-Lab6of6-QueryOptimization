@@ -11,37 +11,37 @@
     t,movie_info_idx mi_idx WHERE t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=112
     AND mc.company_type_id=2"
   qep:
-  - node: 'Aggregate: count(0) (cost=1444 rows=1) (actual time=7.88..7.88 rows=1 loops=1)'
+  - node: 'Aggregate: count(0) (cost=1444 rows=1) (actual time=8.11..8.11 rows=1 loops=1)'
     actual_rows: 1.0
     estimated_rows: 1.0
     q_error: 1.0
-  - node: Nested loop inner join (cost=1403 rows=405) (actual time=0.296..7.85 rows=715
+  - node: Nested loop inner join (cost=1403 rows=405) (actual time=0.275..8.08 rows=715
       loops=1)
     actual_rows: 715.0
     estimated_rows: 405.0
     q_error: 1.7654320987654322
-  - node: Nested loop inner join (cost=548 rows=250) (actual time=0.188..0.586 rows=250
+  - node: Nested loop inner join (cost=548 rows=250) (actual time=0.189..0.623 rows=250
       loops=1)
     actual_rows: 250.0
     estimated_rows: 250.0
     q_error: 1.0
   - node: Index lookup on mi_idx using info_type_id_movie_info_idx (info_type_id=112)
-      (cost=275 rows=250) (actual time=0.182..0.207 rows=250 loops=1)
+      (cost=275 rows=250) (actual time=0.181..0.208 rows=250 loops=1)
     actual_rows: 250.0
     estimated_rows: 250.0
     q_error: 1.0
   - node: Single-row covering index lookup on t using PRIMARY (id=mi_idx.movie_id)
-      (cost=0.992 rows=1) (actual time=0.0014..0.00142 rows=1 loops=250)
+      (cost=0.992 rows=1) (actual time=0.00154..0.00156 rows=1 loops=250)
     actual_rows: 1.0
     estimated_rows: 1.0
     q_error: 1.0
-  - node: 'Filter: (mc.company_type_id = 2) (cost=3.1 rows=1.62) (actual time=0.0276..0.0289
+  - node: 'Filter: (mc.company_type_id = 2) (cost=3.1 rows=1.62) (actual time=0.0282..0.0296
       rows=2.86 loops=250)'
     actual_rows: 2.86
     estimated_rows: 1.62
     q_error: 1.765432098765432
   - node: Index lookup on mc using movie_id_movie_companies (movie_id=mi_idx.movie_id)
-      (cost=3.1 rows=3.24) (actual time=0.00673..0.0279 rows=33.2 loops=250)
+      (cost=3.1 rows=3.24) (actual time=0.0068..0.0284 rows=33.2 loops=250)
     actual_rows: 33.2
     estimated_rows: 3.24
     q_error: 10.246913580246913
@@ -50,43 +50,43 @@
     t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=113 AND mc.company_type_id=2
     AND t.production_year>2005 AND t.production_year<2010
   qep:
-  - node: 'Aggregate: count(0) (cost=25.9 rows=1) (actual time=0.229..0.229 rows=1
+  - node: 'Aggregate: count(0) (cost=25.9 rows=1) (actual time=0.152..0.152 rows=1
       loops=1)'
     actual_rows: 1.0
     estimated_rows: 1.0
     q_error: 1.0
-  - node: Nested loop inner join (cost=25.7 rows=1.8) (actual time=0.129..0.226 rows=9
+  - node: Nested loop inner join (cost=25.7 rows=1.8) (actual time=0.0836..0.149 rows=9
       loops=1)
     actual_rows: 9.0
     estimated_rows: 1.8
     q_error: 5.0
-  - node: Nested loop inner join (cost=21.9 rows=1.11) (actual time=0.0851..0.123
+  - node: Nested loop inner join (cost=21.9 rows=1.11) (actual time=0.0425..0.0508
       rows=3 loops=1)
     actual_rows: 3.0
     estimated_rows: 1.11
     q_error: 2.7027027027027026
   - node: Index lookup on mi_idx using info_type_id_movie_info_idx (info_type_id=113)
-      (cost=11 rows=10) (actual time=0.0257..0.0279 rows=10 loops=1)
+      (cost=11 rows=10) (actual time=0.0242..0.026 rows=10 loops=1)
     actual_rows: 10.0
     estimated_rows: 10.0
     q_error: 1.0
   - node: 'Filter: ((t.production_year > 2005) and (t.production_year < 2010)) (cost=0.992
-      rows=0.111) (actual time=0.00933..0.00935 rows=0.3 loops=10)'
+      rows=0.111) (actual time=0.00232..0.00233 rows=0.3 loops=10)'
     actual_rows: 0.3
     estimated_rows: 0.111
     q_error: 2.7027027027027026
   - node: Single-row index lookup on t using PRIMARY (id=mi_idx.movie_id) (cost=0.992
-      rows=1) (actual time=0.009..0.00902 rows=1 loops=10)
+      rows=1) (actual time=0.002..0.00202 rows=1 loops=10)
     actual_rows: 1.0
     estimated_rows: 1.0
     q_error: 1.0
-  - node: 'Filter: (mc.company_type_id = 2) (cost=3.24 rows=1.62) (actual time=0.0325..0.0336
+  - node: 'Filter: (mc.company_type_id = 2) (cost=3.24 rows=1.62) (actual time=0.0308..0.032
       rows=3 loops=3)'
     actual_rows: 3.0
     estimated_rows: 1.62
     q_error: 1.8518518518518516
   - node: Index lookup on mc using movie_id_movie_companies (movie_id=mi_idx.movie_id)
-      (cost=3.24 rows=3.24) (actual time=0.0117..0.0326 rows=23 loops=3)
+      (cost=3.24 rows=3.24) (actual time=0.0109..0.0307 rows=23 loops=3)
     actual_rows: 23.0
     estimated_rows: 3.24
     q_error: 7.098765432098765
@@ -95,43 +95,42 @@
     t.id=mc.movie_id AND t.id=mi_idx.movie_id AND mi_idx.info_type_id=112 AND mc.company_type_id=2
     AND t.production_year>2010
   qep:
-  - node: 'Aggregate: count(0) (cost=846 rows=1) (actual time=0.831..0.831 rows=1
-      loops=1)'
+  - node: 'Aggregate: count(0) (cost=846 rows=1) (actual time=0.84..0.84 rows=1 loops=1)'
     actual_rows: 1.0
     estimated_rows: 1.0
     q_error: 1.0
-  - node: Nested loop inner join (cost=833 rows=135) (actual time=0.261..0.826 rows=47
+  - node: Nested loop inner join (cost=833 rows=135) (actual time=0.276..0.836 rows=47
       loops=1)
     actual_rows: 47.0
     estimated_rows: 135.0
     q_error: 2.872340425531915
-  - node: Nested loop inner join (cost=548 rows=83.3) (actual time=0.229..0.473 rows=12
+  - node: Nested loop inner join (cost=548 rows=83.3) (actual time=0.244..0.483 rows=12
       loops=1)
     actual_rows: 12.0
     estimated_rows: 83.3
     q_error: 6.941666666666666
   - node: Index lookup on mi_idx using info_type_id_movie_info_idx (info_type_id=112)
-      (cost=275 rows=250) (actual time=0.168..0.19 rows=250 loops=1)
+      (cost=275 rows=250) (actual time=0.184..0.206 rows=250 loops=1)
     actual_rows: 250.0
     estimated_rows: 250.0
     q_error: 1.0
-  - node: 'Filter: (t.production_year > 2010) (cost=0.991 rows=0.333) (actual time=0.00106..0.00107
+  - node: 'Filter: (t.production_year > 2010) (cost=0.991 rows=0.333) (actual time=0.00104..0.00104
       rows=0.048 loops=250)'
     actual_rows: 0.048
     estimated_rows: 0.333
     q_error: 6.9375
   - node: Single-row index lookup on t using PRIMARY (id=mi_idx.movie_id) (cost=0.991
-      rows=1) (actual time=951e-6..968e-6 rows=1 loops=250)
+      rows=1) (actual time=927e-6..945e-6 rows=1 loops=250)
     actual_rows: 1.0
     estimated_rows: 1.0
     q_error: 1.0
-  - node: 'Filter: (mc.company_type_id = 2) (cost=3.1 rows=1.62) (actual time=0.0274..0.0292
+  - node: 'Filter: (mc.company_type_id = 2) (cost=3.1 rows=1.62) (actual time=0.0273..0.0291
       rows=3.92 loops=12)'
     actual_rows: 3.92
     estimated_rows: 1.62
     q_error: 2.4197530864197527
   - node: Index lookup on mc using movie_id_movie_companies (movie_id=mi_idx.movie_id)
-      (cost=3.1 rows=3.24) (actual time=0.00635..0.0283 rows=31.6 loops=12)
+      (cost=3.1 rows=3.24) (actual time=0.00623..0.0278 rows=31.6 loops=12)
     actual_rows: 31.6
     estimated_rows: 3.24
     q_error: 9.753086419753087
