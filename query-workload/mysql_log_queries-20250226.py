@@ -3,7 +3,6 @@ from ruamel.yaml import YAML
 import sys
 from decimal import Decimal
 from datetime import datetime
-from io import StringIO
 
 def connect_to_database(conn_params):
     try:
@@ -13,13 +12,12 @@ def connect_to_database(conn_params):
         print(f"Error connecting to the database: {e}")
         return None
 
-def read_queries_from_file(file_path):
+def read_query_from_file(file_path):
     with open(file_path, 'r') as file:
-        queries = file.read().strip().split(';')
-    queries = [query.strip() for query in queries if query.strip()]
-    return queries
+        query = file.read().strip()
+    return query
 
-def execute_query(conn, query):
+def execute_query(conn, query, output_file):
     cursor = None
     try:
         cursor = conn.cursor()
@@ -61,15 +59,11 @@ def execute_query(conn, query):
         # Output to console
         yaml.dump([result], sys.stdout)
         
-        # Convert result to YAML string for logging
-        result_stream = StringIO()
-        yaml.dump([result], result_stream)
-        result_yaml = result_stream.getvalue()
-        
-        return result_yaml, nodes
+        # Write to file
+        with open(output_file, 'w') as file:
+            yaml.dump([result], file)
     except Exception as e:
         print(f"Error executing query: {e}")
-        return None, None
     finally:
         if cursor:
             cursor.close()
@@ -101,6 +95,7 @@ def log_queries(conn, query, results, actual_rows, estimated_rows, q_error):
         if cursor:
             cursor.close()
 
+
 def main():
     # Database connection parameters
     conn_params = {
@@ -117,30 +112,13 @@ def main():
         return
 
     try:
-        # Read queries from file
+        # Read query from file
         file_path = 'Join-Order-Benchmark-queries/JOB-light-3.sql'
-        queries = read_queries_from_file(file_path)
+        query = read_query_from_file(file_path)
 
-        all_results = []
-        for query in queries:
-            # Execute query and get QEP results
-            result_yaml, nodes = execute_query(conn, query)
-            
-            if nodes:
-                for node in nodes:
-                    actual_rows = node['actual_rows']
-                    estimated_rows = node['estimated_rows']
-                    q_error = node['q_error']
-                    # Log query results
-                    log_queries(conn, query, result_yaml, actual_rows, estimated_rows, q_error)
-            
-            if result_yaml:
-                all_results.append(result_yaml)
-
-        # Write all results to the output file
+        # Execute query and print EXPLAIN ANALYZE output
         output_file = 'query-workload/mysql_query_workload_results.yaml'
-        with open(output_file, 'w') as file:
-            file.write('\n'.join(all_results))
+        execute_query(conn, query, output_file)
 
     finally:
         conn.close()
