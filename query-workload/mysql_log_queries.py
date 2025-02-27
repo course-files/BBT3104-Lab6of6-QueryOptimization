@@ -122,7 +122,7 @@ def main():
 
     try:
         # Read queries from file
-        file_path = 'Join-Order-Benchmark-queries/JOB-light-70.sql'
+        file_path = 'Join-Order-Benchmark-queries/JOB-scale-500-pending-for-mysql.sql'
         queries = read_queries_from_file(file_path)
 
         all_results = []
