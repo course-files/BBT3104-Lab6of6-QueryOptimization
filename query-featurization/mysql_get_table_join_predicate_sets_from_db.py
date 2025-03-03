@@ -132,9 +132,9 @@ def update_query_log(conn):
 def main():
     # Database connection parameters
     conn_params = {
-        'database': 'imdb',
-        'user': 'root',
-        'password': '5trathm0re',
+        'database': 'imdb_schema',
+        'user': 'jkirui',
+        'password': '*****',
         'host': 'localhost',
         'port': '3306'
     }
