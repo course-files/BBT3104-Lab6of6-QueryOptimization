@@ -1,3 +1,4 @@
+/* JOB-synthetic-500-pending-for-postgres.sql */
 SELECT * FROM title t,cast_info ci,movie_info mi,movie_info_idx mi_idx,movie_keyword mk WHERE t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND t.id=mk.movie_id AND mi.info_type_id>15;
 SELECT * FROM title t,movie_companies mc,cast_info ci,movie_info mi,movie_keyword mk WHERE t.id=mc.movie_id AND t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mk.movie_id AND ci.person_id<926305 AND ci.role_id<10 AND mi.info_type_id<7 AND mk.keyword_id>1074;
 SELECT * FROM title t,cast_info ci,movie_info mi,movie_info_idx mi_idx WHERE t.id=ci.movie_id AND t.id=mi.movie_id AND t.id=mi_idx.movie_id AND ci.person_id>2812137;
